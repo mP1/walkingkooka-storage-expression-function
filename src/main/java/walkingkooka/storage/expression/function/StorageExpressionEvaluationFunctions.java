@@ -30,6 +30,13 @@ public final class StorageExpressionEvaluationFunctions implements PublicStaticH
     }
 
     /**
+     * {@see StorageExpressionFunctionWriteText}
+     */
+    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> writeText() {
+        return StorageExpressionFunctionWriteText.instance();
+    }
+
+    /**
      * Stop creation
      */
     private StorageExpressionEvaluationFunctions() {
