@@ -106,7 +106,7 @@ public final class StorageExpressionFunctionReadTextTest implements ExpressionFu
     public void testToString() {
         this.toStringAndCheck(
             StorageExpressionFunctionReadText.instance(),
-            "StorageRead"
+            "StorageReadText"
         );
     }
 
