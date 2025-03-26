@@ -18,8 +18,16 @@
 package walkingkooka.storage.expression.function;
 
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.tree.expression.function.ExpressionFunction;
 
 public final class StorageExpressionEvaluationFunctions implements PublicStaticHelper {
+
+    /**
+     * {@see StorageExpressionFunctionReadText}
+     */
+    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<String, C> readText() {
+        return StorageExpressionFunctionReadText.instance();
+    }
 
     /**
      * Stop creation

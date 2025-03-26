@@ -17,12 +17,15 @@
 
 package walkingkooka.storage.expression.function;
 
+import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 
 import java.lang.reflect.Method;
 
 public final class StorageExpressionEvaluationFunctionsTest implements PublicStaticHelperTesting<StorageExpressionEvaluationFunctions> {
+
+    // class............................................................................................................
 
     @Override
     public Class<StorageExpressionEvaluationFunctions> type() {
