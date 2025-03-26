@@ -1,0 +1,7 @@
+**/*Testing.*
+**/*Testing2.*
+
+#
+# samples
+#
+*/sample/*
