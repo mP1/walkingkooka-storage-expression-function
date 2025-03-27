@@ -25,7 +25,7 @@ public final class StorageExpressionEvaluationFunctions implements PublicStaticH
     /**
      * {@see StorageExpressionFunctionReadText}
      */
-    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<String, C> readText() {
+    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<String, C> storageReadText() {
         return StorageExpressionFunctionReadText.instance();
     }
 
@@ -39,7 +39,7 @@ public final class StorageExpressionEvaluationFunctions implements PublicStaticH
     /**
      * {@see StorageExpressionFunctionWriteText}
      */
-    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> writeText() {
+    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> storageWriteText() {
         return StorageExpressionFunctionWriteText.instance();
     }
 
