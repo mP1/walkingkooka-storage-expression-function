@@ -57,6 +57,16 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public void testDateTimeSymbolsForLocaleWithNullFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testDecimalNumberSymbolsForLocaleWithNullFails() {
+        throw new UnsupportedOperationException();
+    }
+
     // DecimalNumberContext.............................................................................................
 
     @Override
