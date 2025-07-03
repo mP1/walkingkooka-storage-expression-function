@@ -21,7 +21,6 @@ import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.storage.expression.function.TestStorageExpressionEvaluationContextTesting.TestStorageExpressionEvaluationContext;
-import walkingkooka.tree.expression.FakeExpressionEvaluationContext;
 
 import java.math.MathContext;
 
@@ -50,6 +49,16 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
 
     @Override
     public void testIsPureNullNameFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testDateTimeSymbolsForLocaleWithNullFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testDecimalNumberSymbolsForLocaleWithNullFails() {
         throw new UnsupportedOperationException();
     }
 
