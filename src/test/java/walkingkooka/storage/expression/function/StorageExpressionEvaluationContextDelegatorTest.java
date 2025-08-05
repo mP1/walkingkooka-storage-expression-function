@@ -17,6 +17,7 @@
 
 package walkingkooka.storage.expression.function;
 
+import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
@@ -25,8 +26,10 @@ import walkingkooka.tree.expression.ExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionReference;
 
 import java.math.MathContext;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Function;
 
 public final class StorageExpressionEvaluationContextDelegatorTest implements StorageExpressionEvaluationContextTesting<TestStorageExpressionEvaluationContextDelegator>,
@@ -116,6 +119,24 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         @Override
         public StorageExpressionEvaluationContext storageExpressionEvaluationContext() {
             return StorageExpressionEvaluationContexts.fake();
+        }
+
+        @Override
+        public Set<Locale> findByLocaleText(final String text,
+                                            final int offset,
+                                            final int count) {
+            return LocaleContexts.jre(Locale.ENGLISH)
+                .findByLocaleText(
+                    text,
+                    offset,
+                    count
+                );
+        }
+
+        @Override
+        public Optional<String> localeText(final Locale locale) {
+            return LocaleContexts.jre(Locale.ENGLISH)
+                .localeText(locale);
         }
 
         @Override
