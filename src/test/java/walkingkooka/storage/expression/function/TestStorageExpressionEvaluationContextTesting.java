@@ -17,12 +17,16 @@
 
 package walkingkooka.storage.expression.function;
 
+import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.storage.expression.function.TestStorageExpressionEvaluationContextTesting.TestStorageExpressionEvaluationContext;
 
 import java.math.MathContext;
+import java.util.Locale;
+import java.util.Optional;
+import java.util.Set;
 
 public final class TestStorageExpressionEvaluationContextTesting implements StorageExpressionEvaluationContextTesting<TestStorageExpressionEvaluationContext>,
     DecimalNumberContextDelegator {
@@ -148,6 +152,24 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
         @Override
         public char zeroDigit() {
             return DECIMAL_NUMBER_CONTEXT.zeroDigit();
+        }
+
+        @Override
+        public Set<Locale> findByLocaleText(final String text,
+                                            final int offset,
+                                            final int count) {
+            return LocaleContexts.jre(Locale.ENGLISH)
+                .findByLocaleText(
+                    text,
+                    offset,
+                    count
+                );
+        }
+
+        @Override
+        public Optional<String> localeText(final Locale locale) {
+            return LocaleContexts.jre(Locale.ENGLISH)
+                .localeText(locale);
         }
 
         @Override
