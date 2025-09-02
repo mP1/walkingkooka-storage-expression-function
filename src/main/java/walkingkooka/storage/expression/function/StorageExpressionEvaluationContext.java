@@ -20,10 +20,15 @@ package walkingkooka.storage.expression.function;
 import walkingkooka.storage.StorageStore;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 
+import java.util.Locale;
+
 /**
  * A {@link ExpressionEvaluationContext} that adds a storage getter.
  */
 public interface StorageExpressionEvaluationContext extends ExpressionEvaluationContext {
+
+    @Override
+    StorageExpressionEvaluationContext setLocale(final Locale locale);
 
     /**
      * Getter that returns the current {@link StorageStore}

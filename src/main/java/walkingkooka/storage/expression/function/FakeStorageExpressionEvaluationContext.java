@@ -20,10 +20,17 @@ package walkingkooka.storage.expression.function;
 import walkingkooka.storage.StorageStore;
 import walkingkooka.tree.expression.FakeExpressionEvaluationContext;
 
+import java.util.Locale;
+
 public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvaluationContext implements StorageExpressionEvaluationContext {
 
     public FakeStorageExpressionEvaluationContext() {
         super();
+    }
+
+    @Override
+    public StorageExpressionEvaluationContext setLocale(final Locale locale) {
+        throw new UnsupportedOperationException();
     }
 
     @Override

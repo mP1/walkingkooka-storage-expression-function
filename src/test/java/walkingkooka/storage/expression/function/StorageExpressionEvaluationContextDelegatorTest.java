@@ -140,6 +140,12 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         }
 
         @Override
+        public StorageExpressionEvaluationContext setLocale(final Locale locale) {
+            Objects.requireNonNull(locale, "locale");
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         public String toString() {
             return this.getClass().getSimpleName();
         }
