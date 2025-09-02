@@ -25,6 +25,7 @@ import walkingkooka.storage.expression.function.TestStorageExpressionEvaluationC
 
 import java.math.MathContext;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -170,6 +171,12 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
         public Optional<String> localeText(final Locale locale) {
             return LocaleContexts.jre(Locale.ENGLISH)
                 .localeText(locale);
+        }
+
+        @Override
+        public StorageExpressionEvaluationContext setLocale(final Locale locale) {
+            Objects.requireNonNull(locale, "locale");
+            throw new UnsupportedOperationException();
         }
 
         @Override
