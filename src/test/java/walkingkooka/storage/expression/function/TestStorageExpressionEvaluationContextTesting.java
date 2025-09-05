@@ -67,6 +67,31 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public void testEnvironmentValueWithNullFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testRemoveEnvironmentValueWithNullNameFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testSetEnvironmentValueWithNullNameFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testSetEnvironmentValueWithNullValueFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testUserNotNull() {
+        throw new UnsupportedOperationException();
+    }
+
     // DecimalNumberContext.............................................................................................
 
     @Override

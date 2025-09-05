@@ -65,8 +65,10 @@ final class StorageExpressionFunctionReadText<C extends StorageExpressionEvaluat
         );
 
         StorageValue storageValue = context.storage()
-            .load(path)
-            .orElse(null);
+            .load(
+                path,
+                context
+            ).orElse(null);
 
         Object value = null != storageValue ?
             storageValue.value()
