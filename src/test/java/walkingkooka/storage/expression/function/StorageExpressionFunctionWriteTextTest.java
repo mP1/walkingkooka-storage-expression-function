@@ -21,10 +21,10 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.net.email.EmailAddress;
-import walkingkooka.storage.FakeStorageContext;
+import walkingkooka.storage.Storage;
 import walkingkooka.storage.StoragePath;
-import walkingkooka.storage.StorageStore;
-import walkingkooka.storage.StorageStores;
+import walkingkooka.storage.StorageValue;
+import walkingkooka.storage.Storages;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
 
 import java.time.LocalDateTime;
@@ -38,21 +38,20 @@ public final class StorageExpressionFunctionWriteTextTest implements ExpressionF
 
     @Test
     public void testApplyStorageEntryPresent() {
-        final StorageStore store = StorageStores.tree(
-            new FakeStorageContext() {
-                @Override
-                public LocalDateTime now() {
-                    return LocalDateTime.of(1999, 12, 31, 12, 58, 59);
-                }
-
-                @Override
-                public Optional<EmailAddress> user() {
-                    return Optional.of(
-                        EmailAddress.parse("user@example.com")
-                    );
-                }
+        final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
+        final StorageExpressionEvaluationContext context = new FakeStorageExpressionEvaluationContext() {
+            @Override
+            public LocalDateTime now() {
+                return LocalDateTime.of(1999, 12, 31, 12, 58, 59);
             }
-        );
+
+            @Override
+            public Optional<EmailAddress> user() {
+                return Optional.of(
+                    EmailAddress.parse("user@example.com")
+                );
+            }
+        };
 
         this.applyAndCheck(
             StorageExpressionFunctionWriteText.instance(),
@@ -60,14 +59,16 @@ public final class StorageExpressionFunctionWriteTextTest implements ExpressionF
                 PATH,
                 TEXT
             ),
-            this.createContext(store),
+            this.createContext(storage),
             null
         );
 
         this.checkEquals(
-            TEXT,
-            store.loadOrFail(PATH)
-                .value()
+            Optional.of(TEXT),
+            storage.load(
+                    PATH,
+                    context
+                ).map(StorageValue::value)
                 .orElse(null)
         );
     }
@@ -79,15 +80,27 @@ public final class StorageExpressionFunctionWriteTextTest implements ExpressionF
 
     @Override
     public StorageExpressionEvaluationContext createContext() {
-        return this.createContext(StorageStores.empty());
+        return this.createContext(Storages.empty());
     }
 
-    private StorageExpressionEvaluationContext createContext(final StorageStore storage) {
+    private StorageExpressionEvaluationContext createContext(final Storage<StorageExpressionEvaluationContext> storage) {
         return new FakeStorageExpressionEvaluationContext() {
 
             @Override
-            public StorageStore storage() {
+            public Storage<StorageExpressionEvaluationContext> storage() {
                 return storage;
+            }
+
+            @Override
+            public LocalDateTime now() {
+                return LocalDateTime.now();
+            }
+
+            @Override
+            public Optional<EmailAddress> user() {
+                return Optional.of(
+                    EmailAddress.parse("user@example.com")
+                );
             }
         };
     }

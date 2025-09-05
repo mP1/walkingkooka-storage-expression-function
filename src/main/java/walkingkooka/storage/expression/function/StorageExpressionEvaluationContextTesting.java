@@ -17,7 +17,21 @@
 
 package walkingkooka.storage.expression.function;
 
+import org.junit.jupiter.api.Test;
+import walkingkooka.storage.StorageContextTesting;
 import walkingkooka.tree.expression.ExpressionEvaluationContextTesting;
 
-public interface StorageExpressionEvaluationContextTesting<C extends StorageExpressionEvaluationContext> extends ExpressionEvaluationContextTesting<C> {
+public interface StorageExpressionEvaluationContextTesting<C extends StorageExpressionEvaluationContext> extends ExpressionEvaluationContextTesting<C>,
+    StorageContextTesting<C> {
+
+    @Test
+    @Override
+    default void testSetLocaleWithNullFails() {
+        StorageContextTesting.super.testSetLocaleWithNullFails();
+    }
+
+    @Override
+    default String typeNameSuffix() {
+        return StorageExpressionEvaluationContext.class.getSimpleName();
+    }
 }

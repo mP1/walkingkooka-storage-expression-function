@@ -21,11 +21,10 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.net.email.EmailAddress;
-import walkingkooka.storage.FakeStorageContext;
+import walkingkooka.storage.Storage;
 import walkingkooka.storage.StoragePath;
-import walkingkooka.storage.StorageStore;
-import walkingkooka.storage.StorageStores;
 import walkingkooka.storage.StorageValue;
+import walkingkooka.storage.Storages;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
 
 import java.time.LocalDateTime;
@@ -37,64 +36,42 @@ public final class StorageExpressionFunctionDeleteTest implements ExpressionFunc
 
     @Test
     public void testApplyStorageDeleted() {
-        final StorageStore store = StorageStores.tree(
-            new FakeStorageContext() {
-                @Override
-                public LocalDateTime now() {
-                    return LocalDateTime.of(1999, 12, 31, 12, 58, 59);
-                }
+        final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
+        final StorageExpressionEvaluationContext context = this.createContext(storage);
 
-                @Override
-                public Optional<EmailAddress> user() {
-                    return Optional.of(
-                        EmailAddress.parse("user@example.com")
-                    );
-                }
-            }
-        );
-
-        store.save(
+        storage.save(
             StorageValue.with(
                 PATH,
                 Optional.of("value456")
-            )
+            ),
+            context
         );
 
         this.applyAndCheck(
             StorageExpressionFunctionDelete.instance(),
             Lists.of(PATH),
-            this.createContext(store),
+            context,
             null
         );
 
         this.checkEquals(
             Optional.empty(),
-            store.load(PATH)
+            storage.load(
+                PATH,
+                context
+            )
         );
     }
 
     @Test
     public void testApplyStorageMissing() {
-        final StorageStore store = StorageStores.tree(
-            new FakeStorageContext() {
-                @Override
-                public LocalDateTime now() {
-                    return LocalDateTime.of(1999, 12, 31, 12, 58, 59);
-                }
-
-                @Override
-                public Optional<EmailAddress> user() {
-                    return Optional.of(
-                        EmailAddress.parse("user@example.com")
-                    );
-                }
-            }
-        );
+        final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
+        final StorageExpressionEvaluationContext context = this.createContext(storage);
 
         this.applyAndCheck(
             StorageExpressionFunctionDelete.instance(),
             Lists.of(PATH),
-            this.createContext(store),
+            context,
             null
         );
     }
@@ -106,15 +83,27 @@ public final class StorageExpressionFunctionDeleteTest implements ExpressionFunc
 
     @Override
     public StorageExpressionEvaluationContext createContext() {
-        return this.createContext(StorageStores.empty());
+        return this.createContext(Storages.empty());
     }
 
-    private StorageExpressionEvaluationContext createContext(final StorageStore storage) {
+    private StorageExpressionEvaluationContext createContext(final Storage<StorageExpressionEvaluationContext> storage) {
         return new FakeStorageExpressionEvaluationContext() {
 
             @Override
-            public StorageStore storage() {
+            public Storage<StorageExpressionEvaluationContext> storage() {
                 return storage;
+            }
+
+            @Override
+            public Optional<EmailAddress> user() {
+                return Optional.of(
+                    EmailAddress.parse("user@example.com")
+                );
+            }
+
+            @Override
+            public LocalDateTime now() {
+                return LocalDateTime.now();
             }
         };
     }

@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Writes some text to {@link walkingkooka.storage.StorageStore}.
+ * Writes some text to {@link walkingkooka.storage.Store}.
  */
 final class StorageExpressionFunctionWriteText<C extends StorageExpressionEvaluationContext> extends StorageExpressionFunction<C, Void> {
 
@@ -82,7 +82,8 @@ final class StorageExpressionFunctionWriteText<C extends StorageExpressionEvalua
                 StorageValue.with(
                     path,
                     Optional.of(text)
-                )
+                ),
+                context
             );
 
         return null;

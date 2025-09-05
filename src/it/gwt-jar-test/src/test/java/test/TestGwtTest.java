@@ -3,11 +3,12 @@ package test;
 import com.google.gwt.junit.client.GWTTestCase;
 
 import walkingkooka.net.email.EmailAddress;
-import walkingkooka.storage.FakeStorageContext;
+import walkingkooka.storage.Storage;
 import walkingkooka.storage.StoragePath;
-import walkingkooka.storage.StorageStore;
-import walkingkooka.storage.StorageStores;
 import walkingkooka.storage.StorageValue;
+import walkingkooka.storage.Storages;
+import walkingkooka.storage.expression.function.FakeStorageExpressionEvaluationContext;
+import walkingkooka.storage.expression.function.StorageExpressionEvaluationContext;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -28,21 +29,20 @@ public class TestGwtTest extends GWTTestCase {
     }
 
     public void testStorageWriteRead() {
-        final StorageStore store = StorageStores.tree(
-            new FakeStorageContext() {
-                @Override
-                public LocalDateTime now() {
-                    return LocalDateTime.of(1999, 12, 31, 12, 58, 59);
-                }
-
-                @Override
-                public Optional<EmailAddress> user() {
-                    return Optional.of(
-                        EmailAddress.parse("user@example.com")
-                    );
-                }
+        final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
+        final StorageExpressionEvaluationContext context = new FakeStorageExpressionEvaluationContext() {
+            @Override
+            public LocalDateTime now() {
+                return LocalDateTime.of(1999, 12, 31, 12, 58, 59);
             }
-        );
+
+            @Override
+            public Optional<EmailAddress> user() {
+                return Optional.of(
+                    EmailAddress.parse("user@example.com")
+                );
+            }
+        };
 
         final StoragePath path = StoragePath.parse("/dir1/file2.txt");
         final String text = "The quick brown fox jumps over the lazy dog";
@@ -52,13 +52,17 @@ public class TestGwtTest extends GWTTestCase {
             Optional.of(text)
         );
 
-        store.save(
-            storageValue
+        storage.save(
+            storageValue,
+            context
         );
 
         checkEquals(
-            storageValue,
-            store.loadOrFail(path),
+            Optional.of(storageValue),
+            storage.load(
+                path,
+                context
+            ),
             "load " + path
         );
     }

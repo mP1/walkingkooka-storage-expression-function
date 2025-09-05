@@ -17,7 +17,7 @@
 
 package walkingkooka.storage.expression.function;
 
-import walkingkooka.storage.StorageStore;
+import walkingkooka.storage.Storage;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionEvaluationContextDelegator;
 
@@ -33,7 +33,7 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
     // StorageExpressionEvaluationContext...............................................................................
 
     @Override
-    default StorageStore storage() {
+    default Storage<StorageExpressionEvaluationContext> storage() {
         return this.storageExpressionEvaluationContext()
             .storage();
     }

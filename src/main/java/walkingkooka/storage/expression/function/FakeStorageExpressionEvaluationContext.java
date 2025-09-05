@@ -17,10 +17,16 @@
 
 package walkingkooka.storage.expression.function;
 
-import walkingkooka.storage.StorageStore;
+import walkingkooka.environment.EnvironmentContext;
+import walkingkooka.environment.EnvironmentValueName;
+import walkingkooka.net.email.EmailAddress;
+import walkingkooka.storage.Storage;
+import walkingkooka.storage.StorageContext;
 import walkingkooka.tree.expression.FakeExpressionEvaluationContext;
 
 import java.util.Locale;
+import java.util.Optional;
+import java.util.Set;
 
 public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvaluationContext implements StorageExpressionEvaluationContext {
 
@@ -29,12 +35,45 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
     }
 
     @Override
+    public Storage<StorageExpressionEvaluationContext> storage() {
+        throw new UnsupportedOperationException();
+    }
+
+    // StorageContext...................................................................................................
+
+    @Override
     public StorageExpressionEvaluationContext setLocale(final Locale locale) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public StorageStore storage() {
+    public EnvironmentContext cloneEnvironment() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public <T> Optional<T> environmentValue(final EnvironmentValueName<T> environmentValueName) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Set<EnvironmentValueName<?>> environmentValueNames() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public <T> StorageContext setEnvironmentValue(final EnvironmentValueName<T> name,
+                                                  final T reference) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public StorageContext removeEnvironmentValue(final EnvironmentValueName<?> name) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Optional<EmailAddress> user() {
         throw new UnsupportedOperationException();
     }
 }

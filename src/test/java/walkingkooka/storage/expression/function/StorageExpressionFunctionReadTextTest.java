@@ -22,12 +22,14 @@ import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.convert.Converters;
-import walkingkooka.storage.FakeStorageStore;
+import walkingkooka.net.email.EmailAddress;
+import walkingkooka.storage.FakeStorage;
+import walkingkooka.storage.Storage;
 import walkingkooka.storage.StoragePath;
-import walkingkooka.storage.StorageStore;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 public final class StorageExpressionFunctionReadTextTest implements ExpressionFunctionTesting<StorageExpressionFunctionReadText<StorageExpressionEvaluationContext>, String, StorageExpressionEvaluationContext> {
@@ -62,13 +64,14 @@ public final class StorageExpressionFunctionReadTextTest implements ExpressionFu
         return new FakeStorageExpressionEvaluationContext() {
 
             @Override
-            public StorageStore storage() {
+            public Storage<StorageExpressionEvaluationContext> storage() {
                 return this.storage;
             }
 
-            private final StorageStore storage = new FakeStorageStore() {
+            private final Storage<StorageExpressionEvaluationContext> storage = new FakeStorage<>() {
                 @Override
-                public Optional<StorageValue> load(final StoragePath path) {
+                public Optional<StorageValue> load(final StoragePath path,
+                                                   final StorageExpressionEvaluationContext context) {
                     return Optional.ofNullable(
                         path.equals(PATH) ?
                             StorageValue.with(path, Optional.of(TEXT)) :
@@ -86,6 +89,18 @@ public final class StorageExpressionFunctionReadTextTest implements ExpressionFu
                         target,
                         this
                     );
+            }
+
+            @Override
+            public LocalDateTime now() {
+                return LocalDateTime.now();
+            }
+
+            @Override
+            public Optional<EmailAddress> user() {
+                return Optional.of(
+                    EmailAddress.parse("user@example.com")
+                );
             }
         };
     }
