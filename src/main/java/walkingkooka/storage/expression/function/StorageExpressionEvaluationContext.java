@@ -17,6 +17,7 @@
 
 package walkingkooka.storage.expression.function;
 
+import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageContext;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
@@ -31,6 +32,16 @@ public interface StorageExpressionEvaluationContext extends ExpressionEvaluation
 
     @Override
     StorageExpressionEvaluationContext setLocale(final Locale locale);
+
+    @Override
+    StorageExpressionEvaluationContext cloneEnvironment();
+
+    @Override
+    <T> StorageExpressionEvaluationContext setEnvironmentValue(final EnvironmentValueName<T> name,
+                                                               final T value);
+
+    @Override
+    StorageExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name);
 
     /**
      * Getter that returns the current {@link Storage}

@@ -17,14 +17,12 @@
 
 package walkingkooka.storage.expression.function;
 
-import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.net.email.EmailAddress;
-import walkingkooka.storage.StorageContext;
 import walkingkooka.storage.expression.function.StorageExpressionEvaluationContextDelegatorTest.TestStorageExpressionEvaluationContextDelegator;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionReference;
@@ -175,7 +173,7 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         }
 
         @Override 
-        public EnvironmentContext cloneEnvironment() {
+        public StorageExpressionEvaluationContext cloneEnvironment() {
             throw new UnsupportedOperationException();
         }
 
@@ -195,13 +193,13 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         }
 
         @Override
-        public <T> StorageContext setEnvironmentValue(final EnvironmentValueName<T> name, 
-                                                      final T reference) {
+        public <T> StorageExpressionEvaluationContext setEnvironmentValue(final EnvironmentValueName<T> name,
+                                                                          final T reference) {
             throw new UnsupportedOperationException();
         }
 
         @Override
-        public StorageContext removeEnvironmentValue(final EnvironmentValueName<?> name) {
+        public StorageExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name) {
             throw new UnsupportedOperationException();
         }
 
