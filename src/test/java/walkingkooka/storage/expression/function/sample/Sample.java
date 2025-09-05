@@ -18,9 +18,8 @@
 package walkingkooka.storage.expression.function.sample;
 
 import org.junit.jupiter.api.Test;
-
 import walkingkooka.net.email.EmailAddress;
-import walkingkooka.storage.FakeStorageStoreContext;
+import walkingkooka.storage.FakeStorageContext;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageStore;
 import walkingkooka.storage.StorageStores;
@@ -41,7 +40,7 @@ public final class Sample {
     @Test
     public void testStorageWriteRead() {
         final StorageStore store = StorageStores.tree(
-            new FakeStorageStoreContext() {
+            new FakeStorageContext() {
                 @Override
                 public LocalDateTime now() {
                     return LocalDateTime.of(1999, 12, 31, 12, 58, 59);

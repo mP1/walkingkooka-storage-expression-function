@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.net.email.EmailAddress;
-import walkingkooka.storage.FakeStorageStoreContext;
+import walkingkooka.storage.FakeStorageContext;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageStore;
 import walkingkooka.storage.StorageStores;
@@ -38,7 +38,7 @@ public final class StorageExpressionFunctionDeleteTest implements ExpressionFunc
     @Test
     public void testApplyStorageDeleted() {
         final StorageStore store = StorageStores.tree(
-            new FakeStorageStoreContext() {
+            new FakeStorageContext() {
                 @Override
                 public LocalDateTime now() {
                     return LocalDateTime.of(1999, 12, 31, 12, 58, 59);
@@ -76,7 +76,7 @@ public final class StorageExpressionFunctionDeleteTest implements ExpressionFunc
     @Test
     public void testApplyStorageMissing() {
         final StorageStore store = StorageStores.tree(
-            new FakeStorageStoreContext() {
+            new FakeStorageContext() {
                 @Override
                 public LocalDateTime now() {
                     return LocalDateTime.of(1999, 12, 31, 12, 58, 59);
