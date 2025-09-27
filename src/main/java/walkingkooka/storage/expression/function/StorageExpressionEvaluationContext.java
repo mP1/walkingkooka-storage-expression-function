@@ -18,11 +18,13 @@
 package walkingkooka.storage.expression.function;
 
 import walkingkooka.environment.EnvironmentValueName;
+import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageContext;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 
 import java.util.Locale;
+import java.util.Optional;
 
 /**
  * A {@link ExpressionEvaluationContext} that adds a storage getter.
@@ -32,6 +34,9 @@ public interface StorageExpressionEvaluationContext extends ExpressionEvaluation
 
     @Override
     StorageExpressionEvaluationContext setLocale(final Locale locale);
+
+    @Override
+    StorageExpressionEvaluationContext setUser(final Optional<EmailAddress> user);
 
     @Override
     StorageExpressionEvaluationContext cloneEnvironment();

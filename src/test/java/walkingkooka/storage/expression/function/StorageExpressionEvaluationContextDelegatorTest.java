@@ -172,6 +172,12 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
             throw new UnsupportedOperationException();
         }
 
+        @Override
+        public StorageExpressionEvaluationContext setUser(final Optional<EmailAddress> user) {
+            Objects.requireNonNull(user, "user");
+            throw new UnsupportedOperationException();
+        }
+
         @Override 
         public StorageExpressionEvaluationContext cloneEnvironment() {
             throw new UnsupportedOperationException();
