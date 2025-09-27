@@ -45,6 +45,11 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
     }
 
     @Override
+    public StorageExpressionEvaluationContext setUser(final Optional<EmailAddress> user) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public FakeStorageExpressionEvaluationContext cloneEnvironment() {
         throw new UnsupportedOperationException();
     }
