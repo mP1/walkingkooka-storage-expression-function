@@ -58,6 +58,16 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
     }
 
     @Override
+    public void testEnvironmentValueLocaleEqualsLocale() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testEnvironmentValueUserEqualsUser() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public void testIsPureNullNameFails() {
         throw new UnsupportedOperationException();
     }
@@ -89,6 +99,11 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
     @Override
     public void testSetEnvironmentValueWithNullValueFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testSetLocaleWithDifferent() {
         throw new UnsupportedOperationException();
     }
 
