@@ -24,6 +24,7 @@ import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.expression.function.StorageExpressionEvaluationContextDelegatorTest.TestStorageExpressionEvaluationContextDelegator;
+import walkingkooka.text.LineEnding;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionReference;
 
@@ -221,6 +222,17 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
         @Override
         public StorageExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public LineEnding lineEnding() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public StorageExpressionEvaluationContext setLineEnding(final LineEnding lineEnding) {
+            Objects.requireNonNull(lineEnding, "lineEnding");
             throw new UnsupportedOperationException();
         }
 
