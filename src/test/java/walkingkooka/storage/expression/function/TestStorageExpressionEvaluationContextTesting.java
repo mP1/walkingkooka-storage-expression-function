@@ -17,15 +17,20 @@
 
 package walkingkooka.storage.expression.function;
 
+import walkingkooka.environment.EnvironmentContext;
+import walkingkooka.environment.EnvironmentContexts;
+import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
+import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.expression.function.TestStorageExpressionEvaluationContextTesting.TestStorageExpressionEvaluationContext;
+import walkingkooka.text.LineEnding;
 
 import java.math.MathContext;
+import java.time.LocalDateTime;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -181,6 +186,12 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
         }
 
         @Override
+        public StorageExpressionEvaluationContext setLineEnding(final LineEnding lineEnding) {
+            this.environmentContext.setLineEnding(lineEnding);
+            return this;
+        }
+
+        @Override
         public Set<Locale> findByLocaleText(final String text,
                                             final int offset,
                                             final int count) {
@@ -199,10 +210,40 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
         }
 
         @Override
-        public StorageExpressionEvaluationContext setLocale(final Locale locale) {
-            Objects.requireNonNull(locale, "locale");
-            throw new UnsupportedOperationException();
+        public Locale locale() {
+            return this.environmentContext.locale();
         }
+
+        @Override
+        public StorageExpressionEvaluationContext setLocale(final Locale locale) {
+            this.environmentContext.setLocale(locale);
+            return this;
+        }
+
+        @Override
+        public Optional<EmailAddress> user() {
+            return this.environmentContext.user();
+        }
+
+        @Override
+        public StorageExpressionEvaluationContext setUser(final Optional<EmailAddress> user) {
+            this.environmentContext.setUser(user);
+            return this;
+        }
+
+        @Override
+        public <T> Optional<T> environmentValue(final EnvironmentValueName<T> environmentValueName) {
+            return this.environmentContext.environmentValue(environmentValueName);
+        }
+
+        private final EnvironmentContext environmentContext = EnvironmentContexts.map(
+            EnvironmentContexts.empty(
+                LineEnding.NL,
+                Locale.ENGLISH,
+                () -> LocalDateTime.MIN,
+                ANONYMOUS
+            )
+        );
 
         @Override
         public String toString() {

@@ -21,6 +21,7 @@ import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageContext;
+import walkingkooka.text.LineEnding;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 
 import java.util.Locale;
@@ -31,6 +32,9 @@ import java.util.Optional;
  */
 public interface StorageExpressionEvaluationContext extends ExpressionEvaluationContext,
     StorageContext {
+
+    @Override
+    StorageExpressionEvaluationContext setLineEnding(final LineEnding lineEnding);
 
     @Override
     StorageExpressionEvaluationContext setLocale(final Locale locale);

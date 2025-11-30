@@ -20,6 +20,7 @@ package walkingkooka.storage.expression.function;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.Storage;
+import walkingkooka.text.LineEnding;
 import walkingkooka.tree.expression.FakeExpressionEvaluationContext;
 
 import java.util.Locale;
@@ -38,6 +39,16 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
     }
 
     // StorageContext...................................................................................................
+
+    @Override
+    public LineEnding lineEnding() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public StorageExpressionEvaluationContext setLineEnding(final LineEnding lineEnding) {
+        throw new UnsupportedOperationException();
+    }
 
     @Override
     public StorageExpressionEvaluationContext setLocale(final Locale locale) {
