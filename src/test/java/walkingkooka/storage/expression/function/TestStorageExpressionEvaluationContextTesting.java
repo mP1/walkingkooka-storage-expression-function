@@ -31,6 +31,7 @@ import walkingkooka.text.LineEnding;
 import java.math.MathContext;
 import java.time.LocalDateTime;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -229,6 +230,13 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
         public StorageExpressionEvaluationContext setUser(final Optional<EmailAddress> user) {
             this.environmentContext.setUser(user);
             return this;
+        }
+
+        @Override
+        public TestStorageExpressionEvaluationContext setEnvironmentContext(final EnvironmentContext environmentContext) {
+            Objects.requireNonNull(environmentContext, "environmentContext");
+
+            throw new UnsupportedOperationException();
         }
 
         @Override

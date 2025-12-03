@@ -17,6 +17,7 @@
 
 package walkingkooka.storage.expression.function;
 
+import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.Storage;
@@ -62,6 +63,11 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
 
     @Override
     public FakeStorageExpressionEvaluationContext cloneEnvironment() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public StorageExpressionEvaluationContext setEnvironmentContext(final EnvironmentContext environmentContext) {
         throw new UnsupportedOperationException();
     }
 
