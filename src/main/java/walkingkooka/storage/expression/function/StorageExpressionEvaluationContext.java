@@ -17,6 +17,7 @@
 
 package walkingkooka.storage.expression.function;
 
+import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.Storage;
@@ -44,6 +45,9 @@ public interface StorageExpressionEvaluationContext extends ExpressionEvaluation
 
     @Override
     StorageExpressionEvaluationContext cloneEnvironment();
+
+    @Override
+    StorageExpressionEvaluationContext setEnvironmentContext(final EnvironmentContext environmentContext);
 
     @Override
     <T> StorageExpressionEvaluationContext setEnvironmentValue(final EnvironmentValueName<T> name,

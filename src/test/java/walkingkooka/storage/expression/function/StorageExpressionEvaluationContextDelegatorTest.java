@@ -17,6 +17,7 @@
 
 package walkingkooka.storage.expression.function;
 
+import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
@@ -196,6 +197,13 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
         @Override 
         public StorageExpressionEvaluationContext cloneEnvironment() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public StorageExpressionEvaluationContext setEnvironmentContext(final EnvironmentContext environmentContext) {
+            Objects.requireNonNull(environmentContext, "environmentContext");
+
             throw new UnsupportedOperationException();
         }
 
