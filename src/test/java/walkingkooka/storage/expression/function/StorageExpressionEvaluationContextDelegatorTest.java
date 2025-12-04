@@ -184,6 +184,11 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         }
 
         @Override
+        public Locale locale() {
+            return Locale.ENGLISH;
+        }
+
+        @Override
         public StorageExpressionEvaluationContext setLocale(final Locale locale) {
             Objects.requireNonNull(locale, "locale");
             throw new UnsupportedOperationException();
@@ -204,7 +209,7 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         public StorageExpressionEvaluationContext setEnvironmentContext(final EnvironmentContext environmentContext) {
             Objects.requireNonNull(environmentContext, "environmentContext");
 
-            throw new UnsupportedOperationException();
+            return new TestStorageExpressionEvaluationContextDelegator();
         }
 
         @Override
@@ -219,7 +224,7 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
         @Override
         public Optional<EmailAddress> user() {
-            throw new UnsupportedOperationException();
+            return ANONYMOUS;
         }
 
         @Override
@@ -235,7 +240,7 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
         @Override
         public LineEnding lineEnding() {
-            throw new UnsupportedOperationException();
+            return LineEnding.NL;
         }
 
         @Override

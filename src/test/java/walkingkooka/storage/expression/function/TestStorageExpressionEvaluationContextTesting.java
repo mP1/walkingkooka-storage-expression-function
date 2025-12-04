@@ -187,6 +187,11 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
         }
 
         @Override
+        public LineEnding lineEnding() {
+            return this.environmentContext.lineEnding();
+        }
+
+        @Override
         public StorageExpressionEvaluationContext setLineEnding(final LineEnding lineEnding) {
             this.environmentContext.setLineEnding(lineEnding);
             return this;
@@ -236,7 +241,7 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
         public TestStorageExpressionEvaluationContext setEnvironmentContext(final EnvironmentContext environmentContext) {
             Objects.requireNonNull(environmentContext, "environmentContext");
 
-            throw new UnsupportedOperationException();
+            return new TestStorageExpressionEvaluationContext();
         }
 
         @Override
