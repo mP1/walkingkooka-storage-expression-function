@@ -19,6 +19,7 @@ package walkingkooka.storage.expression.function;
 
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentValueName;
+import walkingkooka.environment.EnvironmentValueWatcher;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
@@ -105,7 +106,17 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
     }
 
     @Override
+    public void testSetLineEndingWithDifferentAndWatcher() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public void testSetLocaleWithDifferent() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testSetLocaleWithDifferentAndWatcher() {
         throw new UnsupportedOperationException();
     }
 
@@ -113,6 +124,12 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
     public void testUserNotNull() {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public void testSetUserWithDifferentAndWatcher() {
+        throw new UnsupportedOperationException();
+    }
+
 
     // DecimalNumberContext.............................................................................................
 
@@ -246,6 +263,18 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         @Override
         public StorageExpressionEvaluationContext setLineEnding(final LineEnding lineEnding) {
             Objects.requireNonNull(lineEnding, "lineEnding");
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Runnable addEventValueWatcher(final EnvironmentValueWatcher watcher) {
+            Objects.requireNonNull(watcher, "watcher");
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Runnable addEventValueWatcherOnce(final EnvironmentValueWatcher watcher) {
+            Objects.requireNonNull(watcher, "watcher");
             throw new UnsupportedOperationException();
         }
 

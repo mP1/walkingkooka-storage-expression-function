@@ -19,6 +19,7 @@ package walkingkooka.storage.expression.function;
 
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentValueName;
+import walkingkooka.environment.EnvironmentValueWatcher;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.Storage;
 import walkingkooka.text.LineEnding;
@@ -94,6 +95,16 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
 
     @Override
     public Optional<EmailAddress> user() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Runnable addEventValueWatcher(final EnvironmentValueWatcher watcher) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Runnable addEventValueWatcherOnce(final EnvironmentValueWatcher watcher) {
         throw new UnsupportedOperationException();
     }
 }
