@@ -122,6 +122,11 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
     // DecimalNumberContext.............................................................................................
 
     @Override
+    public int decimalNumberDigitCount() {
+        return DECIMAL_NUMBER_CONTEXT.decimalNumberDigitCount();
+    }
+
+    @Override
     public DecimalNumberContext decimalNumberContext() {
         return DECIMAL_NUMBER_CONTEXT;
     }
@@ -145,6 +150,11 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
         @Override
         public String currencySymbol() {
             return DECIMAL_NUMBER_CONTEXT.currencySymbol();
+        }
+
+        @Override
+        public int decimalNumberDigitCount() {
+            return DECIMAL_NUMBER_CONTEXT.decimalNumberDigitCount();
         }
 
         @Override
