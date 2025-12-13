@@ -61,7 +61,8 @@ final class StorageExpressionFunctionReadText<C extends StorageExpressionEvaluat
                         final C context) {
         final StoragePath path = PATH.getOrFail(
             parameters,
-            0
+            0,
+            context
         );
 
         StorageValue storageValue = context.storage()

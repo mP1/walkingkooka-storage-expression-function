@@ -60,7 +60,8 @@ final class StorageExpressionFunctionDelete<C extends StorageExpressionEvaluatio
                       final C context) {
         final StoragePath path = PATH.getOrFail(
             parameters,
-            0
+            0,
+            context
         );
 
         context.storage()
