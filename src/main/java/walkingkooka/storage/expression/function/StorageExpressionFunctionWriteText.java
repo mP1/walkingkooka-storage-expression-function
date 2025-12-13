@@ -69,14 +69,12 @@ final class StorageExpressionFunctionWriteText<C extends StorageExpressionEvalua
                       final C context) {
         final StoragePath path = PATH.getOrFail(
             parameters,
-            0,
-            context
+            0
         );
 
         final String text = TEXT.getOrFail(
             parameters,
-            1,
-            context
+            1
         );
 
         context.storage()
