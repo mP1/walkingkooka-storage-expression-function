@@ -27,7 +27,7 @@ public interface StorageExpressionEvaluationContextTesting<C extends StorageExpr
     @Test
     @Override
     default void testSetLocaleWithNullFails() {
-        StorageContextTesting.super.testSetLocaleWithNullFails();
+        ExpressionEvaluationContextTesting.super.testSetLocaleWithNullFails();
     }
 
     @Override
