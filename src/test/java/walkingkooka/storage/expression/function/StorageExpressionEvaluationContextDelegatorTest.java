@@ -177,6 +177,12 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         }
 
         @Override
+        public Object evaluate(final String expression) {
+            Objects.requireNonNull(expression, "expression");
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         public Optional<Optional<Object>> reference(final ExpressionReference expressionReference) {
             Objects.requireNonNull(expressionReference, "expressionReference");
             throw new UnsupportedOperationException();
