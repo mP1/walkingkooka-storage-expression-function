@@ -148,6 +148,12 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
     static class TestStorageExpressionEvaluationContext extends FakeStorageExpressionEvaluationContext {
 
         @Override
+        public Object evaluate(final String expression) {
+            Objects.requireNonNull(expression, "expression");
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         public String currencySymbol() {
             return DECIMAL_NUMBER_CONTEXT.currencySymbol();
         }
