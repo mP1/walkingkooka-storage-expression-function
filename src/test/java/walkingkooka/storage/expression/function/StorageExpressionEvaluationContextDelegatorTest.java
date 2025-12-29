@@ -31,6 +31,7 @@ import walkingkooka.tree.expression.ExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionReference;
 
 import java.math.MathContext;
+import java.time.LocalDateTime;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
@@ -67,6 +68,11 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
     @Override
     public void testEnvironmentValueLocaleEqualsLocale() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testEnvironmentValueNowEqualsNow() {
         throw new UnsupportedOperationException();
     }
 
@@ -235,6 +241,11 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         public StorageExpressionEvaluationContext setLocale(final Locale locale) {
             Objects.requireNonNull(locale, "locale");
             throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public LocalDateTime now() {
+            return LocalDateTime.MIN;
         }
 
         @Override

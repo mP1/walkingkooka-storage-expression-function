@@ -274,6 +274,11 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
         }
 
         @Override
+        public LocalDateTime now() {
+            return this.environmentContext.now();
+        }
+
+        @Override
         public Optional<EmailAddress> user() {
             return this.environmentContext.user();
         }
