@@ -30,18 +30,18 @@ import java.util.Optional;
 /**
  * Writes some text to {@link walkingkooka.storage.Store}.
  */
-final class StorageExpressionEvaluationFunctionWriteText<C extends StorageExpressionEvaluationContext> extends StorageExpressionEvaluationFunction<C, Void> {
+final class StorageExpressionFunctionWriteText<C extends StorageExpressionEvaluationContext> extends StorageExpressionFunction<C, Void> {
 
     /**
      * Type safe getter.
      */
-    static <C extends StorageExpressionEvaluationContext> StorageExpressionEvaluationFunctionWriteText<C> instance() {
+    static <C extends StorageExpressionEvaluationContext> StorageExpressionFunctionWriteText<C> instance() {
         return Cast.to(INSTANCE);
     }
 
-    final static StorageExpressionEvaluationFunctionWriteText INSTANCE = new StorageExpressionEvaluationFunctionWriteText<>();
+    final static StorageExpressionFunctionWriteText INSTANCE = new StorageExpressionFunctionWriteText<>();
 
-    private StorageExpressionEvaluationFunctionWriteText() {
+    private StorageExpressionFunctionWriteText() {
         super("StorageWriteText");
     }
 

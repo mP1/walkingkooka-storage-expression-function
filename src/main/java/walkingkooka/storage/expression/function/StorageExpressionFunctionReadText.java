@@ -27,18 +27,18 @@ import java.util.List;
 /**
  * Reads a storage entry and converts it to {@link String}.
  */
-final class StorageExpressionEvaluationFunctionReadText<C extends StorageExpressionEvaluationContext> extends StorageExpressionEvaluationFunction<C, String> {
+final class StorageExpressionFunctionReadText<C extends StorageExpressionEvaluationContext> extends StorageExpressionFunction<C, String> {
 
     /**
      * Type safe getter.
      */
-    static <C extends StorageExpressionEvaluationContext> StorageExpressionEvaluationFunctionReadText<C> instance() {
+    static <C extends StorageExpressionEvaluationContext> StorageExpressionFunctionReadText<C> instance() {
         return Cast.to(INSTANCE);
     }
 
-    final static StorageExpressionEvaluationFunctionReadText INSTANCE = new StorageExpressionEvaluationFunctionReadText<>();
+    final static StorageExpressionFunctionReadText INSTANCE = new StorageExpressionFunctionReadText<>();
 
-    private StorageExpressionEvaluationFunctionReadText() {
+    private StorageExpressionFunctionReadText() {
         super("StorageReadText");
     }
 

@@ -23,24 +23,24 @@ import walkingkooka.tree.expression.function.ExpressionFunction;
 public final class StorageExpressionEvaluationFunctions implements PublicStaticHelper {
 
     /**
-     * {@see StorageExpressionEvaluationFunctionReadText}
+     * {@see StorageExpressionFunctionReadText}
      */
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<String, C> storageReadText() {
-        return StorageExpressionEvaluationFunctionReadText.instance();
+        return StorageExpressionFunctionReadText.instance();
     }
 
     /**
-     * {@see StorageExpressionEvaluationFunctionDelete}
+     * {@see StorageExpressionFunctionDelete}
      */
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> storageDelete() {
-        return StorageExpressionEvaluationFunctionDelete.instance();
+        return StorageExpressionFunctionDelete.instance();
     }
 
     /**
-     * {@see StorageExpressionEvaluationFunctionWriteText}
+     * {@see StorageExpressionFunctionWriteText}
      */
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> storageWriteText() {
-        return StorageExpressionEvaluationFunctionWriteText.instance();
+        return StorageExpressionFunctionWriteText.instance();
     }
 
     /**

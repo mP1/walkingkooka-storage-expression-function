@@ -30,7 +30,7 @@ import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public final class StorageExpressionEvaluationFunctionDeleteTest implements ExpressionFunctionTesting<StorageExpressionEvaluationFunctionDelete<StorageExpressionEvaluationContext>, Void, StorageExpressionEvaluationContext> {
+public final class StorageExpressionFunctionDeleteTest implements ExpressionFunctionTesting<StorageExpressionFunctionDelete<StorageExpressionEvaluationContext>, Void, StorageExpressionEvaluationContext> {
 
     private final static StoragePath PATH = StoragePath.parse("/dir1/file2.txt");
 
@@ -48,7 +48,7 @@ public final class StorageExpressionEvaluationFunctionDeleteTest implements Expr
         );
 
         this.applyAndCheck(
-            StorageExpressionEvaluationFunctionDelete.instance(),
+            StorageExpressionFunctionDelete.instance(),
             Lists.of(PATH),
             context,
             null
@@ -69,7 +69,7 @@ public final class StorageExpressionEvaluationFunctionDeleteTest implements Expr
         final StorageExpressionEvaluationContext context = this.createContext(storage);
 
         this.applyAndCheck(
-            StorageExpressionEvaluationFunctionDelete.instance(),
+            StorageExpressionFunctionDelete.instance(),
             Lists.of(PATH),
             context,
             null
@@ -77,8 +77,8 @@ public final class StorageExpressionEvaluationFunctionDeleteTest implements Expr
     }
 
     @Override
-    public StorageExpressionEvaluationFunctionDelete<StorageExpressionEvaluationContext> createBiFunction() {
-        return StorageExpressionEvaluationFunctionDelete.instance();
+    public StorageExpressionFunctionDelete<StorageExpressionEvaluationContext> createBiFunction() {
+        return StorageExpressionFunctionDelete.instance();
     }
 
     @Override
@@ -123,7 +123,7 @@ public final class StorageExpressionEvaluationFunctionDeleteTest implements Expr
     @Test
     public void testToString() {
         this.toStringAndCheck(
-            StorageExpressionEvaluationFunctionDelete.instance(),
+            StorageExpressionFunctionDelete.instance(),
             "StorageDelete"
         );
     }
@@ -131,7 +131,7 @@ public final class StorageExpressionEvaluationFunctionDeleteTest implements Expr
     // class............................................................................................................
 
     @Override
-    public Class<StorageExpressionEvaluationFunctionDelete<StorageExpressionEvaluationContext>> type() {
-        return Cast.to(StorageExpressionEvaluationFunctionDelete.class);
+    public Class<StorageExpressionFunctionDelete<StorageExpressionEvaluationContext>> type() {
+        return Cast.to(StorageExpressionFunctionDelete.class);
     }
 }
