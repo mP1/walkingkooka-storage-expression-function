@@ -22,13 +22,13 @@ import walkingkooka.reflect.PublicStaticHelperTesting;
 
 import java.lang.reflect.Method;
 
-public final class StorageExpressionEvaluationFunctionsTest implements PublicStaticHelperTesting<StorageExpressionEvaluationFunctions> {
+public final class StorageExpressionFunctionsTest implements PublicStaticHelperTesting<StorageExpressionFunctions> {
 
     // class............................................................................................................
 
     @Override
-    public Class<StorageExpressionEvaluationFunctions> type() {
-        return StorageExpressionEvaluationFunctions.class;
+    public Class<StorageExpressionFunctions> type() {
+        return StorageExpressionFunctions.class;
     }
 
     @Override
