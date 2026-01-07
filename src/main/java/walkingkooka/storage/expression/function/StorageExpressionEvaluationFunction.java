@@ -27,9 +27,9 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.Optional;
 
-abstract class StorageExpressionFunction<C extends StorageExpressionEvaluationContext, T> implements ExpressionFunction<T, C> {
+abstract class StorageExpressionEvaluationFunction<C extends StorageExpressionEvaluationContext, T> implements ExpressionFunction<T, C> {
 
-    StorageExpressionFunction(final String name) {
+    StorageExpressionEvaluationFunction(final String name) {
         super();
 
         this.name = Optional.of(

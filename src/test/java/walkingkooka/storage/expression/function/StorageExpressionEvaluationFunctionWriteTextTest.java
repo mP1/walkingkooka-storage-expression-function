@@ -30,7 +30,7 @@ import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public final class StorageExpressionFunctionWriteTextTest implements ExpressionFunctionTesting<StorageExpressionFunctionWriteText<StorageExpressionEvaluationContext>, Void, StorageExpressionEvaluationContext> {
+public final class StorageExpressionEvaluationFunctionWriteTextTest implements ExpressionFunctionTesting<StorageExpressionEvaluationFunctionWriteText<StorageExpressionEvaluationContext>, Void, StorageExpressionEvaluationContext> {
 
     private final static StoragePath PATH = StoragePath.parse("/dir1/file2.txt");
 
@@ -54,7 +54,7 @@ public final class StorageExpressionFunctionWriteTextTest implements ExpressionF
         };
 
         this.applyAndCheck(
-            StorageExpressionFunctionWriteText.instance(),
+            StorageExpressionEvaluationFunctionWriteText.instance(),
             Lists.of(
                 PATH,
                 TEXT
@@ -74,8 +74,8 @@ public final class StorageExpressionFunctionWriteTextTest implements ExpressionF
     }
 
     @Override
-    public StorageExpressionFunctionWriteText<StorageExpressionEvaluationContext> createBiFunction() {
-        return StorageExpressionFunctionWriteText.instance();
+    public StorageExpressionEvaluationFunctionWriteText<StorageExpressionEvaluationContext> createBiFunction() {
+        return StorageExpressionEvaluationFunctionWriteText.instance();
     }
 
     @Override
@@ -120,7 +120,7 @@ public final class StorageExpressionFunctionWriteTextTest implements ExpressionF
     @Test
     public void testToString() {
         this.toStringAndCheck(
-            StorageExpressionFunctionWriteText.instance(),
+            StorageExpressionEvaluationFunctionWriteText.instance(),
             "StorageWriteText"
         );
     }
@@ -128,7 +128,7 @@ public final class StorageExpressionFunctionWriteTextTest implements ExpressionF
     // class............................................................................................................
 
     @Override
-    public Class<StorageExpressionFunctionWriteText<StorageExpressionEvaluationContext>> type() {
-        return Cast.to(StorageExpressionFunctionWriteText.class);
+    public Class<StorageExpressionEvaluationFunctionWriteText<StorageExpressionEvaluationContext>> type() {
+        return Cast.to(StorageExpressionEvaluationFunctionWriteText.class);
     }
 }
