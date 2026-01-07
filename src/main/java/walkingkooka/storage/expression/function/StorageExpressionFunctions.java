@@ -20,7 +20,7 @@ package walkingkooka.storage.expression.function;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 
-public final class StorageExpressionEvaluationFunctions implements PublicStaticHelper {
+public final class StorageExpressionFunctions implements PublicStaticHelper {
 
     /**
      * {@see StorageExpressionFunctionReadText}
@@ -46,7 +46,7 @@ public final class StorageExpressionEvaluationFunctions implements PublicStaticH
     /**
      * Stop creation
      */
-    private StorageExpressionEvaluationFunctions() {
+    private StorageExpressionFunctions() {
         throw new UnsupportedOperationException();
     }
 }
