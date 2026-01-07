@@ -17,7 +17,6 @@
 
 package walkingkooka.storage.expression.function;
 
-import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 

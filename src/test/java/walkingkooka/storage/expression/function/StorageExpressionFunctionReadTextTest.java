@@ -32,7 +32,7 @@ import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public final class StorageExpressionEvaluationFunctionReadTextTest implements ExpressionFunctionTesting<StorageExpressionEvaluationFunctionReadText<StorageExpressionEvaluationContext>, String, StorageExpressionEvaluationContext> {
+public final class StorageExpressionFunctionReadTextTest implements ExpressionFunctionTesting<StorageExpressionFunctionReadText<StorageExpressionEvaluationContext>, String, StorageExpressionEvaluationContext> {
 
     private final static StoragePath PATH = StoragePath.parse("/dir1/file2.txt");
 
@@ -55,8 +55,8 @@ public final class StorageExpressionEvaluationFunctionReadTextTest implements Ex
     }
 
     @Override
-    public StorageExpressionEvaluationFunctionReadText<StorageExpressionEvaluationContext> createBiFunction() {
-        return StorageExpressionEvaluationFunctionReadText.instance();
+    public StorageExpressionFunctionReadText<StorageExpressionEvaluationContext> createBiFunction() {
+        return StorageExpressionFunctionReadText.instance();
     }
 
     @Override
@@ -120,7 +120,7 @@ public final class StorageExpressionEvaluationFunctionReadTextTest implements Ex
     @Test
     public void testToString() {
         this.toStringAndCheck(
-            StorageExpressionEvaluationFunctionReadText.instance(),
+            StorageExpressionFunctionReadText.instance(),
             "StorageReadText"
         );
     }
@@ -128,7 +128,7 @@ public final class StorageExpressionEvaluationFunctionReadTextTest implements Ex
     // class............................................................................................................
 
     @Override
-    public Class<StorageExpressionEvaluationFunctionReadText<StorageExpressionEvaluationContext>> type() {
-        return Cast.to(StorageExpressionEvaluationFunctionReadText.class);
+    public Class<StorageExpressionFunctionReadText<StorageExpressionEvaluationContext>> type() {
+        return Cast.to(StorageExpressionFunctionReadText.class);
     }
 }

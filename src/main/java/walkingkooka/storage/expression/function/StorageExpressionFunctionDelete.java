@@ -26,18 +26,18 @@ import java.util.List;
 /**
  * Deletes a storage entry.
  */
-final class StorageExpressionEvaluationFunctionDelete<C extends StorageExpressionEvaluationContext> extends StorageExpressionEvaluationFunction<C, Void> {
+final class StorageExpressionFunctionDelete<C extends StorageExpressionEvaluationContext> extends StorageExpressionFunction<C, Void> {
 
     /**
      * Type safe getter.
      */
-    static <C extends StorageExpressionEvaluationContext> StorageExpressionEvaluationFunctionDelete<C> instance() {
+    static <C extends StorageExpressionEvaluationContext> StorageExpressionFunctionDelete<C> instance() {
         return Cast.to(INSTANCE);
     }
 
-    final static StorageExpressionEvaluationFunctionDelete INSTANCE = new StorageExpressionEvaluationFunctionDelete<>();
+    final static StorageExpressionFunctionDelete INSTANCE = new StorageExpressionFunctionDelete<>();
 
-    private StorageExpressionEvaluationFunctionDelete() {
+    private StorageExpressionFunctionDelete() {
         super("StorageDelete");
     }
 
