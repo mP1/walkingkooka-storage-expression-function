@@ -124,7 +124,7 @@ public final class StorageExpressionFunctionDeleteTest implements ExpressionFunc
     public void testToString() {
         this.toStringAndCheck(
             StorageExpressionFunctionDelete.instance(),
-            "StorageDelete"
+            "storageDelete"
         );
     }
 

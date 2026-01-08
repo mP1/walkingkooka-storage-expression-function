@@ -38,7 +38,7 @@ final class StorageExpressionFunctionDelete<C extends StorageExpressionEvaluatio
     final static StorageExpressionFunctionDelete INSTANCE = new StorageExpressionFunctionDelete<>();
 
     private StorageExpressionFunctionDelete() {
-        super("StorageDelete");
+        super("storageDelete");
     }
 
     @Override
