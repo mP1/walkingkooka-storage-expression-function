@@ -39,7 +39,7 @@ final class StorageExpressionFunctionWriteText<C extends StorageExpressionEvalua
         return Cast.to(INSTANCE);
     }
 
-    final static StorageExpressionFunctionWriteText INSTANCE = new StorageExpressionFunctionWriteText<>();
+    final static StorageExpressionFunctionWriteText<?> INSTANCE = new StorageExpressionFunctionWriteText<>();
 
     private StorageExpressionFunctionWriteText() {
         super("storageWriteText");

@@ -35,7 +35,7 @@ final class StorageExpressionFunctionDelete<C extends StorageExpressionEvaluatio
         return Cast.to(INSTANCE);
     }
 
-    final static StorageExpressionFunctionDelete INSTANCE = new StorageExpressionFunctionDelete<>();
+    final static StorageExpressionFunctionDelete<?> INSTANCE = new StorageExpressionFunctionDelete<>();
 
     private StorageExpressionFunctionDelete() {
         super("storageDelete");

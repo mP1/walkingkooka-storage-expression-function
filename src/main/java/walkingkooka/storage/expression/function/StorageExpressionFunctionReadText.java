@@ -36,7 +36,7 @@ final class StorageExpressionFunctionReadText<C extends StorageExpressionEvaluat
         return Cast.to(INSTANCE);
     }
 
-    final static StorageExpressionFunctionReadText INSTANCE = new StorageExpressionFunctionReadText<>();
+    final static StorageExpressionFunctionReadText<?> INSTANCE = new StorageExpressionFunctionReadText<>();
 
     private StorageExpressionFunctionReadText() {
         super("storageReadText");
