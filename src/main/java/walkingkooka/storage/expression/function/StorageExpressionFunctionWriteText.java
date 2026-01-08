@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Writes some text to {@link walkingkooka.storage.Store}.
+ * Writes some text to {@link walkingkooka.storage.Storage}.
  */
 final class StorageExpressionFunctionWriteText<C extends StorageExpressionEvaluationContext> extends StorageExpressionFunction<C, Void> {
 
