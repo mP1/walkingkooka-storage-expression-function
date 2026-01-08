@@ -121,7 +121,7 @@ public final class StorageExpressionFunctionWriteTextTest implements ExpressionF
     public void testToString() {
         this.toStringAndCheck(
             StorageExpressionFunctionWriteText.instance(),
-            "StorageWriteText"
+            "storageWriteText"
         );
     }
 
