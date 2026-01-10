@@ -18,6 +18,7 @@
 package walkingkooka.storage.expression.function;
 
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.storage.StorageValueInfoList;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 
 public final class StorageExpressionFunctions implements PublicStaticHelper {
@@ -34,6 +35,13 @@ public final class StorageExpressionFunctions implements PublicStaticHelper {
      */
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> storageDelete() {
         return StorageExpressionFunctionDelete.instance();
+    }
+
+    /**
+     * {@see StorageExpressionFunctionList}
+     */
+    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<StorageValueInfoList, C> storageList() {
+        return StorageExpressionFunctionList.instance();
     }
 
     /**
