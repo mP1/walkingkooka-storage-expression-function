@@ -36,7 +36,7 @@ public final class StorageExpressionFunctionDeleteTest implements ExpressionFunc
 
     @Test
     public void testApplyStorageDeleted() {
-        final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
+        final Storage storage = Storages.tree();
         final StorageExpressionEvaluationContext context = this.createContext(storage);
 
         storage.save(
@@ -65,7 +65,7 @@ public final class StorageExpressionFunctionDeleteTest implements ExpressionFunc
 
     @Test
     public void testApplyStorageMissing() {
-        final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
+        final Storage storage = Storages.tree();
         final StorageExpressionEvaluationContext context = this.createContext(storage);
 
         this.applyAndCheck(
@@ -86,11 +86,11 @@ public final class StorageExpressionFunctionDeleteTest implements ExpressionFunc
         return this.createContext(Storages.empty());
     }
 
-    private StorageExpressionEvaluationContext createContext(final Storage<StorageExpressionEvaluationContext> storage) {
+    private StorageExpressionEvaluationContext createContext(final Storage storage) {
         return new FakeStorageExpressionEvaluationContext() {
 
             @Override
-            public Storage<StorageExpressionEvaluationContext> storage() {
+            public Storage storage() {
                 return storage;
             }
 

@@ -25,6 +25,7 @@ import walkingkooka.convert.Converters;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.FakeStorage;
 import walkingkooka.storage.Storage;
+import walkingkooka.storage.StorageContext;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
@@ -64,14 +65,14 @@ public final class StorageExpressionFunctionReadTextTest implements ExpressionFu
         return new FakeStorageExpressionEvaluationContext() {
 
             @Override
-            public Storage<StorageExpressionEvaluationContext> storage() {
+            public Storage storage() {
                 return this.storage;
             }
 
-            private final Storage<StorageExpressionEvaluationContext> storage = new FakeStorage<>() {
+            private final Storage storage = new FakeStorage() {
                 @Override
                 public Optional<StorageValue> load(final StoragePath path,
-                                                   final StorageExpressionEvaluationContext context) {
+                                                   final StorageContext context) {
                     return Optional.ofNullable(
                         path.equals(PATH) ?
                             StorageValue.with(path, Optional.of(TEXT)) :
