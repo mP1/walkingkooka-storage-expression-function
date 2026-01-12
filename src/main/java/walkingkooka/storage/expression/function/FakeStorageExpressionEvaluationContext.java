@@ -36,7 +36,7 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
     }
 
     @Override
-    public Storage storage() {
+    public Storage<StorageExpressionEvaluationContext> storage() {
         throw new UnsupportedOperationException();
     }
 

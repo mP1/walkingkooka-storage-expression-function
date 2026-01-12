@@ -38,7 +38,7 @@ public final class StorageExpressionFunctionWriteTextTest implements ExpressionF
 
     @Test
     public void testApplyStorageEntryPresent() {
-        final Storage storage = Storages.tree();
+        final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
         final StorageExpressionEvaluationContext context = new FakeStorageExpressionEvaluationContext() {
             @Override
             public LocalDateTime now() {
@@ -83,11 +83,11 @@ public final class StorageExpressionFunctionWriteTextTest implements ExpressionF
         return this.createContext(Storages.empty());
     }
 
-    private StorageExpressionEvaluationContext createContext(final Storage storage) {
+    private StorageExpressionEvaluationContext createContext(final Storage<StorageExpressionEvaluationContext> storage) {
         return new FakeStorageExpressionEvaluationContext() {
 
             @Override
-            public Storage storage() {
+            public Storage<StorageExpressionEvaluationContext> storage() {
                 return storage;
             }
 

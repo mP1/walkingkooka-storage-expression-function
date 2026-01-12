@@ -78,7 +78,7 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
     // StorageExpressionEvaluationContext...............................................................................
 
     @Override
-    default Storage storage() {
+    default Storage<StorageExpressionEvaluationContext> storage() {
         return this.storageExpressionEvaluationContext()
             .storage();
     }

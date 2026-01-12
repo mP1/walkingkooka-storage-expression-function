@@ -59,5 +59,5 @@ public interface StorageExpressionEvaluationContext extends ExpressionEvaluation
     /**
      * Getter that returns the current {@link Storage}
      */
-    Storage storage();
+    Storage<StorageExpressionEvaluationContext> storage();
 }

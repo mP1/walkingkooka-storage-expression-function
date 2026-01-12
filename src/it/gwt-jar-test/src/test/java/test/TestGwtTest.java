@@ -29,7 +29,7 @@ public class TestGwtTest extends GWTTestCase {
     }
 
     public void testStorageWriteRead() {
-        final Storage storage = Storages.tree();
+        final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
         final StorageExpressionEvaluationContext context = new FakeStorageExpressionEvaluationContext() {
             @Override
             public LocalDateTime now() {
