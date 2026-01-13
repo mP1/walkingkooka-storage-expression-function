@@ -19,7 +19,6 @@ package walkingkooka.storage.expression.function;
 
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentValueName;
-import walkingkooka.environment.EnvironmentValueWatcher;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
@@ -30,7 +29,6 @@ import walkingkooka.tree.expression.FakeExpressionEvaluationContext;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
-import java.util.Set;
 
 public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvaluationContext implements StorageExpressionEvaluationContext {
 
@@ -63,11 +61,6 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
     // StorageContext...................................................................................................
 
     @Override
-    public LineEnding lineEnding() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public StorageExpressionEvaluationContext setLineEnding(final LineEnding lineEnding) {
         throw new UnsupportedOperationException();
     }
@@ -93,16 +86,6 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
     }
 
     @Override
-    public <T> Optional<T> environmentValue(final EnvironmentValueName<T> environmentValueName) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Set<EnvironmentValueName<?>> environmentValueNames() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public <T> FakeStorageExpressionEvaluationContext setEnvironmentValue(final EnvironmentValueName<T> name,
                                                                           final T reference) {
         throw new UnsupportedOperationException();
@@ -110,21 +93,6 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
 
     @Override
     public FakeStorageExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Optional<EmailAddress> user() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Runnable addEventValueWatcher(final EnvironmentValueWatcher watcher) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Runnable addEventValueWatcherOnce(final EnvironmentValueWatcher watcher) {
         throw new UnsupportedOperationException();
     }
 }
