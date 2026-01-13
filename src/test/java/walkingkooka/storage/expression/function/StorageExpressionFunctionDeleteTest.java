@@ -25,19 +25,19 @@ import walkingkooka.storage.Storage;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.Storages;
-import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
+import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCase.TestStorageExpressionEvaluationContext;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public final class StorageExpressionFunctionDeleteTest implements ExpressionFunctionTesting<StorageExpressionFunctionDelete<StorageExpressionEvaluationContext>, Void, StorageExpressionEvaluationContext> {
+public final class StorageExpressionFunctionDeleteTest extends StorageExpressionFunctionTestCase<StorageExpressionFunctionDelete<TestStorageExpressionEvaluationContext>, Void> {
 
     private final static StoragePath PATH = StoragePath.parse("/dir1/file2.txt");
 
     @Test
     public void testApplyStorageDeleted() {
-        final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
-        final StorageExpressionEvaluationContext context = this.createContext(storage);
+        final Storage<TestStorageExpressionEvaluationContext> storage = Storages.tree();
+        final TestStorageExpressionEvaluationContext context = this.createContext(storage);
 
         storage.save(
             StorageValue.with(
@@ -65,8 +65,8 @@ public final class StorageExpressionFunctionDeleteTest implements ExpressionFunc
 
     @Test
     public void testApplyStorageMissing() {
-        final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
-        final StorageExpressionEvaluationContext context = this.createContext(storage);
+        final Storage<TestStorageExpressionEvaluationContext> storage = Storages.tree();
+        final TestStorageExpressionEvaluationContext context = this.createContext(storage);
 
         this.applyAndCheck(
             StorageExpressionFunctionDelete.instance(),
@@ -77,21 +77,21 @@ public final class StorageExpressionFunctionDeleteTest implements ExpressionFunc
     }
 
     @Override
-    public StorageExpressionFunctionDelete<StorageExpressionEvaluationContext> createBiFunction() {
+    public StorageExpressionFunctionDelete<TestStorageExpressionEvaluationContext> createBiFunction() {
         return StorageExpressionFunctionDelete.instance();
     }
 
     @Override
-    public StorageExpressionEvaluationContext createContext() {
+    public TestStorageExpressionEvaluationContext createContext() {
         return this.createContext(Storages.empty());
     }
 
-    private StorageExpressionEvaluationContext createContext(final Storage<StorageExpressionEvaluationContext> storage) {
-        return new FakeStorageExpressionEvaluationContext() {
+    private TestStorageExpressionEvaluationContext createContext(final Storage<TestStorageExpressionEvaluationContext> storage) {
+        return new TestStorageExpressionEvaluationContext() {
 
             @Override
             public Storage<StorageExpressionEvaluationContext> storage() {
-                return storage;
+                return Cast.to(storage);
             }
 
             @Override
@@ -113,11 +113,6 @@ public final class StorageExpressionFunctionDeleteTest implements ExpressionFunc
         return 1;
     }
 
-    @Override
-    public void testTypeNaming() {
-        throw new UnsupportedOperationException();
-    }
-
     // toString.........................................................................................................
 
     @Test
@@ -131,7 +126,7 @@ public final class StorageExpressionFunctionDeleteTest implements ExpressionFunc
     // class............................................................................................................
 
     @Override
-    public Class<StorageExpressionFunctionDelete<StorageExpressionEvaluationContext>> type() {
+    public Class<StorageExpressionFunctionDelete<TestStorageExpressionEvaluationContext>> type() {
         return Cast.to(StorageExpressionFunctionDelete.class);
     }
 }
