@@ -25,6 +25,13 @@ import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.net.email.EmailAddress;
+import walkingkooka.storage.Storage;
+import walkingkooka.storage.StorageContext;
+import walkingkooka.storage.StorageContexts;
+import walkingkooka.storage.StoragePath;
+import walkingkooka.storage.StorageValue;
+import walkingkooka.storage.StorageValueInfo;
+import walkingkooka.storage.Storages;
 import walkingkooka.storage.expression.function.StorageExpressionEvaluationContextDelegatorTest.TestStorageExpressionEvaluationContextDelegator;
 import walkingkooka.text.LineEnding;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
@@ -32,6 +39,7 @@ import walkingkooka.tree.expression.ExpressionReference;
 
 import java.math.MathContext;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
@@ -211,7 +219,45 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
         @Override
         public StorageExpressionEvaluationContext storageExpressionEvaluationContext() {
-            return StorageExpressionEvaluationContexts.fake();
+            return new FakeStorageExpressionEvaluationContext() {
+                @Override
+                public Optional<StorageValue> loadStorage(final StoragePath path) {
+                    return this.storage.load(
+                        path,
+                        StorageContexts.fake()
+                    );
+                }
+
+                @Override
+                public StorageValue saveStorage(final StorageValue value) {
+                    return this.storage.save(
+                        value,
+                        StorageContexts.fake()
+                    );
+                }
+
+                @Override
+                public void deleteStorage(final StoragePath path) {
+                    this.storage.delete(
+                        path,
+                        StorageContexts.fake()
+                    );
+                }
+
+                @Override
+                public List<StorageValueInfo> listStorage(final StoragePath parent,
+                                                          final int offset,
+                                                          final int count) {
+                    return this.storage.list(
+                        parent,
+                        offset,
+                        count,
+                        StorageContexts.fake()
+                    );
+                }
+
+                private final Storage<StorageContext> storage = Storages.tree();
+            };
         }
 
         @Override

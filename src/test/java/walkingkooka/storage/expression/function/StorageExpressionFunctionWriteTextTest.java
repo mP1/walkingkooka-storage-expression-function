@@ -38,8 +38,8 @@ public final class StorageExpressionFunctionWriteTextTest extends StorageExpress
 
     @Test
     public void testApplyStorageEntryPresent() {
-        final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
-        final StorageExpressionEvaluationContext context = new FakeStorageExpressionEvaluationContext() {
+        final Storage<TestStorageExpressionEvaluationContext> storage = Storages.tree();
+        final TestStorageExpressionEvaluationContext context = new TestStorageExpressionEvaluationContext(storage) {
             @Override
             public LocalDateTime now() {
                 return LocalDateTime.of(1999, 12, 31, 12, 58, 59);
@@ -83,13 +83,8 @@ public final class StorageExpressionFunctionWriteTextTest extends StorageExpress
         return this.createContext(Storages.empty());
     }
 
-    private TestStorageExpressionEvaluationContext createContext(final Storage<StorageExpressionEvaluationContext> storage) {
-        return new TestStorageExpressionEvaluationContext() {
-
-            @Override
-            public Storage<StorageExpressionEvaluationContext> storage() {
-                return storage;
-            }
+    private TestStorageExpressionEvaluationContext createContext(final Storage<TestStorageExpressionEvaluationContext> storage) {
+        return new TestStorageExpressionEvaluationContext(storage) {
 
             @Override
             public LocalDateTime now() {
