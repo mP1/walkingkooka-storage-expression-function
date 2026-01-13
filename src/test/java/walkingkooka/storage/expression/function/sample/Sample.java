@@ -18,15 +18,11 @@
 package walkingkooka.storage.expression.function.sample;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.net.email.EmailAddress;
-import walkingkooka.storage.Storage;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
-import walkingkooka.storage.Storages;
 import walkingkooka.storage.expression.function.FakeStorageExpressionEvaluationContext;
 import walkingkooka.storage.expression.function.StorageExpressionEvaluationContext;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -35,46 +31,34 @@ public final class Sample {
 
     public static void main(final String[] args) {
         final Sample sample = new Sample();
-        sample.testStorageWriteRead();
+        sample.testLoadStorage();
     }
 
     @Test
-    public void testStorageWriteRead() {
-        final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
+    public void testLoadStorage() {
+        final StoragePath path = StoragePath.parse("/hello");
+
+        final Optional<StorageValue> storageValue = Optional.of(
+            StorageValue.with(
+                path,
+                Optional.of(1)
+            )
+        );
+
         final StorageExpressionEvaluationContext context = new FakeStorageExpressionEvaluationContext() {
-            @Override
-            public LocalDateTime now() {
-                return LocalDateTime.of(1999, 12, 31, 12, 58, 59);
-            }
 
             @Override
-            public Optional<EmailAddress> user() {
-                return Optional.of(
-                    EmailAddress.parse("user@example.com")
-                );
+            public Optional<StorageValue> loadStorage(final StoragePath path) {
+                return storageValue;
             }
         };
 
-        final StoragePath path = StoragePath.parse("/dir1/file2.txt");
-        final String text = "The quick brown fox jumps over the lazy dog";
-
-        final StorageValue storageValue = StorageValue.with(
-            path,
-            Optional.of(text)
-        );
-
-        storage.save(
-            storageValue,
-            context
-        );
-
         checkEquals(
-            Optional.of(storageValue),
-            storage.load(
-                path,
-                context
+            storageValue,
+            context.loadStorage(
+                path
             ),
-            "load " + path
+            "loadStorage " + path
         );
     }
 

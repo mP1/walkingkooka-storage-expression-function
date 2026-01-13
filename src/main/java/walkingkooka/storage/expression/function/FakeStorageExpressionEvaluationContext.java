@@ -21,10 +21,13 @@ import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.environment.EnvironmentValueWatcher;
 import walkingkooka.net.email.EmailAddress;
-import walkingkooka.storage.Storage;
+import walkingkooka.storage.StoragePath;
+import walkingkooka.storage.StorageValue;
+import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.text.LineEnding;
 import walkingkooka.tree.expression.FakeExpressionEvaluationContext;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
@@ -36,7 +39,24 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
     }
 
     @Override
-    public Storage<StorageExpressionEvaluationContext> storage() {
+    public Optional<StorageValue> loadStorage(final StoragePath path) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public StorageValue saveStorage(final StorageValue value) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void deleteStorage(final StoragePath path) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public List<StorageValueInfo> listStorage(final StoragePath parent,
+                                              final int offset,
+                                              final int count) {
         throw new UnsupportedOperationException();
     }
 

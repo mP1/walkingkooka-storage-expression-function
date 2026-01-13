@@ -87,12 +87,7 @@ public final class StorageExpressionFunctionDeleteTest extends StorageExpression
     }
 
     private TestStorageExpressionEvaluationContext createContext(final Storage<TestStorageExpressionEvaluationContext> storage) {
-        return new TestStorageExpressionEvaluationContext() {
-
-            @Override
-            public Storage<StorageExpressionEvaluationContext> storage() {
-                return Cast.to(storage);
-            }
+        return new TestStorageExpressionEvaluationContext(storage) {
 
             @Override
             public Optional<EmailAddress> user() {
