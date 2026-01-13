@@ -27,12 +27,12 @@ import walkingkooka.storage.Storage;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.storage.StorageValueInfoList;
-import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
+import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCase.TestStorageExpressionEvaluationContext;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-public final class StorageExpressionFunctionListTest implements ExpressionFunctionTesting<StorageExpressionFunctionList<StorageExpressionEvaluationContext>, StorageValueInfoList, StorageExpressionEvaluationContext> {
+public final class StorageExpressionFunctionListTest extends StorageExpressionFunctionTestCase<StorageExpressionFunctionList<TestStorageExpressionEvaluationContext>, StorageValueInfoList> {
 
     private final static StoragePath PATH = StoragePath.parse("/dir1/");
 
@@ -64,13 +64,13 @@ public final class StorageExpressionFunctionListTest implements ExpressionFuncti
     }
 
     @Override
-    public StorageExpressionFunctionList<StorageExpressionEvaluationContext> createBiFunction() {
+    public StorageExpressionFunctionList<TestStorageExpressionEvaluationContext> createBiFunction() {
         return StorageExpressionFunctionList.instance();
     }
 
     @Override
-    public StorageExpressionEvaluationContext createContext() {
-        return new FakeStorageExpressionEvaluationContext() {
+    public TestStorageExpressionEvaluationContext createContext() {
+        return new TestStorageExpressionEvaluationContext() {
 
             @Override
             public Storage<StorageExpressionEvaluationContext> storage() {
@@ -97,11 +97,6 @@ public final class StorageExpressionFunctionListTest implements ExpressionFuncti
         return 1;
     }
 
-    @Override
-    public void testTypeNaming() {
-        throw new UnsupportedOperationException();
-    }
-
     // toString.........................................................................................................
 
     @Test
@@ -115,7 +110,7 @@ public final class StorageExpressionFunctionListTest implements ExpressionFuncti
     // class............................................................................................................
 
     @Override
-    public Class<StorageExpressionFunctionList<StorageExpressionEvaluationContext>> type() {
+    public Class<StorageExpressionFunctionList<TestStorageExpressionEvaluationContext>> type() {
         return Cast.to(StorageExpressionFunctionList.class);
     }
 }
