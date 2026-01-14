@@ -65,10 +65,12 @@ final class StorageExpressionFunctionList<C extends StorageExpressionEvaluationC
         );
 
         return StorageValueInfoList.EMPTY.concatAll(
-            context.listStorage(
+            context.storage()
+                .list(
                     path,
                     0,
-                    Integer.MAX_VALUE
+                    Integer.MAX_VALUE,
+                    context
                 )
         );
     }
