@@ -21,35 +21,18 @@ import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.Storage;
-import walkingkooka.storage.StoragePath;
-import walkingkooka.storage.StorageValue;
-import walkingkooka.storage.StorageValueInfo;
+import walkingkooka.storage.StorageContext;
 import walkingkooka.text.LineEnding;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 
-import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
 /**
- * A {@link ExpressionEvaluationContext} that adds methods that should delegate to an internal {@link Storage}.
+ * A {@link ExpressionEvaluationContext} that adds a storage getter.
  */
-public interface StorageExpressionEvaluationContext extends ExpressionEvaluationContext {
-
-    Optional<StorageValue> loadStorage(final StoragePath path);
-
-    StorageValue saveStorage(final StorageValue value);
-
-    void deleteStorage(final StoragePath path);
-
-    /**
-     * Gets the {@link StorageValueInfo} for the given range.<br>
-     * Conceptually equivalent to getting a directory listing.
-     */
-    List<StorageValueInfo> listStorage(final StoragePath parent,
-                                       final int offset,
-                                       final int count);
-    // EnvironmentContext...............................................................................................
+public interface StorageExpressionEvaluationContext extends ExpressionEvaluationContext,
+    StorageContext {
 
     @Override
     StorageExpressionEvaluationContext setLineEnding(final LineEnding lineEnding);
@@ -72,4 +55,9 @@ public interface StorageExpressionEvaluationContext extends ExpressionEvaluation
 
     @Override
     StorageExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name);
+
+    /**
+     * Getter that returns the current {@link Storage}
+     */
+    Storage<StorageExpressionEvaluationContext> storage();
 }

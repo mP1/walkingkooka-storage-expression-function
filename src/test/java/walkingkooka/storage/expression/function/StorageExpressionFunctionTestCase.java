@@ -17,23 +17,8 @@
 
 package walkingkooka.storage.expression.function;
 
-import walkingkooka.environment.EnvironmentContext;
-import walkingkooka.environment.EnvironmentContextDelegator;
-import walkingkooka.environment.EnvironmentContexts;
-import walkingkooka.environment.EnvironmentValueName;
-import walkingkooka.net.email.EmailAddress;
-import walkingkooka.storage.Storage;
-import walkingkooka.storage.StorageContext;
-import walkingkooka.storage.StoragePath;
-import walkingkooka.storage.StorageValue;
-import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCase.TestStorageExpressionEvaluationContext;
-import walkingkooka.text.LineEnding;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
-
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
 
 public abstract class StorageExpressionFunctionTestCase<F extends StorageExpressionFunction<TestStorageExpressionEvaluationContext, T>, T> implements ExpressionFunctionTesting<F, T, TestStorageExpressionEvaluationContext> {
 
@@ -42,93 +27,9 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
         throw new UnsupportedOperationException();
     }
 
-    static class TestStorageExpressionEvaluationContext extends FakeStorageExpressionEvaluationContext implements StorageContext,
-        EnvironmentContextDelegator {
+    abstract static class TestStorageExpressionEvaluationContext extends FakeStorageExpressionEvaluationContext {
 
-        TestStorageExpressionEvaluationContext(final Storage<TestStorageExpressionEvaluationContext> storage) {
-            super();
-            this.storage = storage;
-        }
-
-        @Override
-        public final Optional<StorageValue> loadStorage(final StoragePath path) {
-            return this.storage.load(
-                path,
-                this
-            );
-        }
-
-        @Override
-        public final StorageValue saveStorage(final StorageValue value) {
-            return this.storage.save(
-                value,
-                this
-            );
-        }
-
-        @Override
-        public final void deleteStorage(final StoragePath path) {
-            this.storage.delete(
-                path,
-                this
-            );
-        }
-
-        @Override
-        public final List<StorageValueInfo> listStorage(final StoragePath parent,
-                                                        final int offset,
-                                                        final int count) {
-            return this.storage.list(
-                parent,
-                offset,
-                count,
-                this
-            );
-        }
-
-        private final Storage<TestStorageExpressionEvaluationContext> storage;
-
-        // EnvironmentContextDelegator..................................................................................
-
-        @Override
-        public final TestStorageExpressionEvaluationContext cloneEnvironment() {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public final TestStorageExpressionEvaluationContext setEnvironmentContext(final EnvironmentContext context) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public TestStorageExpressionEvaluationContext setLineEnding(final LineEnding lineEnding) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public TestStorageExpressionEvaluationContext setLocale(final Locale locale) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public final TestStorageExpressionEvaluationContext setUser(final Optional<EmailAddress> user) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public <T> TestStorageExpressionEvaluationContext setEnvironmentValue(final EnvironmentValueName<T> name,
-                                                                              final T reference) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public final TestStorageExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public final EnvironmentContext environmentContext() {
-            return EnvironmentContexts.fake();
+        TestStorageExpressionEvaluationContext() {
         }
     }
 }

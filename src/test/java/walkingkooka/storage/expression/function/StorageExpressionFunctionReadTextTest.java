@@ -24,6 +24,7 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.convert.Converters;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.FakeStorage;
+import walkingkooka.storage.Storage;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCase.TestStorageExpressionEvaluationContext;
@@ -60,19 +61,24 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
 
     @Override
     public TestStorageExpressionEvaluationContext createContext() {
-        return new TestStorageExpressionEvaluationContext(
-            new FakeStorage<TestStorageExpressionEvaluationContext>() {
+        return new TestStorageExpressionEvaluationContext() {
+
+            @Override
+            public Storage<StorageExpressionEvaluationContext> storage() {
+                return this.storage;
+            }
+
+            private final Storage<StorageExpressionEvaluationContext> storage = new FakeStorage<>() {
                 @Override
                 public Optional<StorageValue> load(final StoragePath path,
-                                                   final TestStorageExpressionEvaluationContext context) {
+                                                   final StorageExpressionEvaluationContext context) {
                     return Optional.ofNullable(
                         path.equals(PATH) ?
                             StorageValue.with(path, Optional.of(TEXT)) :
                             null
                     );
                 }
-            }
-        ) {
+            };
 
             @Override
             public <T> Either<T, String> convert(final Object value,

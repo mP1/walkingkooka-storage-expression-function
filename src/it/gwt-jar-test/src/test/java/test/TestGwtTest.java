@@ -2,8 +2,11 @@ package test;
 
 import com.google.gwt.junit.client.GWTTestCase;
 
+import walkingkooka.net.email.EmailAddress;
+import walkingkooka.storage.Storage;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
+import walkingkooka.storage.Storages;
 import walkingkooka.storage.expression.function.FakeStorageExpressionEvaluationContext;
 import walkingkooka.storage.expression.function.StorageExpressionEvaluationContext;
 
@@ -25,30 +28,42 @@ public class TestGwtTest extends GWTTestCase {
         );
     }
 
-    public void testLoadStorage() {
-        final StoragePath path = StoragePath.parse("/hello");
-
-        final Optional<StorageValue> storageValue = Optional.of(
-            StorageValue.with(
-                path,
-                Optional.of(1)
-            )
-        );
-
+    public void testStorageWriteRead() {
+        final Storage<StorageExpressionEvaluationContext> storage = Storages.tree();
         final StorageExpressionEvaluationContext context = new FakeStorageExpressionEvaluationContext() {
+            @Override
+            public LocalDateTime now() {
+                return LocalDateTime.of(1999, 12, 31, 12, 58, 59);
+            }
 
             @Override
-            public Optional<StorageValue> loadStorage(final StoragePath path) {
-                return storageValue;
+            public Optional<EmailAddress> user() {
+                return Optional.of(
+                    EmailAddress.parse("user@example.com")
+                );
             }
         };
 
-        checkEquals(
+        final StoragePath path = StoragePath.parse("/dir1/file2.txt");
+        final String text = "The quick brown fox jumps over the lazy dog";
+
+        final StorageValue storageValue = StorageValue.with(
+            path,
+            Optional.of(text)
+        );
+
+        storage.save(
             storageValue,
-            context.loadStorage(
-                path
+            context
+        );
+
+        checkEquals(
+            Optional.of(storageValue),
+            storage.load(
+                path,
+                context
             ),
-            "loadStorage " + path
+            "load " + path
         );
     }
 

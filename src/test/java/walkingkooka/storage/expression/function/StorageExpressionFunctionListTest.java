@@ -23,6 +23,7 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.environment.AuditInfo;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.FakeStorage;
+import walkingkooka.storage.Storage;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.storage.StorageValueInfoList;
@@ -69,20 +70,26 @@ public final class StorageExpressionFunctionListTest extends StorageExpressionFu
 
     @Override
     public TestStorageExpressionEvaluationContext createContext() {
-        return new TestStorageExpressionEvaluationContext(
-            new FakeStorage<TestStorageExpressionEvaluationContext>() {
+        return new TestStorageExpressionEvaluationContext() {
+
+            @Override
+            public Storage<StorageExpressionEvaluationContext> storage() {
+                return this.storage;
+            }
+
+            private final Storage<StorageExpressionEvaluationContext> storage = new FakeStorage<>() {
 
                 @Override
                 public List<StorageValueInfo> list(final StoragePath path,
                                                    final int offset,
                                                    final int count,
-                                                   final TestStorageExpressionEvaluationContext context) {
+                                                   final StorageExpressionEvaluationContext context) {
                     return path.equals(PATH) && 0 == offset && Integer.MAX_VALUE == count ?
                         LIST
                         : Lists.of();
                 }
-            }
-        );
+            };
+        };
     }
 
     @Override
