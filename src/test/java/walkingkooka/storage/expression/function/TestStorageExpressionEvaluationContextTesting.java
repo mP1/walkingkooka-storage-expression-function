@@ -268,9 +268,8 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
         }
 
         @Override
-        public StorageExpressionEvaluationContext setLocale(final Locale locale) {
+        public void setLocale(final Locale locale) {
             this.environmentContext.setLocale(locale);
-            return this;
         }
 
         @Override

@@ -24,7 +24,6 @@ import walkingkooka.text.LineEnding;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionEvaluationContextDelegator;
 
-import java.util.Locale;
 import java.util.Optional;
 
 public interface StorageExpressionEvaluationContextDelegator extends StorageExpressionEvaluationContext, ExpressionEvaluationContextDelegator {
@@ -53,13 +52,6 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
     default StorageExpressionEvaluationContext setLineEnding(final LineEnding lineEnding) {
         this.environmentContext()
             .setLineEnding(lineEnding);
-        return this;
-    }
-
-    @Override
-    default StorageExpressionEvaluationContext setLocale(final Locale locale) {
-        this.environmentContext()
-            .setLocale(locale);
         return this;
     }
 

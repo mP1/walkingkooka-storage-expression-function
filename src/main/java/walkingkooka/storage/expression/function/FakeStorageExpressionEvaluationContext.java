@@ -46,11 +46,6 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
     }
 
     @Override
-    public StorageExpressionEvaluationContext setLocale(final Locale locale) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public StorageExpressionEvaluationContext setUser(final Optional<EmailAddress> user) {
         throw new UnsupportedOperationException();
     }
