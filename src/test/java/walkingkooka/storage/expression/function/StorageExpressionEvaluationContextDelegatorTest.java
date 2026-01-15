@@ -248,12 +248,6 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
             return LocalDateTime.MIN;
         }
 
-        @Override
-        public StorageExpressionEvaluationContext setUser(final Optional<EmailAddress> user) {
-            Objects.requireNonNull(user, "user");
-            throw new UnsupportedOperationException();
-        }
-
         @Override 
         public StorageExpressionEvaluationContext cloneEnvironment() {
             throw new UnsupportedOperationException();
@@ -277,30 +271,19 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         }
 
         @Override
-        public Optional<EmailAddress> user() {
-            return ANONYMOUS;
-        }
-
-        @Override
-        public <T> StorageExpressionEvaluationContext setEnvironmentValue(final EnvironmentValueName<T> name,
-                                                                          final T reference) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public StorageExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
         public LineEnding lineEnding() {
             return LineEnding.NL;
         }
 
         @Override
-        public StorageExpressionEvaluationContext setLineEnding(final LineEnding lineEnding) {
+        public void setLineEnding(final LineEnding lineEnding) {
             Objects.requireNonNull(lineEnding, "lineEnding");
             throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Optional<EmailAddress> user() {
+            return ANONYMOUS;
         }
 
         @Override

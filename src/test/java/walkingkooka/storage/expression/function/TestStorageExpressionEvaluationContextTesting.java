@@ -239,9 +239,8 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
         }
 
         @Override
-        public StorageExpressionEvaluationContext setLineEnding(final LineEnding lineEnding) {
+        public void setLineEnding(final LineEnding lineEnding) {
             this.environmentContext.setLineEnding(lineEnding);
-            return this;
         }
 
         @Override
@@ -283,9 +282,8 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
         }
 
         @Override
-        public StorageExpressionEvaluationContext setUser(final Optional<EmailAddress> user) {
+        public void setUser(final Optional<EmailAddress> user) {
             this.environmentContext.setUser(user);
-            return this;
         }
 
         @Override

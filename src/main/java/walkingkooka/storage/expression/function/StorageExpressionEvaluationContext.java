@@ -18,14 +18,9 @@
 package walkingkooka.storage.expression.function;
 
 import walkingkooka.environment.EnvironmentContext;
-import walkingkooka.environment.EnvironmentValueName;
-import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageContext;
-import walkingkooka.text.LineEnding;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
-
-import java.util.Optional;
 
 /**
  * A {@link ExpressionEvaluationContext} that adds a storage getter.
@@ -34,23 +29,10 @@ public interface StorageExpressionEvaluationContext extends ExpressionEvaluation
     StorageContext {
 
     @Override
-    StorageExpressionEvaluationContext setLineEnding(final LineEnding lineEnding);
-
-    @Override
-    StorageExpressionEvaluationContext setUser(final Optional<EmailAddress> user);
-
-    @Override
     StorageExpressionEvaluationContext cloneEnvironment();
 
     @Override
     StorageExpressionEvaluationContext setEnvironmentContext(final EnvironmentContext environmentContext);
-
-    @Override
-    <T> StorageExpressionEvaluationContext setEnvironmentValue(final EnvironmentValueName<T> name,
-                                                               final T value);
-
-    @Override
-    StorageExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name);
 
     /**
      * Getter that returns the current {@link Storage}

@@ -18,14 +18,8 @@
 package walkingkooka.storage.expression.function;
 
 import walkingkooka.environment.EnvironmentContext;
-import walkingkooka.environment.EnvironmentValueName;
-import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.Storage;
-import walkingkooka.text.LineEnding;
 import walkingkooka.tree.expression.FakeExpressionEvaluationContext;
-
-import java.util.Locale;
-import java.util.Optional;
 
 public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvaluationContext implements StorageExpressionEvaluationContext {
 
@@ -41,33 +35,12 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
     // StorageContext...................................................................................................
 
     @Override
-    public StorageExpressionEvaluationContext setLineEnding(final LineEnding lineEnding) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public StorageExpressionEvaluationContext setUser(final Optional<EmailAddress> user) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public StorageExpressionEvaluationContext cloneEnvironment() {
         throw new UnsupportedOperationException();
     }
 
     @Override
     public StorageExpressionEvaluationContext setEnvironmentContext(final EnvironmentContext environmentContext) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public <T> FakeStorageExpressionEvaluationContext setEnvironmentValue(final EnvironmentValueName<T> name,
-                                                                          final T reference) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public StorageExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name) {
         throw new UnsupportedOperationException();
     }
 }
