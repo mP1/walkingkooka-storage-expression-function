@@ -25,7 +25,6 @@ import walkingkooka.storage.StorageContext;
 import walkingkooka.text.LineEnding;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 
-import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -36,9 +35,6 @@ public interface StorageExpressionEvaluationContext extends ExpressionEvaluation
 
     @Override
     StorageExpressionEvaluationContext setLineEnding(final LineEnding lineEnding);
-
-    @Override
-    StorageExpressionEvaluationContext setLocale(final Locale locale);
 
     @Override
     StorageExpressionEvaluationContext setUser(final Optional<EmailAddress> user);
