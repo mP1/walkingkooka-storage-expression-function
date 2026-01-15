@@ -56,7 +56,7 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
     }
 
     @Override
-    public FakeStorageExpressionEvaluationContext cloneEnvironment() {
+    public StorageExpressionEvaluationContext cloneEnvironment() {
         throw new UnsupportedOperationException();
     }
 
@@ -72,7 +72,7 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
     }
 
     @Override
-    public FakeStorageExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name) {
+    public StorageExpressionEvaluationContext removeEnvironmentValue(final EnvironmentValueName<?> name) {
         throw new UnsupportedOperationException();
     }
 }
