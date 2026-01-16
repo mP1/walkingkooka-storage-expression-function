@@ -63,11 +63,7 @@ final class StorageExpressionFunctionDelete<C extends StorageExpressionEvaluatio
             0
         );
 
-        context.storage()
-            .delete(
-                path,
-                context
-            );
+        context.deleteStorage(path);
 
         return null;
     }
