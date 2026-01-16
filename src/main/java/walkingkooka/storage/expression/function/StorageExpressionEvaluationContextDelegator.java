@@ -17,9 +17,14 @@
 
 package walkingkooka.storage.expression.function;
 
-import walkingkooka.storage.Storage;
+import walkingkooka.storage.StoragePath;
+import walkingkooka.storage.StorageValue;
+import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionEvaluationContextDelegator;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface StorageExpressionEvaluationContextDelegator extends StorageExpressionEvaluationContext, ExpressionEvaluationContextDelegator {
 
@@ -33,9 +38,33 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
     // StorageExpressionEvaluationContext...............................................................................
 
     @Override
-    default Storage<StorageExpressionEvaluationContext> storage() {
+    default Optional<StorageValue> loadStorage(final StoragePath path) {
         return this.storageExpressionEvaluationContext()
-            .storage();
+            .loadStorage(path);
+    }
+
+    @Override
+    default StorageValue saveStorage(final StorageValue value) {
+        return this.storageExpressionEvaluationContext()
+            .saveStorage(value);
+    }
+
+    @Override
+    default void deleteStorage(final StoragePath path) {
+        this.storageExpressionEvaluationContext()
+            .deleteStorage(path);
+    }
+
+    @Override
+    default List<StorageValueInfo> listStorage(final StoragePath parent,
+                                               final int offset,
+                                               final int count) {
+        return this.storageExpressionEvaluationContext()
+            .listStorage(
+                parent,
+                offset,
+                count
+            );
     }
 
     StorageExpressionEvaluationContext storageExpressionEvaluationContext();

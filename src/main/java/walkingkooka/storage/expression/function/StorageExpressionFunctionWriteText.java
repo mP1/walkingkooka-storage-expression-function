@@ -77,14 +77,12 @@ final class StorageExpressionFunctionWriteText<C extends StorageExpressionEvalua
             1
         );
 
-        context.storage()
-            .save(
-                StorageValue.with(
-                    path,
-                    Optional.of(text)
-                ),
-                context
-            );
+        context.saveStorage(
+            StorageValue.with(
+                path,
+                Optional.of(text)
+            )
+        );
 
         return null;
     }
