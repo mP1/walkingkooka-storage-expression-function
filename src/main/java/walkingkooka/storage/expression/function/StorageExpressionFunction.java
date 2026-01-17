@@ -18,7 +18,6 @@
 package walkingkooka.storage.expression.function;
 
 import walkingkooka.storage.StoragePath;
-import walkingkooka.storage.expression.StorageExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.ExpressionPurityContext;
 import walkingkooka.tree.expression.function.ExpressionFunction;

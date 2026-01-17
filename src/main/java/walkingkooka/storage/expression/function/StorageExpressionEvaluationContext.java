@@ -15,7 +15,7 @@
  *
  */
 
-package walkingkooka.storage.expression;
+package walkingkooka.storage.expression.function;
 
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.storage.Storage;

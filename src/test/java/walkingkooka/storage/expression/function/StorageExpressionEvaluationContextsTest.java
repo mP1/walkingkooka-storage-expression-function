@@ -15,7 +15,7 @@
  *
  */
 
-package walkingkooka.storage.expression;
+package walkingkooka.storage.expression.function;
 
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;

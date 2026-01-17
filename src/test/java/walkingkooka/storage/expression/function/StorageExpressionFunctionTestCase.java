@@ -27,7 +27,6 @@ import walkingkooka.storage.StorageContext;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
-import walkingkooka.storage.expression.FakeStorageExpressionEvaluationContext;
 import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCase.TestStorageExpressionEvaluationContext;
 import walkingkooka.text.LineEnding;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
