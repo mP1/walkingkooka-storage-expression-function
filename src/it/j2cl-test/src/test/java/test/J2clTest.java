@@ -22,8 +22,8 @@ import org.junit.Test;
 
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
-import walkingkooka.storage.expression.FakeStorageExpressionEvaluationContext;
-import walkingkooka.storage.expression.StorageExpressionEvaluationContext;
+import walkingkooka.storage.expression.function.FakeStorageExpressionEvaluationContext;
+import walkingkooka.storage.expression.function.StorageExpressionEvaluationContext;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
