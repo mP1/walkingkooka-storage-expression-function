@@ -15,7 +15,7 @@
  *
  */
 
-package walkingkooka.storage.expression.function;
+package walkingkooka.storage.expression;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;

@@ -4,8 +4,8 @@ import com.google.gwt.junit.client.GWTTestCase;
 
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
-import walkingkooka.storage.expression.function.FakeStorageExpressionEvaluationContext;
-import walkingkooka.storage.expression.function.StorageExpressionEvaluationContext;
+import walkingkooka.storage.expression.FakeStorageExpressionEvaluationContext;
+import walkingkooka.storage.expression.StorageExpressionEvaluationContext;
 
 import java.time.LocalDateTime;
 import java.util.Optional;

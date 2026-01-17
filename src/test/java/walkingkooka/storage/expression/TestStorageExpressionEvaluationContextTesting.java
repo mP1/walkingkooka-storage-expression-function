@@ -15,7 +15,7 @@
  *
  */
 
-package walkingkooka.storage.expression.function;
+package walkingkooka.storage.expression;
 
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentContexts;
@@ -33,7 +33,7 @@ import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.storage.Storages;
-import walkingkooka.storage.expression.function.TestStorageExpressionEvaluationContextTesting.TestStorageExpressionEvaluationContext;
+import walkingkooka.storage.expression.TestStorageExpressionEvaluationContextTesting.TestStorageExpressionEvaluationContext;
 import walkingkooka.text.LineEnding;
 
 import java.math.MathContext;

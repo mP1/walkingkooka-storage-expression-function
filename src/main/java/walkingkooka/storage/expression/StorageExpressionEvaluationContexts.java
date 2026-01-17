@@ -15,7 +15,7 @@
  *
  */
 
-package walkingkooka.storage.expression.function;
+package walkingkooka.storage.expression;
 
 import walkingkooka.reflect.PublicStaticHelper;
 
