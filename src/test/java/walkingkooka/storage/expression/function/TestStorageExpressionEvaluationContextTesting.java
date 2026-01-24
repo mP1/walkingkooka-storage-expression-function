@@ -34,6 +34,7 @@ import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.storage.Storages;
 import walkingkooka.storage.expression.function.TestStorageExpressionEvaluationContextTesting.TestStorageExpressionEvaluationContext;
+import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 
 import java.math.MathContext;
@@ -109,6 +110,11 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
 
     @Override
     public void testSetEnvironmentValueWithNullValueFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testSetIndentationWithDifferentAndWatcher() {
         throw new UnsupportedOperationException();
     }
 
@@ -270,6 +276,16 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
         }
 
         @Override
+        public Indentation indentation() {
+            return this.environmentContext.indentation();
+        }
+
+        @Override
+        public void setIndentation(final Indentation indentation) {
+            this.environmentContext.setIndentation(indentation);
+        }
+        
+        @Override
         public Locale locale() {
             return this.environmentContext.locale();
         }
@@ -308,6 +324,7 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
 
         private final EnvironmentContext environmentContext = EnvironmentContexts.map(
             EnvironmentContexts.empty(
+                Indentation.SPACES2,
                 LineEnding.NL,
                 Locale.ENGLISH,
                 () -> LocalDateTime.MIN,
