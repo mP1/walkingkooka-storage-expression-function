@@ -47,7 +47,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 
-public final class StorageExpressionEvaluationContextDelegatorTest implements StorageExpressionEvaluationContextTesting<TestStorageExpressionEvaluationContextDelegator>,
+public final class StorageExpressionEvaluationContextDelegatorTest implements StorageExpressionEvaluationContextTesting2<TestStorageExpressionEvaluationContextDelegator>,
     DecimalNumberContextDelegator {
 
     @Override

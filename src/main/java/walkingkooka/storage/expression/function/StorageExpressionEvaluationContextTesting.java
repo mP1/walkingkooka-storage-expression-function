@@ -17,38 +17,20 @@
 
 package walkingkooka.storage.expression.function;
 
-import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
-import walkingkooka.tree.expression.ExpressionEvaluationContextTesting;
+import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-public interface StorageExpressionEvaluationContextTesting<C extends StorageExpressionEvaluationContext> extends ExpressionEvaluationContextTesting<C> {
-
-    @Test
-    @Override
-    default void testSetLocaleWithNullFails() {
-        ExpressionEvaluationContextTesting.super.testSetLocaleWithNullFails();
-    }
+public interface StorageExpressionEvaluationContextTesting extends TreePrintableTesting {
 
     // loadStorage......................................................................................................
 
-    @Test
-    default void testLoadStorageWithNullIdFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .loadStorage(null)
-        );
-    }
-
-    default void loadStorageAndCheck(final C context,
+    default void loadStorageAndCheck(final StorageExpressionEvaluationContext context,
                                      final StoragePath path) {
         this.loadStorageAndCheck(
             context,
@@ -57,7 +39,7 @@ public interface StorageExpressionEvaluationContextTesting<C extends StorageExpr
         );
     }
 
-    default void loadStorageAndCheck(final C context,
+    default void loadStorageAndCheck(final StorageExpressionEvaluationContext context,
                                      final StoragePath path,
                                      final StorageValue expected) {
         this.loadStorageAndCheck(
@@ -67,7 +49,7 @@ public interface StorageExpressionEvaluationContextTesting<C extends StorageExpr
         );
     }
 
-    default void loadStorageAndCheck(final C context,
+    default void loadStorageAndCheck(final StorageExpressionEvaluationContext context,
                                      final StoragePath path,
                                      final Optional<StorageValue> expected) {
         this.checkEquals(
@@ -79,16 +61,7 @@ public interface StorageExpressionEvaluationContextTesting<C extends StorageExpr
 
     // saveStorage......................................................................................................
 
-    @Test
-    default void testSaveStorageWithNullValueFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .saveStorage(null)
-        );
-    }
-
-    default void saveStorageAndCheck(final C context,
+    default void saveStorageAndCheck(final StorageExpressionEvaluationContext context,
                                      final StorageValue value,
                                      final StorageValue expected) {
         this.checkEquals(
@@ -98,69 +71,9 @@ public interface StorageExpressionEvaluationContextTesting<C extends StorageExpr
         );
     }
 
-    // deleteStorage....................................................................................................
-
-    @Test
-    default void testDeleteStorageWithNullValueFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .deleteStorage(null)
-        );
-    }
-
     // listStorage......................................................................................................
 
-    @Test
-    default void testListStorageWithNullParentFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> this.createContext()
-                .listStorage(
-                    null,
-                    0,
-                    0
-                )
-        );
-    }
-
-    @Test
-    default void testListStorageWithNegativeOffsetFails() {
-        final IllegalArgumentException thrown = assertThrows(
-            IllegalArgumentException.class,
-            () -> this.createContext()
-                .listStorage(
-                    StoragePath.ROOT,
-                    -1,
-                    1
-                )
-        );
-
-        this.checkEquals(
-            "Invalid offset -1 < 0",
-            thrown.getMessage()
-        );
-    }
-
-    @Test
-    default void testListStorageWithNegativeCountFails() {
-        final IllegalArgumentException thrown = assertThrows(
-            IllegalArgumentException.class,
-            () -> this.createContext()
-                .listStorage(
-                    StoragePath.ROOT,
-                    0,
-                    -1
-                )
-        );
-
-        this.checkEquals(
-            "Invalid count -1 < 0",
-            thrown.getMessage()
-        );
-    }
-
-    default void listStorageAndCheck(final C context,
+    default void listStorageAndCheck(final StorageExpressionEvaluationContext context,
                                      final StoragePath parent,
                                      final int offset,
                                      final int count,
@@ -174,7 +87,7 @@ public interface StorageExpressionEvaluationContextTesting<C extends StorageExpr
         );
     }
 
-    default void listStorageAndCheck(final C context,
+    default void listStorageAndCheck(final StorageExpressionEvaluationContext context,
                                      final StoragePath parent,
                                      final int offset,
                                      final int count,
@@ -188,12 +101,5 @@ public interface StorageExpressionEvaluationContextTesting<C extends StorageExpr
             ),
             () -> "listStorage parent=" + parent + " offset=" + offset + " count=" + count
         );
-    }
-
-    // class............................................................................................................
-
-    @Override
-    default String typeNameSuffix() {
-        return StorageExpressionEvaluationContext.class.getSimpleName();
     }
 }
