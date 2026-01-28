@@ -32,6 +32,15 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
         super();
     }
 
+    // StorageConverterContext..........................................................................................
+
+    @Override
+    public Optional<StoragePath> currentWorkingDirectory() {
+        throw new UnsupportedOperationException();
+    }
+
+    // StorageExpressionEvaluationContext...............................................................................
+
     @Override
     public Optional<StorageValue> loadStorage(final StoragePath path) {
         throw new UnsupportedOperationException();

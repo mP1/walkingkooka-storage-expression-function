@@ -19,12 +19,14 @@ package walkingkooka.storage.expression.function;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.storage.StoragePath;
+import walkingkooka.storage.convert.StorageConverterContextTesting;
 import walkingkooka.tree.expression.ExpressionEvaluationContextTesting;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface StorageExpressionEvaluationContextTesting2<C extends StorageExpressionEvaluationContext> extends ExpressionEvaluationContextTesting<C>,
-    StorageExpressionEvaluationContextTesting {
+    StorageExpressionEvaluationContextTesting,
+    StorageConverterContextTesting<C> {
 
     @Test
     @Override
@@ -114,6 +116,11 @@ public interface StorageExpressionEvaluationContextTesting2<C extends StorageExp
             "Invalid count -1 < 0",
             thrown.getMessage()
         );
+    }
+
+    @Override
+    default C createConverterLike() {
+        return this.createContext();
     }
 
     // class............................................................................................................
