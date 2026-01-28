@@ -379,14 +379,14 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
         @Override
         public StorageExpressionEvaluationContext cloneEnvironment() {
-            return new TestStorageExpressionEvaluationContextTesting.TestStorageExpressionEvaluationContext();
+            return new StorageExpressionEvaluationContextTestingTest.TestStorageExpressionEvaluationContext();
         }
 
         @Override
-        public TestStorageExpressionEvaluationContextTesting.TestStorageExpressionEvaluationContext setEnvironmentContext(final EnvironmentContext environmentContext) {
+        public StorageExpressionEvaluationContextTestingTest.TestStorageExpressionEvaluationContext setEnvironmentContext(final EnvironmentContext environmentContext) {
             Objects.requireNonNull(environmentContext, "environmentContext");
 
-            return new TestStorageExpressionEvaluationContextTesting.TestStorageExpressionEvaluationContext();
+            return new StorageExpressionEvaluationContextTestingTest.TestStorageExpressionEvaluationContext();
         }
 
         @Override
