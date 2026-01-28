@@ -22,6 +22,7 @@ import walkingkooka.storage.Storage;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
+import walkingkooka.storage.convert.StorageConverterContext;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 
 import java.util.List;
@@ -30,7 +31,8 @@ import java.util.Optional;
 /**
  * A {@link ExpressionEvaluationContext} that adds methods that should delegate to an internal {@link Storage}.
  */
-public interface StorageExpressionEvaluationContext extends ExpressionEvaluationContext {
+public interface StorageExpressionEvaluationContext extends ExpressionEvaluationContext,
+    StorageConverterContext {
 
     Optional<StorageValue> loadStorage(final StoragePath path);
 
