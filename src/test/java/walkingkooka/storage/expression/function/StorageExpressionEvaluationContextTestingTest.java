@@ -41,7 +41,7 @@ import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.storage.Storages;
-import walkingkooka.storage.expression.function.TestStorageExpressionEvaluationContextTesting.TestStorageExpressionEvaluationContext;
+import walkingkooka.storage.expression.function.StorageExpressionEvaluationContextTestingTest.TestStorageExpressionEvaluationContext;
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
@@ -62,7 +62,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 
-public final class TestStorageExpressionEvaluationContextTesting implements StorageExpressionEvaluationContextTesting2<TestStorageExpressionEvaluationContext>,
+public final class StorageExpressionEvaluationContextTestingTest implements StorageExpressionEvaluationContextTesting2<TestStorageExpressionEvaluationContext>,
     DecimalNumberContextDelegator {
 
     private final static Locale LOCALE = Locale.ENGLISH;
@@ -256,9 +256,9 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
         public DateTimeContext dateTimeContext() {
             return DateTimeContexts.basic(
                 DateTimeSymbols.fromDateFormatSymbols(
-                    new DateFormatSymbols(TestStorageExpressionEvaluationContextTesting.LOCALE)
+                    new DateFormatSymbols(StorageExpressionEvaluationContextTestingTest.LOCALE)
                 ),
-                TestStorageExpressionEvaluationContextTesting.LOCALE,
+                StorageExpressionEvaluationContextTestingTest.LOCALE,
                 1950,
                 50,
                 LocalDateTime::now
@@ -282,7 +282,7 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
 
         @Override
         public LocaleContext localeContext() {
-            return LocaleContexts.jre(TestStorageExpressionEvaluationContextTesting.LOCALE);
+            return LocaleContexts.jre(StorageExpressionEvaluationContextTestingTest.LOCALE);
         }
 
         @Override
@@ -360,7 +360,7 @@ public final class TestStorageExpressionEvaluationContextTesting implements Stor
             EnvironmentContexts.empty(
                 Indentation.SPACES2,
                 LineEnding.NL,
-                TestStorageExpressionEvaluationContextTesting.LOCALE,
+                StorageExpressionEvaluationContextTestingTest.LOCALE,
                 () -> LocalDateTime.MIN,
                 ANONYMOUS
             )
