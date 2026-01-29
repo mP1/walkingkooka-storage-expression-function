@@ -37,6 +37,10 @@ import java.util.Optional;
 
 public abstract class StorageExpressionFunctionTestCase<F extends StorageExpressionFunction<TestStorageExpressionEvaluationContext, T>, T> implements ExpressionFunctionTesting<F, T, TestStorageExpressionEvaluationContext> {
 
+    final static Optional<StoragePath> CURRENT_WORKING_DIRECTORY = Optional.of(
+        StoragePath.parse("/dir1")
+    );
+
     @Override
     public final void testTypeNaming() {
         throw new UnsupportedOperationException();
@@ -109,6 +113,11 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
         @Override
         public void removeEnvironmentValue(final EnvironmentValueName<?> name) {
             throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Optional<StoragePath> currentWorkingDirectory() {
+            return StorageExpressionFunctionListTest.CURRENT_WORKING_DIRECTORY;
         }
 
         @Override

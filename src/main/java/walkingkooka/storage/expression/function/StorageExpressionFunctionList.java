@@ -44,12 +44,8 @@ final class StorageExpressionFunctionList<C extends StorageExpressionEvaluationC
 
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
-        return PARAMETERS;
+        return parametersWithOnlyPath(count);
     }
-
-    final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-        PATH
-    );
 
     @Override
     public Class<StorageValueInfoList> returnType() {
@@ -59,9 +55,12 @@ final class StorageExpressionFunctionList<C extends StorageExpressionEvaluationC
     @Override
     public StorageValueInfoList apply(final List<Object> parameters,
                                       final C context) {
-        final StoragePath path = PATH.getOrFail(
+        final StoragePath path = PATH_OPTIONAL.get(
             parameters,
             0
+        ).orElse(
+            context.currentWorkingDirectory()
+            .orElse(StoragePath.ROOT)
         );
 
         return StorageValueInfoList.EMPTY.concatAll(

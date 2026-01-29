@@ -62,6 +62,19 @@ public final class StorageExpressionFunctionListTest extends StorageExpressionFu
         );
     }
 
+    @Test
+    public void testApplyMissingPath() {
+        this.applyAndCheck(
+            Lists.empty(),
+            LIST
+        );
+    }
+
+    @Override
+    public void testSetParametersSame() {
+        throw new UnsupportedOperationException();
+    }
+
     @Override
     public StorageExpressionFunctionList<TestStorageExpressionEvaluationContext> createBiFunction() {
         return StorageExpressionFunctionList.instance();

@@ -44,12 +44,8 @@ final class StorageExpressionFunctionReadText<C extends StorageExpressionEvaluat
 
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
-        return PARAMETERS;
+        return parametersWithOnlyPath(count);
     }
-
-    final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-        PATH
-    );
 
     @Override
     public Class<String> returnType() {
@@ -59,9 +55,12 @@ final class StorageExpressionFunctionReadText<C extends StorageExpressionEvaluat
     @Override
     public String apply(final List<Object> parameters,
                         final C context) {
-        final StoragePath path = PATH.getOrFail(
+        final StoragePath path = PATH_OPTIONAL.get(
             parameters,
             0
+        ).orElse(
+            context.currentWorkingDirectory()
+                .orElse(StoragePath.ROOT)
         );
 
         final StorageValue storageValue = context.loadStorage(

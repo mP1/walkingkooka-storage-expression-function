@@ -55,7 +55,7 @@ final class StorageExpressionFunctionWriteText<C extends StorageExpressionEvalua
         .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE_RESOLVE_REFERENCES);
 
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-        PATH,
+        PATH_REQUIRED,
         TEXT
     );
 
@@ -67,7 +67,7 @@ final class StorageExpressionFunctionWriteText<C extends StorageExpressionEvalua
     @Override
     public Void apply(final List<Object> parameters,
                       final C context) {
-        final StoragePath path = PATH.getOrFail(
+        final StoragePath path = PATH_REQUIRED.getOrFail(
             parameters,
             0
         );

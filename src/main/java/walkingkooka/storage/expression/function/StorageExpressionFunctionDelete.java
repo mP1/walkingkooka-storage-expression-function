@@ -43,12 +43,8 @@ final class StorageExpressionFunctionDelete<C extends StorageExpressionEvaluatio
 
     @Override
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
-        return PARAMETERS;
+        return PARAMETERS_PATH_REQUIRED;
     }
-
-    final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-        PATH
-    );
 
     @Override
     public Class<Void> returnType() {
@@ -58,7 +54,7 @@ final class StorageExpressionFunctionDelete<C extends StorageExpressionEvaluatio
     @Override
     public Void apply(final List<Object> parameters,
                       final C context) {
-        final StoragePath path = PATH.getOrFail(
+        final StoragePath path = PATH_REQUIRED.getOrFail(
             parameters,
             0
         );
