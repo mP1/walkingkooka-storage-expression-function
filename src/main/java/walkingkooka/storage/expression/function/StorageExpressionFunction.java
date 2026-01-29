@@ -22,9 +22,11 @@ import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.ExpressionPurityContext;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameterCardinality;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
+import java.util.List;
 import java.util.Optional;
 
 abstract class StorageExpressionFunction<C extends StorageExpressionEvaluationContext, T> implements ExpressionFunction<T, C> {
@@ -49,9 +51,25 @@ abstract class StorageExpressionFunction<C extends StorageExpressionEvaluationCo
         return false; // storage functions are NEVER pure
     }
 
-    final static ExpressionFunctionParameter<StoragePath> PATH = ExpressionFunctionParameterName.with("path")
+    static List<ExpressionFunctionParameter<?>> parametersWithOnlyPath(final int count) {
+        return 0 == count ?
+            PARAMETERS_PATH_OPTIONAL :
+            PARAMETERS_PATH_REQUIRED;
+    }
+
+    final static ExpressionFunctionParameter<StoragePath> PATH_REQUIRED = ExpressionFunctionParameterName.with("path")
         .required(StoragePath.class)
         .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+
+    final static ExpressionFunctionParameter<StoragePath> PATH_OPTIONAL = PATH_REQUIRED.setCardinality(ExpressionFunctionParameterCardinality.OPTIONAL);
+
+    final static List<ExpressionFunctionParameter<?>> PARAMETERS_PATH_REQUIRED = ExpressionFunctionParameter.list(
+        PATH_REQUIRED
+    );
+
+    final static List<ExpressionFunctionParameter<?>> PARAMETERS_PATH_OPTIONAL = ExpressionFunctionParameter.list(
+        PATH_OPTIONAL
+    );
 
     // Object...........................................................................................................
 

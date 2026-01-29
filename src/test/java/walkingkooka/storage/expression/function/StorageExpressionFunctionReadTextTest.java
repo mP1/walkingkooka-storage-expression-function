@@ -46,11 +46,24 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
     }
 
     @Test
+    public void testApplyStorageEntryPresentAndMissingPath() {
+        this.applyAndCheck(
+            Lists.empty(),
+            null
+        );
+    }
+
+    @Test
     public void testApplyStorageEntryMissing() {
         this.applyAndCheck(
             Lists.of(StoragePath.parse("/dir1/missing.txt")),
             null
         );
+    }
+
+    @Override
+    public void testSetParametersSame() {
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -83,6 +96,11 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
                         target,
                         this
                     );
+            }
+
+            @Override
+            public Optional<StoragePath> currentWorkingDirectory() {
+                return StorageExpressionFunctionReadTextTest.CURRENT_WORKING_DIRECTORY;
             }
 
             @Override
