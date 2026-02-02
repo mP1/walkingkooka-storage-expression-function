@@ -25,7 +25,7 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import java.util.List;
 
 /**
- * Reads a storage entry and converts it to {@link String}.
+ * Reads a storage entry and converts it to {@link String}, using the {@link StoragePath} to pick a {@link walkingkooka.convert.Converter}.
  */
 final class StorageExpressionFunctionReadText<C extends StorageExpressionEvaluationContext> extends StorageExpressionFunction<C, String> {
 
@@ -72,8 +72,17 @@ final class StorageExpressionFunctionReadText<C extends StorageExpressionEvaluat
                 .orElse(null) :
             null;
 
+        // Convert StoragePath to Class
+        // eg:  *.json -> JsonNode
+        // then value
         return context.convertOrFail(
-            value,
+            context.convertOrFail(
+                value,
+                context.convertOrFail(
+                    path,
+                    Class.class
+                )
+            ),
             String.class
         );
     }

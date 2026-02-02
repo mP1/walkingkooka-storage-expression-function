@@ -21,19 +21,23 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.convert.Converter;
 import walkingkooka.convert.Converters;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.FakeStorage;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
+import walkingkooka.storage.convert.StorageConverters;
 import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCase.TestStorageExpressionEvaluationContext;
+import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.convert.JsonNodeConverters;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 public final class StorageExpressionFunctionReadTextTest extends StorageExpressionFunctionTestCase<StorageExpressionFunctionReadText<TestStorageExpressionEvaluationContext>, String> {
 
-    private final static StoragePath PATH = StoragePath.parse("/dir1/file2.txt");
+    private final static StoragePath PATH = StoragePath.parse("/dir1/file2.json");
 
     private final static String TEXT = "Hello World";
 
@@ -41,7 +45,11 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
     public void testApplyStorageEntryPresent() {
         this.applyAndCheck(
             Lists.of(PATH),
-            TEXT
+            JsonNode.string(TEXT)
+                .toJsonText(
+                    INDENTATION,
+                    LINE_ENDING
+                )
         );
     }
 
@@ -56,7 +64,7 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
     @Test
     public void testApplyStorageEntryMissing() {
         this.applyAndCheck(
-            Lists.of(StoragePath.parse("/dir1/missing.txt")),
+            Lists.of(StoragePath.parse("/dir1/missing.json")),
             null
         );
     }
@@ -88,15 +96,33 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
         ) {
 
             @Override
+            public boolean canConvert(final Object value,
+                                      final Class<?> type) {
+                return this.converters.canConvert(
+                    value,
+                    type,
+                    this
+                );
+            }
+
+            @Override
             public <T> Either<T, String> convert(final Object value,
                                                  final Class<T> target) {
-                return Converters.simple()
-                    .convert(
+                return this.converters.convert(
                         value,
                         target,
                         this
                     );
             }
+
+            private final Converter<TestStorageExpressionEvaluationContext> converters = Converters.collection(
+                Lists.of(
+                    Converters.simple(),
+                    StorageConverters.storagePathJsonToClass(),
+                    JsonNodeConverters.toJsonNode(),
+                    JsonNodeConverters.toJsonText()
+                )
+            );
 
             @Override
             public Optional<StoragePath> currentWorkingDirectory() {
