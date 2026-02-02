@@ -17,10 +17,14 @@
 
 package walkingkooka.storage.expression.function;
 
+import walkingkooka.convert.ConverterContexts;
+import walkingkooka.convert.Converters;
+import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentContextDelegator;
 import walkingkooka.environment.EnvironmentContexts;
 import walkingkooka.environment.EnvironmentValueName;
+import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageContext;
@@ -28,9 +32,21 @@ import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCase.TestStorageExpressionEvaluationContext;
+import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.tree.expression.ExpressionNumberKind;
+import walkingkooka.tree.expression.convert.ExpressionNumberConverterContexts;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
+import walkingkooka.tree.json.convert.JsonNodeConverterContext;
+import walkingkooka.tree.json.convert.JsonNodeConverterContextDelegator;
+import walkingkooka.tree.json.convert.JsonNodeConverterContexts;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallContextObjectPostProcessor;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallContexts;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContexts;
+import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
+import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
 
+import java.math.MathContext;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -41,12 +57,17 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
         StoragePath.parse("/dir1")
     );
 
+    final static Indentation INDENTATION = Indentation.SPACES4;
+
+    final static LineEnding LINE_ENDING = LineEnding.NL;
+
     @Override
     public final void testTypeNaming() {
         throw new UnsupportedOperationException();
     }
 
     static class TestStorageExpressionEvaluationContext extends FakeStorageExpressionEvaluationContext implements StorageContext,
+        JsonNodeConverterContextDelegator,
         EnvironmentContextDelegator {
 
         TestStorageExpressionEvaluationContext(final Storage<TestStorageExpressionEvaluationContext> storage) {
@@ -92,6 +113,47 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
 
         private final Storage<TestStorageExpressionEvaluationContext> storage;
 
+        // JsonNodeConverterContextDelegator............................................................................
+
+        @Override
+        public JsonNodeConverterContext jsonNodeConverterContext() {
+            final ExpressionNumberKind expressionNumberKind = ExpressionNumberKind.BIG_DECIMAL;
+
+            return JsonNodeConverterContexts.basic(
+                ExpressionNumberConverterContexts.basic(
+                    Converters.fake(),
+                    ConverterContexts.basic(
+                        false, // canNumbersHaveGroupSeparator
+                        0L, // dateTimeOffset
+                        StorageExpressionFunctionTestCase.INDENTATION,
+                        StorageExpressionFunctionTestCase.LINE_ENDING,
+                        ',', // valueSeparator
+                        Converters.fake(),
+                        DateTimeContexts.fake(),
+                        DecimalNumberContexts.fake()
+                    ),
+                    expressionNumberKind
+                ),
+                JsonNodeMarshallUnmarshallContexts.basic(
+                    JsonNodeMarshallContexts.basic(),
+                    JsonNodeUnmarshallContexts.basic(
+                        expressionNumberKind,
+                        MathContext.DECIMAL32
+                    )
+                )
+            );
+        }
+
+        @Override
+        public JsonNodeConverterContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor posProcessor) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public JsonNodeConverterContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor preProcessor) {
+            throw new UnsupportedOperationException();
+        }
+
         // EnvironmentContextDelegator..................................................................................
 
         @Override
@@ -118,6 +180,16 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
         @Override
         public Optional<StoragePath> currentWorkingDirectory() {
             return StorageExpressionFunctionListTest.CURRENT_WORKING_DIRECTORY;
+        }
+
+        @Override
+        public Indentation indentation() {
+            return StorageExpressionFunctionTestCase.INDENTATION;
+        }
+
+        @Override
+        public LineEnding lineEnding() {
+            return StorageExpressionFunctionTestCase.LINE_ENDING;
         }
 
         @Override
