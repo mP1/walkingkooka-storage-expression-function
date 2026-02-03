@@ -55,6 +55,7 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import java.math.MathContext;
 import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -151,6 +152,11 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
 
     @Override
     public void testSetLocaleWithDifferentAndWatcher() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testSetTimeOffsetWithDifferentAndWatcher() {
         throw new UnsupportedOperationException();
     }
 
@@ -308,6 +314,16 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         @Override
         public LocalDateTime now() {
             return this.environmentContext.now();
+        }
+
+        @Override
+        public ZoneOffset timeOffset() {
+            return this.environmentContext.timeOffset();
+        }
+
+        @Override
+        public void setTimeOffset(final ZoneOffset timeOffset) {
+            this.environmentContext.setTimeOffset(timeOffset);
         }
 
         @Override
