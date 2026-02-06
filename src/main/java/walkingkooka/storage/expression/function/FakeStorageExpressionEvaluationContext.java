@@ -39,6 +39,11 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public StoragePath parseStoragePath(final String text) {
+        throw new UnsupportedOperationException();
+    }
+
     // StorageExpressionEvaluationContext...............................................................................
 
     @Override

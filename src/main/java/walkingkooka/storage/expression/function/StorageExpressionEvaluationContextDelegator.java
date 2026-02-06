@@ -43,6 +43,12 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
             .currentWorkingDirectory();
     }
 
+    @Override
+    default StoragePath parseStoragePath(final String path) {
+        return this.storageExpressionEvaluationContext()
+            .parseStoragePath(path);
+    }
+
     // StorageExpressionEvaluationContext...............................................................................
 
     @Override

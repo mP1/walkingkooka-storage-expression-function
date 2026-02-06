@@ -522,6 +522,14 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         }
 
         @Override
+        public StoragePath parseStoragePath(final String text) {
+            return StoragePath.parseMaybeRelative(
+                text,
+                this.currentWorkingDirectory()
+            );
+        }
+
+        @Override
         public char valueSeparator() {
             return ',';
         }
