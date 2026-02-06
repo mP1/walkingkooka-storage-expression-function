@@ -465,6 +465,14 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         }
 
         @Override
+        public StoragePath parseStoragePath(final String text) {
+            return StoragePath.parseMaybeRelative(
+                text,
+                this.currentWorkingDirectory()
+            );
+        }
+
+        @Override
         public char valueSeparator() {
             return ',';
         }
