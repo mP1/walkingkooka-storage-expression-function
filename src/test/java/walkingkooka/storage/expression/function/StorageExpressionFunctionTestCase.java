@@ -75,6 +75,13 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
             this.storage = storage;
         }
 
+        // StorageContext...................................................................................................
+
+        @Override
+        public StoragePath parseStoragePath(final String text) {
+            throw new UnsupportedOperationException();
+        }
+
         @Override
         public final Optional<StorageValue> loadStorage(final StoragePath path) {
             return this.storage.load(
