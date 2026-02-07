@@ -18,6 +18,7 @@
 package walkingkooka.storage.expression.function;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.storage.StorageEnvironmentContextTesting;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.convert.StorageConverterContextTesting;
 import walkingkooka.tree.expression.ExpressionEvaluationContextTesting;
@@ -26,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface StorageExpressionEvaluationContextTesting2<C extends StorageExpressionEvaluationContext> extends ExpressionEvaluationContextTesting<C>,
     StorageExpressionEvaluationContextTesting,
+    StorageEnvironmentContextTesting<C>,
     StorageConverterContextTesting<C> {
 
     @Test
