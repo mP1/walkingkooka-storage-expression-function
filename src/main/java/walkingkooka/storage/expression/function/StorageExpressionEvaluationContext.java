@@ -18,7 +18,6 @@
 package walkingkooka.storage.expression.function;
 
 import walkingkooka.environment.EnvironmentContext;
-import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageEnvironmentContext;
 import walkingkooka.storage.StoragePath;
@@ -36,14 +35,6 @@ import java.util.Optional;
 public interface StorageExpressionEvaluationContext extends ExpressionEvaluationContext,
     StorageConverterContext,
     StorageEnvironmentContext {
-
-    /**
-     * Constant that should be used to hold the current working directory or PWD.
-     */
-    EnvironmentValueName<StoragePath> CURRENT_WORKING_DIRECTORY = EnvironmentValueName.with(
-        "currentWorkingDirectory",
-        StoragePath.class
-    );
 
     Optional<StorageValue> loadStorage(final StoragePath path);
 
