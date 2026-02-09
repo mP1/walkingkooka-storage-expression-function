@@ -372,15 +372,36 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
             this.environmentContext.removeEnvironmentValue(name);
         }
 
-        private final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                Indentation.SPACES2,
-                LineEnding.NL,
-                StorageExpressionEvaluationContextTestingTest.LOCALE,
-                () -> LocalDateTime.MIN,
-                ANONYMOUS
-            )
-        );
+        @Override
+        public Optional<StoragePath> currentWorkingDirectory() {
+            return this.environmentValue(CURRENT_WORKING_DIRECTORY);
+        }
+
+        @Override
+        public void setCurrentWorkingDirectory(final Optional<StoragePath> currentWorkingDirectory) {
+            this.setOrRemoveEnvironmentValue(
+                CURRENT_WORKING_DIRECTORY,
+                currentWorkingDirectory
+            );
+        }
+
+        {
+            this.environmentContext = EnvironmentContexts.map(
+                EnvironmentContexts.empty(
+                    Indentation.SPACES2,
+                    LineEnding.NL,
+                    StorageExpressionEvaluationContextTestingTest.LOCALE,
+                    () -> LocalDateTime.MIN,
+                    ANONYMOUS
+                )
+            );
+            this.environmentContext.setEnvironmentValue(
+                CURRENT_WORKING_DIRECTORY,
+                StorageExpressionEvaluationContextTestingTest.CURRENT_WORKING_PATH
+            );
+        }
+
+        private final EnvironmentContext environmentContext;
 
         @Override
         public Runnable addEventValueWatcher(final EnvironmentValueWatcher watcher) {
@@ -447,11 +468,6 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         @Override
         public boolean canNumbersHaveGroupSeparator() {
             return false;
-        }
-
-        @Override
-        public Optional<StoragePath> currentWorkingDirectory() {
-            return Optional.of(CURRENT_WORKING_PATH);
         }
 
         @Override

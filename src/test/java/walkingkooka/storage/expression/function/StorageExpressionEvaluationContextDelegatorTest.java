@@ -334,6 +334,19 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         }
 
         @Override
+        public Optional<StoragePath> currentWorkingDirectory() {
+            return Optional.of(CURRENT_WORKING_PATH);
+        }
+
+        @Override
+        public void setCurrentWorkingDirectory(final Optional<StoragePath> currentWorkingDirectory) {
+            this.setOrRemoveEnvironmentValue(
+                CURRENT_WORKING_DIRECTORY,
+                currentWorkingDirectory
+            );
+        }
+
+        @Override
         public LineEnding lineEnding() {
             return this.environmentContext.lineEnding();
         }
@@ -504,11 +517,6 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         @Override
         public boolean canNumbersHaveGroupSeparator() {
             return false;
-        }
-
-        @Override
-        public Optional<StoragePath> currentWorkingDirectory() {
-            return Optional.of(CURRENT_WORKING_PATH);
         }
 
         @Override

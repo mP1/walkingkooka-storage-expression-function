@@ -24,6 +24,7 @@ import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.tree.expression.FakeExpressionEvaluationContext;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvaluationContext implements StorageExpressionEvaluationContext {
@@ -36,6 +37,12 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
 
     @Override
     public Optional<StoragePath> currentWorkingDirectory() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setCurrentWorkingDirectory(final Optional<StoragePath> currentWorkingDirectory) {
+        Objects.requireNonNull(currentWorkingDirectory, "currentWorkingDirectory");
         throw new UnsupportedOperationException();
     }
 

@@ -17,6 +17,9 @@
 
 package walkingkooka.storage.expression.function;
 
+import walkingkooka.environment.EnvironmentContext;
+import walkingkooka.storage.StorageEnvironmentContext;
+import walkingkooka.storage.StorageEnvironmentContextDelegator;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
@@ -26,7 +29,15 @@ import walkingkooka.tree.expression.ExpressionEvaluationContextDelegator;
 import java.util.List;
 import java.util.Optional;
 
-public interface StorageExpressionEvaluationContextDelegator extends StorageExpressionEvaluationContext, ExpressionEvaluationContextDelegator {
+public interface StorageExpressionEvaluationContextDelegator extends StorageExpressionEvaluationContext,
+    ExpressionEvaluationContextDelegator,
+    StorageEnvironmentContextDelegator {
+
+    @Override
+    default StoragePath parseStoragePath(final String text) {
+        return this.storageExpressionEvaluationContext()
+            .parseStoragePath(text);
+    }
 
     // ExpressionEvaluationContextDelegator.............................................................................
 
@@ -35,18 +46,16 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
         return this.storageExpressionEvaluationContext();
     }
 
-    // StorageConverterContext..........................................................................................
+    // StorageEnvironmentContextDelegator...............................................................................
 
     @Override
-    default Optional<StoragePath> currentWorkingDirectory() {
-        return this.storageExpressionEvaluationContext()
-            .currentWorkingDirectory();
+    default StorageEnvironmentContext storageEnvironmentContext() {
+        return this.storageExpressionEvaluationContext();
     }
 
     @Override
-    default StoragePath parseStoragePath(final String path) {
-        return this.storageExpressionEvaluationContext()
-            .parseStoragePath(path);
+    default EnvironmentContext environmentContext() {
+        return this.storageEnvironmentContext();
     }
 
     // StorageExpressionEvaluationContext...............................................................................
