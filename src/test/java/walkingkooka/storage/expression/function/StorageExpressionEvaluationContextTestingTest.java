@@ -484,7 +484,7 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         public StoragePath parseStoragePath(final String text) {
             return StoragePath.parseMaybeRelative(
                 text,
-                this.currentWorkingDirectory()
+                this
             );
         }
 
