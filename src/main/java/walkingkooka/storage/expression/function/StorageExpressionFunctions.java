@@ -18,10 +18,18 @@
 package walkingkooka.storage.expression.function;
 
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValueInfoList;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 
 public final class StorageExpressionFunctions implements PublicStaticHelper {
+
+    /**
+     * {@see StorageExpressionFunctionGetCurrentWorkingDirectory}
+     */
+    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<StoragePath, C> getCurrentWorkingDirectory() {
+        return StorageExpressionFunctionGetCurrentWorkingDirectory.instance();
+    }
 
     /**
      * {@see StorageExpressionFunctionReadText}
