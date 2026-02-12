@@ -385,6 +385,19 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
             );
         }
 
+        @Override
+        public Optional<StoragePath> homeDirectory() {
+            return this.environmentValue(HOME_DIRECTORY);
+        }
+
+        @Override
+        public void setHomeDirectory(final Optional<StoragePath> homeDirectory) {
+            this.setOrRemoveEnvironmentValue(
+                HOME_DIRECTORY,
+                homeDirectory
+            );
+        }
+
         {
             this.environmentContext = EnvironmentContexts.map(
                 EnvironmentContexts.empty(
