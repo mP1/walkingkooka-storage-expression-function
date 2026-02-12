@@ -563,7 +563,7 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
         @Override
         public StoragePath parseStoragePath(final String text) {
-            return StoragePath.parseMaybeRelative(
+            return StoragePath.parseSpecial(
                 text,
                 this
             );
