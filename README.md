@@ -9,6 +9,7 @@
 # walkingkooka-storage-expression-function
 ExpressionFunctions that read/write to a Store
 
+- [getCurrentWorkingDirectory](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionGetCurrentWorkingDirectory.java)
 - [StorageDelete](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionDelete.java)
 - [StorageList](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionList.java)
 - [StorageReadText](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionReadText.java)
