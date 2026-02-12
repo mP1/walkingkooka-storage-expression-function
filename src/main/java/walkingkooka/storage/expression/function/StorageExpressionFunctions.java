@@ -44,6 +44,13 @@ public final class StorageExpressionFunctions implements PublicStaticHelper {
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> setCurrentWorkingDirectory() {
         return StorageExpressionFunctionSetCurrentWorkingDirectory.instance();
     }
+
+    /**
+     * {@see StorageExpressionFunctionSetHomeDirectory}
+     */
+    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> setHomeDirectory() {
+        return StorageExpressionFunctionSetHomeDirectory.instance();
+    }
     
     /**
      * {@see StorageExpressionFunctionReadText}
