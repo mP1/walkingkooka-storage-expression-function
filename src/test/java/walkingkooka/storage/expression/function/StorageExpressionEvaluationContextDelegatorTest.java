@@ -17,6 +17,7 @@
 
 package walkingkooka.storage.expression.function;
 
+import org.junit.jupiter.api.Test;
 import walkingkooka.Either;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
@@ -68,6 +69,16 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
     private final static Locale LOCALE = Locale.ENGLISH;
 
     private final static StoragePath CURRENT_WORKING_PATH = StoragePath.parse("/current1/working2/directory3");
+
+    private final static StoragePath HOME_PATH = StoragePath.parse("/home/user123");
+
+    @Test
+    public void testHomeDirectory() {
+        this.homeDirectoryAndCheck(
+            this.createContext(),
+            HOME_PATH
+        );
+    }
 
     @Override
     public TestStorageExpressionEvaluationContextDelegator createContext() {
@@ -347,6 +358,19 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         }
 
         @Override
+        public Optional<StoragePath> homeDirectory() {
+            return Optional.of(HOME_PATH);
+        }
+
+        @Override
+        public void setHomeDirectory(final Optional<StoragePath> homeDirectory) {
+            this.setOrRemoveEnvironmentValue(
+                HOME_DIRECTORY,
+                homeDirectory
+            );
+        }
+
+        @Override
         public LineEnding lineEnding() {
             return this.environmentContext.lineEnding();
         }
@@ -442,15 +466,23 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
             this.environmentContext.removeEnvironmentValue(name);
         }
 
-        private final EnvironmentContext environmentContext = EnvironmentContexts.map(
-            EnvironmentContexts.empty(
-                Indentation.SPACES2,
-                LineEnding.NL,
-                StorageExpressionEvaluationContextDelegatorTest.LOCALE,
-                () -> LocalDateTime.MIN,
-                ANONYMOUS
-            )
-        );
+        {
+            this.environmentContext = EnvironmentContexts.map(
+                EnvironmentContexts.empty(
+                    Indentation.SPACES2,
+                    LineEnding.NL,
+                    StorageExpressionEvaluationContextDelegatorTest.LOCALE,
+                    () -> LocalDateTime.MIN,
+                    ANONYMOUS
+                )
+            );
+            this.environmentContext.setEnvironmentValue(
+                HOME_DIRECTORY,
+                HOME_PATH
+            );
+        }
+
+        private final EnvironmentContext environmentContext;
 
         @Override
         public Runnable addEventValueWatcher(final EnvironmentValueWatcher watcher) {

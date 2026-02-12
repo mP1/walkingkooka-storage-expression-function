@@ -47,6 +47,17 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
     }
 
     @Override
+    public Optional<StoragePath> homeDirectory() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setHomeDirectory(final Optional<StoragePath> homeDirectory) {
+        Objects.requireNonNull(homeDirectory, "homeDirectory");
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public StoragePath parseStoragePath(final String text) {
         throw new UnsupportedOperationException();
     }
