@@ -11,6 +11,7 @@ ExpressionFunctions that read/write to a Store
 
 - [getCurrentWorkingDirectory](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionGetCurrentWorkingDirectory.java)
 - [getHomeDirectory](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionGetHomeDirectory.java)
+- [setCurrentWorkingDirectory](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionSetCurrentWorkingDirectory.java)
 - [StorageDelete](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionDelete.java)
 - [StorageList](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionList.java)
 - [StorageReadText](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionReadText.java)
