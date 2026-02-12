@@ -39,6 +39,13 @@ public final class StorageExpressionFunctions implements PublicStaticHelper {
     }
 
     /**
+     * {@see StorageExpressionFunctionScript}
+     */
+    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Object, C> script() {
+        return StorageExpressionFunctionScript.instance();
+    }
+
+    /**
      * {@see StorageExpressionFunctionSetCurrentWorkingDirectory}
      */
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> setCurrentWorkingDirectory() {
@@ -51,7 +58,7 @@ public final class StorageExpressionFunctions implements PublicStaticHelper {
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> setHomeDirectory() {
         return StorageExpressionFunctionSetHomeDirectory.instance();
     }
-    
+
     /**
      * {@see StorageExpressionFunctionReadText}
      */
