@@ -32,6 +32,13 @@ public final class StorageExpressionFunctions implements PublicStaticHelper {
     }
 
     /**
+     * {@see StorageExpressionFunctionGetHomeDirectory}
+     */
+    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<StoragePath, C> getHomeDirectory() {
+        return StorageExpressionFunctionGetHomeDirectory.instance();
+    }
+
+    /**
      * {@see StorageExpressionFunctionReadText}
      */
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<String, C> storageReadText() {
