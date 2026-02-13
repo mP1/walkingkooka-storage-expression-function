@@ -56,6 +56,7 @@ import java.math.MathContext;
 import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -162,6 +163,11 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
     @Override
     public void testSetEnvironmentValueWithNullValueFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testSetCurrencyWithDifferentAndWatcher() {
         throw new UnsupportedOperationException();
     }
 
@@ -345,6 +351,16 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         }
 
         @Override
+        public Currency currency() {
+            return this.environmentContext.currency();
+        }
+
+        @Override
+        public void setCurrency(final Currency currency) {
+            this.environmentContext.setCurrency(currency);
+        }
+        
+        @Override
         public Optional<StoragePath> currentWorkingDirectory() {
             return Optional.of(CURRENT_WORKING_PATH);
         }
@@ -469,6 +485,7 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         {
             this.environmentContext = EnvironmentContexts.map(
                 EnvironmentContexts.empty(
+                    Currency.getInstance("AUD"),
                     Indentation.SPACES2,
                     LineEnding.NL,
                     StorageExpressionEvaluationContextDelegatorTest.LOCALE,

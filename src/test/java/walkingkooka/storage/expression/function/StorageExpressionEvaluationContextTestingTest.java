@@ -56,6 +56,7 @@ import java.math.MathContext;
 import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -132,6 +133,11 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
 
     @Override
     public void testSetEnvironmentValueWithNullValueFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testSetCurrencyWithDifferentAndWatcher() {
         throw new UnsupportedOperationException();
     }
 
@@ -277,6 +283,16 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         }
 
         @Override
+        public Currency currency() {
+            return this.environmentContext.currency();
+        }
+
+        @Override
+        public void setCurrency(final Currency currency) {
+            this.environmentContext.setCurrency(currency);
+        }
+        
+        @Override
         public LineEnding lineEnding() {
             return this.environmentContext.lineEnding();
         }
@@ -401,6 +417,7 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         {
             this.environmentContext = EnvironmentContexts.map(
                 EnvironmentContexts.empty(
+                    Currency.getInstance("AUD"),
                     Indentation.SPACES2,
                     LineEnding.NL,
                     StorageExpressionEvaluationContextTestingTest.LOCALE,
