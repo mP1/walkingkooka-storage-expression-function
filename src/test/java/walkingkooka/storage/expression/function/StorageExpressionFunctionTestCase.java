@@ -144,6 +144,9 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
                 JsonNodeMarshallUnmarshallContexts.basic(
                     JsonNodeMarshallContexts.basic(),
                     JsonNodeUnmarshallContexts.basic(
+                        (String cc) -> {
+                            throw new UnsupportedOperationException();
+                        },
                         expressionNumberKind,
                         MathContext.DECIMAL32
                     )
