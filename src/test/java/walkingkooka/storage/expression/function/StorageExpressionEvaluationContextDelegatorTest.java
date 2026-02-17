@@ -563,6 +563,13 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
             throw new UnsupportedOperationException();
         }
 
+
+        @Override
+        public Optional<Currency> currencyForLocale(final Locale locale) {
+            Objects.requireNonNull(locale, "locale");
+            throw new UnsupportedOperationException();
+        }
+
         @Override
         public boolean canNumbersHaveGroupSeparator() {
             return false;
