@@ -121,6 +121,16 @@ public interface StorageExpressionEvaluationContextTesting2<C extends StorageExp
     }
 
     @Override
+    default C createCanDateTimeSymbolsForLocale() {
+        return this.createContext();
+    }
+
+    @Override
+    default C createCanDecimalNumberSymbolsForLocale() {
+        return this.createContext();
+    }
+
+    @Override
     default C createConverterLike() {
         return this.createContext();
     }
