@@ -139,6 +139,9 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
                         (l) -> {
                             throw new UnsupportedOperationException();
                         }, // canDecimalNumberSymbolsForLocale
+                        (lt) -> {
+                            throw new UnsupportedOperationException();
+                        }, // canLocaleForLanguageTag
                         false, // canNumbersHaveGroupSeparator
                         0L, // dateTimeOffset
                         StorageExpressionFunctionTestCase.INDENTATION,

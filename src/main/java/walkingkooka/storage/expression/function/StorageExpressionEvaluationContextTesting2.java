@@ -131,6 +131,11 @@ public interface StorageExpressionEvaluationContextTesting2<C extends StorageExp
     }
 
     @Override
+    default C createCanLocaleForLanguageTag() {
+        return this.createContext();
+    }
+
+    @Override
     default C createConverterLike() {
         return this.createContext();
     }
