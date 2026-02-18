@@ -24,6 +24,7 @@ import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentContextDelegator;
 import walkingkooka.environment.EnvironmentContexts;
 import walkingkooka.environment.EnvironmentValueName;
+import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.Storage;
@@ -133,15 +134,6 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
                         (l) -> {
                             throw new UnsupportedOperationException();
                         }, // canCurrencyForLocale
-                        (l) -> {
-                            throw new UnsupportedOperationException();
-                        }, // canDateTimeSymbolsForLocale
-                        (l) -> {
-                            throw new UnsupportedOperationException();
-                        }, // canDecimalNumberSymbolsForLocale
-                        (lt) -> {
-                            throw new UnsupportedOperationException();
-                        }, // canLocaleForLanguageTag
                         false, // canNumbersHaveGroupSeparator
                         0L, // dateTimeOffset
                         StorageExpressionFunctionTestCase.INDENTATION,
@@ -149,7 +141,8 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
                         ',', // valueSeparator
                         Converters.fake(),
                         DateTimeContexts.fake(),
-                        DecimalNumberContexts.fake()
+                        DecimalNumberContexts.fake(),
+                        LocaleContexts.fake()
                     ),
                     expressionNumberKind
                 ),
