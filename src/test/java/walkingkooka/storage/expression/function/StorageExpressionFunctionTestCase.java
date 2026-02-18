@@ -152,6 +152,9 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
                         (String cc) -> {
                             throw new UnsupportedOperationException();
                         },
+                        (String lt) -> {
+                            throw new UnsupportedOperationException();
+                        },
                         expressionNumberKind,
                         MathContext.DECIMAL32
                     )
