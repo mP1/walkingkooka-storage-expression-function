@@ -481,7 +481,7 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
             );
         }
 
-        private final Storage<StorageContext> storage = Storages.tree();
+        private final Storage<StorageContext> storage = Storages.treeMapStore();
 
         @Override
         public <T> Either<T, String> convert(final Object value,

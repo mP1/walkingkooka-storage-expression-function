@@ -36,7 +36,7 @@ public final class StorageExpressionFunctionDeleteTest extends StorageExpression
 
     @Test
     public void testApplyStorageDeleted() {
-        final Storage<TestStorageExpressionEvaluationContext> storage = Storages.tree();
+        final Storage<TestStorageExpressionEvaluationContext> storage = Storages.treeMapStore();
         final TestStorageExpressionEvaluationContext context = this.createContext(storage);
 
         storage.save(
@@ -65,7 +65,7 @@ public final class StorageExpressionFunctionDeleteTest extends StorageExpression
 
     @Test
     public void testApplyStorageMissing() {
-        final Storage<TestStorageExpressionEvaluationContext> storage = Storages.tree();
+        final Storage<TestStorageExpressionEvaluationContext> storage = Storages.treeMapStore();
         final TestStorageExpressionEvaluationContext context = this.createContext(storage);
 
         this.applyAndCheck(

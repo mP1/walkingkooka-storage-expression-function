@@ -38,7 +38,7 @@ public final class StorageExpressionFunctionWriteTextTest extends StorageExpress
 
     @Test
     public void testApplyStorageEntryPresent() {
-        final Storage<TestStorageExpressionEvaluationContext> storage = Storages.tree();
+        final Storage<TestStorageExpressionEvaluationContext> storage = Storages.treeMapStore();
         final TestStorageExpressionEvaluationContext context = new TestStorageExpressionEvaluationContext(storage) {
             @Override
             public LocalDateTime now() {
