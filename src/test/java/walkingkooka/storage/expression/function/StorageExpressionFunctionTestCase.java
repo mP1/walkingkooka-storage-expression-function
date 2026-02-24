@@ -19,12 +19,12 @@ package walkingkooka.storage.expression.function;
 
 import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
+import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentContextDelegator;
 import walkingkooka.environment.EnvironmentContexts;
 import walkingkooka.environment.EnvironmentValueName;
-import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.Storage;
@@ -131,18 +131,15 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
                 ExpressionNumberConverterContexts.basic(
                     Converters.fake(),
                     ConverterContexts.basic(
-                        (l) -> {
-                            throw new UnsupportedOperationException();
-                        }, // canCurrencyForLocale
                         false, // canNumbersHaveGroupSeparator
                         0L, // dateTimeOffset
                         StorageExpressionFunctionTestCase.INDENTATION,
                         StorageExpressionFunctionTestCase.LINE_ENDING,
                         ',', // valueSeparator
                         Converters.fake(),
+                        CurrencyLocaleContexts.fake(),
                         DateTimeContexts.fake(),
-                        DecimalNumberContexts.fake(),
-                        LocaleContexts.fake()
+                        DecimalNumberContexts.fake()
                     ),
                     expressionNumberKind
                 ),
