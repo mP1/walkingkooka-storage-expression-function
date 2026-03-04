@@ -496,6 +496,12 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         }
 
         @Override
+        public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+            Objects.requireNonNull(currencyCode, "currencyCode");
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         public Optional<Currency> currencyForLocale(final Locale locale) {
             Objects.requireNonNull(locale, "locale");
             throw new UnsupportedOperationException();
