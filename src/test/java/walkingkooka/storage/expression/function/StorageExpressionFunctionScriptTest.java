@@ -29,43 +29,43 @@ import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.convert.StorageConverters;
 import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCase.TestStorageExpressionEvaluationContext;
-import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.convert.JsonNodeConverters;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public final class StorageExpressionFunctionScriptTest extends StorageExpressionFunctionTestCase<StorageExpressionFunctionReadText<TestStorageExpressionEvaluationContext>, String> {
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-    private final static StoragePath PATH = StoragePath.parse("/dir1/file2.json");
+public final class StorageExpressionFunctionScriptTest extends StorageExpressionFunctionTestCase<StorageExpressionFunctionScript<TestStorageExpressionEvaluationContext>, Object> {
 
-    private final static String TEXT = "Hello World";
+    private final static StoragePath SCRIPT = StoragePath.parse("/dir1/script.sh");
+
+    private final static String RESPONSE = "Hello World";
 
     @Test
-    public void testApplyStorageEntryPresent() {
+    public void testApplyScriptEvaluated() {
         this.applyAndCheck(
-            Lists.of(PATH),
-            JsonNode.string(TEXT)
-                .toJsonText(
-                    INDENTATION,
-                    LINE_ENDING
+            Lists.of(SCRIPT),
+            RESPONSE
+        );
+    }
+
+    @Test
+    public void testApplyScriptMissing() {
+        final IllegalArgumentException thrown = assertThrows(
+            IllegalArgumentException.class,
+            () -> this.createBiFunction()
+                .apply(
+                    Lists.of(
+                        StoragePath.parse("/dir1/missing-script.sh")
+                    ),
+                    this.createContext()
                 )
         );
-    }
 
-    @Test
-    public void testApplyStorageEntryPresentAndMissingPath() {
-        this.applyAndCheck(
-            Lists.empty(),
-            null
-        );
-    }
-
-    @Test
-    public void testApplyStorageEntryMissing() {
-        this.applyAndCheck(
-            Lists.of(StoragePath.parse("/dir1/missing.json")),
-            null
+        this.checkEquals(
+            "Missing script /dir1/missing-script.sh",
+            thrown.getMessage()
         );
     }
 
@@ -75,20 +75,20 @@ public final class StorageExpressionFunctionScriptTest extends StorageExpression
     }
 
     @Override
-    public StorageExpressionFunctionReadText<TestStorageExpressionEvaluationContext> createBiFunction() {
-        return StorageExpressionFunctionReadText.instance();
+    public StorageExpressionFunctionScript<TestStorageExpressionEvaluationContext> createBiFunction() {
+        return StorageExpressionFunctionScript.instance();
     }
 
     @Override
     public TestStorageExpressionEvaluationContext createContext() {
         return new TestStorageExpressionEvaluationContext(
-            new FakeStorage<TestStorageExpressionEvaluationContext>() {
+            new FakeStorage<>() {
                 @Override
                 public Optional<StorageValue> load(final StoragePath path,
                                                    final TestStorageExpressionEvaluationContext context) {
                     return Optional.ofNullable(
-                        path.equals(PATH) ?
-                            StorageValue.with(path, Optional.of(TEXT)) :
+                        path.equals(SCRIPT) ?
+                            StorageValue.with(path, Optional.of(RESPONSE)) :
                             null
                     );
                 }
@@ -109,10 +109,10 @@ public final class StorageExpressionFunctionScriptTest extends StorageExpression
             public <T> Either<T, String> convert(final Object value,
                                                  final Class<T> target) {
                 return this.converters.convert(
-                        value,
-                        target,
-                        this
-                    );
+                    value,
+                    target,
+                    this
+                );
             }
 
             private final Converter<TestStorageExpressionEvaluationContext> converters = Converters.collection(
@@ -123,6 +123,11 @@ public final class StorageExpressionFunctionScriptTest extends StorageExpression
                     JsonNodeConverters.toJsonText()
                 )
             );
+
+            @Override
+            public Object evaluate(final String expression) {
+                return RESPONSE;
+            }
 
             @Override
             public Optional<StoragePath> currentWorkingDirectory() {
@@ -153,15 +158,15 @@ public final class StorageExpressionFunctionScriptTest extends StorageExpression
     @Test
     public void testToString() {
         this.toStringAndCheck(
-            StorageExpressionFunctionReadText.instance(),
-            "storageReadText"
+            StorageExpressionFunctionScript.instance(),
+            "script"
         );
     }
 
     // class............................................................................................................
 
     @Override
-    public Class<StorageExpressionFunctionReadText<TestStorageExpressionEvaluationContext>> type() {
-        return Cast.to(StorageExpressionFunctionReadText.class);
+    public Class<StorageExpressionFunctionScript<TestStorageExpressionEvaluationContext>> type() {
+        return Cast.to(StorageExpressionFunctionScript.class);
     }
 }
