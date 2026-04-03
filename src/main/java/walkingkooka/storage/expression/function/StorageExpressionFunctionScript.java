@@ -63,7 +63,7 @@ final class StorageExpressionFunctionScript<C extends StorageExpressionEvaluatio
         final StorageValue storageValue = context.loadStorage(
             path
         ).orElseThrow(
-            () -> new IllegalArgumentException("Missing script " + path)
+            () -> path.invalidStoragePathException("Missing script")
         );
 
         final Object value = storageValue.value()

@@ -25,6 +25,7 @@ import walkingkooka.convert.Converter;
 import walkingkooka.convert.Converters;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.FakeStorage;
+import walkingkooka.storage.InvalidStoragePathException;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.convert.StorageConverters;
@@ -52,8 +53,8 @@ public final class StorageExpressionFunctionScriptTest extends StorageExpression
 
     @Test
     public void testApplyScriptMissing() {
-        final IllegalArgumentException thrown = assertThrows(
-            IllegalArgumentException.class,
+        final InvalidStoragePathException thrown = assertThrows(
+            InvalidStoragePathException.class,
             () -> this.createBiFunction()
                 .apply(
                     Lists.of(
@@ -64,7 +65,7 @@ public final class StorageExpressionFunctionScriptTest extends StorageExpression
         );
 
         this.checkEquals(
-            "Missing script /dir1/missing-script.sh",
+            "Missing script \"/dir1/missing-script.sh\"",
             thrown.getMessage()
         );
     }
