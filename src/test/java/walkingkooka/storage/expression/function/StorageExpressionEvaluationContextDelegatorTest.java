@@ -19,6 +19,7 @@ package walkingkooka.storage.expression.function;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Either;
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.datetime.DateTimeContexts;
@@ -564,7 +565,7 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         }
 
         @Override
-        public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+        public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
             Objects.requireNonNull(currencyCode, "currencyCode");
             throw new UnsupportedOperationException();
         }
