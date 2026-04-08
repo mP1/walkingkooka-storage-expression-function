@@ -129,7 +129,7 @@
 
     <dependency>
       <groupId>walkingkooka</groupId>
-      <artifactId>walkingkooka-tree-json-convert</artifactId>
+      <artifactId>walkingkooka-tree-json</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
