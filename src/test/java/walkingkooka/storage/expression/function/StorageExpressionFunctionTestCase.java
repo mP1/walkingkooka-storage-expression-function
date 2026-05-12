@@ -19,7 +19,6 @@ package walkingkooka.storage.expression.function;
 
 import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
-import walkingkooka.currency.CurrencyExchangeRaters;
 import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.environment.EnvironmentContext;
@@ -138,7 +137,6 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
                         StorageExpressionFunctionTestCase.LINE_ENDING,
                         ',', // valueSeparator
                         Converters.fake(),
-                        CurrencyExchangeRaters.fake(),
                         CurrencyLocaleContexts.fake(),
                         DateTimeContexts.fake(),
                         DecimalNumberContexts.fake()
