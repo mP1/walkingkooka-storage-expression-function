@@ -20,6 +20,7 @@ package walkingkooka.storage.expression.function;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Either;
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.datetime.DateTimeContexts;
@@ -330,6 +331,31 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         @Override
         public ExpressionFunction<?, ExpressionEvaluationContext> expressionFunction(final ExpressionFunctionName functionName) {
             Objects.requireNonNull(functionName, "functionName");
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Set<CurrencyExchange> currencyExchanges() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
+                                                     final Optional<LocalDateTime> dateTime) {
+            Objects.requireNonNull(currencyExchange, "currencyExchange");
+            Objects.requireNonNull(dateTime, "dateTime");
+
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public <N extends Number> N multiply(final Number left,
+                                             final Number right,
+                                             final Class<N> type) {
+            Objects.requireNonNull(left, "left");
+            Objects.requireNonNull(right, "right");
+            Objects.requireNonNull(type, "type");
+
             throw new UnsupportedOperationException();
         }
 
