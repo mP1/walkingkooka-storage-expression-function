@@ -56,7 +56,7 @@ import java.util.Optional;
 public abstract class StorageExpressionFunctionTestCase<F extends StorageExpressionFunction<TestStorageExpressionEvaluationContext, T>, T> implements ExpressionFunctionTesting<F, T, TestStorageExpressionEvaluationContext> {
 
     final static Optional<StoragePath> CURRENT_WORKING_DIRECTORY = Optional.of(
-        StoragePath.parse("/dir1")
+        StoragePath.parse("/dir1/")
     );
 
     final static Indentation INDENTATION = Indentation.SPACES4;
