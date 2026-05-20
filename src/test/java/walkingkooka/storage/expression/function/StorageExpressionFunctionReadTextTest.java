@@ -88,7 +88,10 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
                                                    final TestStorageExpressionEvaluationContext context) {
                     return Optional.ofNullable(
                         path.equals(PATH) ?
-                            StorageValue.with(path, Optional.of(TEXT)) :
+                            StorageValue.with(path)
+                                .setValue(
+                                    Optional.of(TEXT)
+                                ) :
                             null
                     );
                 }

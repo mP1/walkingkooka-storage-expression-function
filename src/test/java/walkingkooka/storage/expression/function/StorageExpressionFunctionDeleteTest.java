@@ -40,10 +40,10 @@ public final class StorageExpressionFunctionDeleteTest extends StorageExpression
         final TestStorageExpressionEvaluationContext context = this.createContext(storage);
 
         storage.save(
-            StorageValue.with(
-                PATH,
-                Optional.of("value456")
-            ),
+            StorageValue.with(PATH)
+                .setValue(
+                    Optional.of("value456")
+                ),
             context
         );
 
