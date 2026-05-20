@@ -89,7 +89,10 @@ public final class StorageExpressionFunctionScriptTest extends StorageExpression
                                                    final TestStorageExpressionEvaluationContext context) {
                     return Optional.ofNullable(
                         path.equals(SCRIPT) ?
-                            StorageValue.with(path, Optional.of(RESPONSE)) :
+                            StorageValue.with(path)
+                                .setValue(
+                                    Optional.of(RESPONSE)
+                                ) :
                             null
                     );
                 }

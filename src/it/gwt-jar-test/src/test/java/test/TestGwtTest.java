@@ -29,10 +29,10 @@ public class TestGwtTest extends GWTTestCase {
         final StoragePath path = StoragePath.parse("/hello");
 
         final Optional<StorageValue> storageValue = Optional.of(
-            StorageValue.with(
-                path,
-                Optional.of(1)
-            )
+            StorageValue.with(path)
+                .setValue(
+                    Optional.of(1)
+                )
         );
 
         final StorageExpressionEvaluationContext context = new FakeStorageExpressionEvaluationContext() {
