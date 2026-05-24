@@ -55,6 +55,7 @@ import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 
 import java.math.MathContext;
+import java.nio.charset.Charset;
 import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -537,6 +538,11 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         @Override
         public boolean canNumbersHaveGroupSeparator() {
             return false;
+        }
+
+        @Override
+        public Charset charset() {
+            throw new UnsupportedOperationException();
         }
 
         @Override
