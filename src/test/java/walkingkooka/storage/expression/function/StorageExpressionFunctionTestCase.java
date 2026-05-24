@@ -49,6 +49,7 @@ import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
 
 import java.math.MathContext;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -134,6 +135,7 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
                     BinaryNumberConverterFunctions.fake(),
                     ConverterContexts.basic(
                         false, // canNumbersHaveGroupSeparator
+                        StandardCharsets.UTF_8,
                         0L, // dateTimeOffset
                         StorageExpressionFunctionTestCase.INDENTATION,
                         StorageExpressionFunctionTestCase.LINE_ENDING,
