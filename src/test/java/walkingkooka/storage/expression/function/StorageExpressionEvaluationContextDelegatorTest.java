@@ -32,6 +32,7 @@ import walkingkooka.environment.EnvironmentValueWatcher;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContextDelegator;
 import walkingkooka.locale.LocaleContexts;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
@@ -53,6 +54,13 @@ import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.ExpressionReference;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallContextObjectPostProcessor;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallContexts;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContext;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextDelegator;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContexts;
+import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
+import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
 
 import java.math.MathContext;
 import java.nio.charset.Charset;
@@ -195,12 +203,17 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
     }
 
     @Override
-    public void testSetTimeOffsetWithDifferentAndWatcher() {
+    public void testSetObjectPostProcessor() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void testUserNotNull() {
+    public void testSetPreProcessor() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testSetTimeOffsetWithDifferentAndWatcher() {
         throw new UnsupportedOperationException();
     }
 
@@ -208,7 +221,6 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
     public void testSetUserWithDifferentAndWatcher() {
         throw new UnsupportedOperationException();
     }
-
 
     // DecimalNumberContext.............................................................................................
 
@@ -241,8 +253,9 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         throw new UnsupportedOperationException();
     }
 
-    static class TestStorageExpressionEvaluationContextDelegator implements StorageExpressionEvaluationContextDelegator,
-        DecimalNumberContextDelegator {
+    static class TestStorageExpressionEvaluationContextDelegator implements StorageExpressionEvaluationContextDelegator
+        //DecimalNumberContextDelegator
+        {
 
         @Override
         public ExpressionEvaluationContext enterScope(final Function<ExpressionReference, Optional<Optional<Object>>> function) {
@@ -276,6 +289,18 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         private final TestStorageExpressionEvaluationContext storageExpressionEvaluationContext = new TestStorageExpressionEvaluationContext();
 
         @Override
+        public StorageExpressionEvaluationContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor processor) {
+            Objects.requireNonNull(processor, "processor");
+            return this;
+        }
+
+        @Override
+        public StorageExpressionEvaluationContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {
+            Objects.requireNonNull(processor, "processor");
+            return this;
+        }
+
+        @Override
         public String toString() {
             return this.getClass().getSimpleName();
         }
@@ -284,6 +309,7 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
     static final class TestStorageExpressionEvaluationContext implements StorageExpressionEvaluationContext,
         DateTimeContextDelegator,
         DecimalNumberContextDelegator,
+        JsonNodeMarshallUnmarshallContextDelegator,
         LocaleContextDelegator {
 
         @Override
@@ -376,6 +402,11 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         @Override
         public DecimalNumberContext decimalNumberContext() {
             return DECIMAL_NUMBER_CONTEXT;
+        }
+
+        @Override
+        public MathContext mathContext() {
+            return DECIMAL_NUMBER_CONTEXT.mathContext();
         }
 
         @Override
@@ -634,6 +665,36 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         @Override
         public char valueSeparator() {
             return ',';
+        }
+
+        @Override
+        public StorageExpressionEvaluationContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor processor) {
+            Objects.requireNonNull(processor, "processor");
+            return this;
+        }
+
+        @Override
+        public StorageExpressionEvaluationContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {
+            Objects.requireNonNull(processor, "processor");
+            return this;
+        }
+
+        @Override
+        public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
+            Objects.requireNonNull(languageTag, "languageTag");
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public JsonNodeMarshallUnmarshallContext jsonNodeMarshallUnmarshallContext() {
+            return JsonNodeMarshallUnmarshallContexts.basic(
+                JsonNodeMarshallContexts.basic(),
+                JsonNodeUnmarshallContexts.basic(
+                    this.expressionNumberKind(),
+                    this, // CurrencyCodeLanguageTagContext
+                    this.mathContext()
+                )
+            );
         }
 
         @Override

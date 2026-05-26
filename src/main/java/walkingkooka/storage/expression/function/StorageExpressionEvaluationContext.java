@@ -25,6 +25,8 @@ import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.storage.convert.StorageConverterContext;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallContextObjectPostProcessor;
+import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
 
 import java.util.List;
 import java.util.Optional;
@@ -56,4 +58,12 @@ public interface StorageExpressionEvaluationContext extends ExpressionEvaluation
 
     @Override
     StorageExpressionEvaluationContext setEnvironmentContext(final EnvironmentContext environmentContext);
+
+    // JsonNodeConverterContext.........................................................................................
+
+    @Override
+    StorageExpressionEvaluationContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor jsonNodeMarshallContextObjectPostProcessor);
+
+    @Override
+    StorageExpressionEvaluationContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor jsonNodeUnmarshallContextPreProcessor);
 }

@@ -32,6 +32,7 @@ import walkingkooka.environment.EnvironmentValueWatcher;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContextDelegator;
 import walkingkooka.locale.LocaleContexts;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
@@ -53,6 +54,13 @@ import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.ExpressionReference;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallContextObjectPostProcessor;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallContexts;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContext;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextDelegator;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContexts;
+import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
+import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
 
 import java.math.MathContext;
 import java.nio.charset.Charset;
@@ -165,6 +173,16 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
     }
 
     @Override
+    public void testSetObjectPostProcessor() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testSetPreProcessor() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public void testSetTimeOffsetWithDifferentAndWatcher() {
         throw new UnsupportedOperationException();
     }
@@ -216,7 +234,8 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
     static final class TestStorageExpressionEvaluationContext implements StorageExpressionEvaluationContext,
         DateTimeContextDelegator,
         DecimalNumberContextDelegator,
-        LocaleContextDelegator {
+        LocaleContextDelegator,
+        JsonNodeMarshallUnmarshallContextDelegator {
 
         @Override
         public boolean isText(final Object value) {
@@ -303,6 +322,12 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
                 50,
                 LocalDateTime::now
             );
+        }
+
+        @Override
+        public MathContext mathContext() {
+            return this.decimalNumberContext()
+                .mathContext();
         }
 
         @Override
@@ -566,6 +591,36 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         @Override
         public char valueSeparator() {
             return ',';
+        }
+
+        @Override
+        public JsonNodeMarshallUnmarshallContext jsonNodeMarshallUnmarshallContext() {
+            return JsonNodeMarshallUnmarshallContexts.basic(
+                JsonNodeMarshallContexts.basic(),
+                JsonNodeUnmarshallContexts.basic(
+                    this.expressionNumberKind(),
+                    this, // CurrencyCodeLanguageTagContext
+                    this.mathContext()
+                )
+            );
+        }
+
+        @Override
+        public StorageExpressionEvaluationContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor processor) {
+            Objects.requireNonNull(processor, "processor");
+            return this;
+        }
+
+        @Override
+        public StorageExpressionEvaluationContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {
+            Objects.requireNonNull(processor, "processor");
+            return this;
+        }
+
+        @Override
+        public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
+            Objects.requireNonNull(languageTag, "languageTag");
+            throw new UnsupportedOperationException();
         }
 
         @Override
