@@ -30,7 +30,10 @@ import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.convert.StorageConverters;
 import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCase.TestStorageExpressionEvaluationContext;
 import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.JsonString;
 import walkingkooka.tree.json.convert.JsonNodeConverters;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallContext;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallContexts;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -143,6 +146,18 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
                     EmailAddress.parse("user@example.com")
                 );
             }
+
+            @Override
+            public JsonNode marshall(final Object value) {
+                return context.marshall(value);
+            }
+
+            @Override
+            public Optional<JsonString> typeName(final Class<?> type) {
+                return this.context.typeName(type);
+            }
+
+            private final JsonNodeMarshallContext context = JsonNodeMarshallContexts.basic();
         };
     }
 

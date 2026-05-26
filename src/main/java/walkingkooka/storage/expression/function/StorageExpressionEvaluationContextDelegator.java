@@ -17,7 +17,9 @@
 
 package walkingkooka.storage.expression.function;
 
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.environment.EnvironmentContext;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.storage.StorageEnvironmentContext;
 import walkingkooka.storage.StorageEnvironmentContextDelegator;
 import walkingkooka.storage.StoragePath;
@@ -25,13 +27,38 @@ import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionEvaluationContextDelegator;
+import walkingkooka.tree.expression.ExpressionNumberKind;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContext;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextDelegator;
 
+import java.math.MathContext;
+import java.util.Currency;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 public interface StorageExpressionEvaluationContextDelegator extends StorageExpressionEvaluationContext,
     ExpressionEvaluationContextDelegator,
+    JsonNodeMarshallUnmarshallContextDelegator,
     StorageEnvironmentContextDelegator {
+
+    @Override
+    default Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
+        return this.storageExpressionEvaluationContext()
+            .currencyForCurrencyCode(currencyCode);
+    }
+
+    @Override
+    default ExpressionNumberKind expressionNumberKind() {
+        return this.storageExpressionEvaluationContext()
+            .expressionNumberKind();
+    }
+
+    @Override
+    default MathContext mathContext() {
+        return this.storageExpressionEvaluationContext()
+            .mathContext();
+    }
 
     @Override
     default StoragePath parseStoragePath(final String text) {
@@ -43,6 +70,19 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
 
     @Override
     default ExpressionEvaluationContext expressionEvaluationContext() {
+        return this.storageExpressionEvaluationContext();
+    }
+
+    // JsonNodeMarshallUnmarshallContextDelegator.......................................................................
+
+    @Override
+    default Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
+        return this.storageExpressionEvaluationContext()
+            .localeForLanguageTag(languageTag);
+    }
+
+    @Override
+    default JsonNodeMarshallUnmarshallContext jsonNodeMarshallUnmarshallContext() {
         return this.storageExpressionEvaluationContext();
     }
 

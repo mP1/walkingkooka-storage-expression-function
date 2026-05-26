@@ -160,12 +160,12 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
         }
 
         @Override
-        public JsonNodeConverterContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor posProcessor) {
+        public StorageExpressionEvaluationContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor posProcessor) {
             throw new UnsupportedOperationException();
         }
 
         @Override
-        public JsonNodeConverterContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor preProcessor) {
+        public StorageExpressionEvaluationContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor preProcessor) {
             throw new UnsupportedOperationException();
         }
 
