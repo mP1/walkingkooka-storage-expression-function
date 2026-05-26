@@ -103,77 +103,12 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
     }
 
     @Override
-    public void testEnterScopeWithNullFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public void testEvaluateExpressionUnknownFunctionNameFails() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public void testEnvironmentValueLineEndingEqualsLineEnding() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testEnvironmentValueLocaleEqualsLocale() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testEnvironmentValueNowEqualsNow() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testEnvironmentValueUserEqualsUser() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public void testIsPureNullNameFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testDateTimeSymbolsForLocaleWithNullFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testDecimalNumberSymbolsForLocaleWithNullFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testEnvironmentValueWithNullFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testRemoveEnvironmentValueWithNullNameFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testRemoveEnvironmentValueWithNowFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetEnvironmentValueWithNowFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetEnvironmentValueWithNullNameFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetEnvironmentValueWithNullValueFails() {
         throw new UnsupportedOperationException();
     }
 
@@ -189,11 +124,6 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
     @Override
     public void testSetLineEndingWithDifferentAndWatcher() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetLocaleWithDifferent() {
         throw new UnsupportedOperationException();
     }
 
