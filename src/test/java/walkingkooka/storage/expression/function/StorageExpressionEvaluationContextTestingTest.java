@@ -108,46 +108,6 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
     }
 
     @Override
-    public void testDateTimeSymbolsForLocaleWithNullFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testDecimalNumberSymbolsForLocaleWithNullFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testEnvironmentValueWithNullFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testRemoveEnvironmentValueWithNullNameFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testRemoveEnvironmentValueWithNowFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetEnvironmentValueWithNowFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetEnvironmentValueWithNullNameFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetEnvironmentValueWithNullValueFails() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public void testSetCurrencyWithDifferentAndWatcher() {
         throw new UnsupportedOperationException();
     }
@@ -159,11 +119,6 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
 
     @Override
     public void testSetLineEndingWithDifferentAndWatcher() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetLocaleWithDifferent() {
         throw new UnsupportedOperationException();
     }
 
