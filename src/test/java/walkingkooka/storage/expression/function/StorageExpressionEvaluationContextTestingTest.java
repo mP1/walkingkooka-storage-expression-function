@@ -64,6 +64,7 @@ import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
 
 import java.math.MathContext;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -291,6 +292,16 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         }
 
         @Override
+        public Charset charset() {
+            return this.environmentContext.charset();
+        }
+
+        @Override
+        public void setCharset(final Charset charset) {
+            this.environmentContext.setCharset(charset);
+        }
+        
+        @Override
         public Currency currency() {
             return this.environmentContext.currency();
         }
@@ -425,6 +436,7 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         {
             this.environmentContext = EnvironmentContexts.map(
                 EnvironmentContexts.empty(
+                    StandardCharsets.UTF_8,
                     Currency.getInstance("AUD"),
                     Indentation.SPACES2,
                     LineEnding.NL,
@@ -518,11 +530,6 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         @Override
         public boolean canNumbersHaveGroupSeparator() {
             return false;
-        }
-
-        @Override
-        public Charset charset() {
-            throw new UnsupportedOperationException();
         }
 
         @Override
