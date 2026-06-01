@@ -17,6 +17,7 @@
 
 package walkingkooka.storage.expression.function;
 
+import walkingkooka.Binary;
 import walkingkooka.convert.BinaryNumberConverterFunctions;
 import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
@@ -28,6 +29,7 @@ import walkingkooka.environment.EnvironmentContexts;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.net.email.EmailAddress;
+import walkingkooka.net.header.MediaType;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageContext;
 import walkingkooka.storage.StoragePath;
@@ -79,6 +81,12 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
         }
 
         // StorageContext...................................................................................................
+
+        @Override
+        public MediaType detect(final String filename,
+                                final Binary content) {
+            throw new UnsupportedOperationException();
+        }
 
         @Override
         public StoragePath parseStoragePath(final String text) {
