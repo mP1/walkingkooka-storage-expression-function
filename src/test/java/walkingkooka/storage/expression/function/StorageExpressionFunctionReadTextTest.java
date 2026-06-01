@@ -24,7 +24,9 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.convert.Converter;
 import walkingkooka.convert.Converters;
 import walkingkooka.net.email.EmailAddress;
+import walkingkooka.reflect.ThrowableTesting;
 import walkingkooka.storage.FakeStorage;
+import walkingkooka.storage.InvalidStoragePathException;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.convert.StorageConverters;
@@ -38,7 +40,10 @@ import walkingkooka.tree.json.marshall.JsonNodeMarshallContexts;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public final class StorageExpressionFunctionReadTextTest extends StorageExpressionFunctionTestCase<StorageExpressionFunctionReadText<TestStorageExpressionEvaluationContext>, String> {
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+public final class StorageExpressionFunctionReadTextTest extends StorageExpressionFunctionTestCase<StorageExpressionFunctionReadText<TestStorageExpressionEvaluationContext>, String>
+    implements ThrowableTesting {
 
     private final static StoragePath PATH = StoragePath.parse("/dir1/file2.json");
 
@@ -61,6 +66,19 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
         this.applyAndCheck(
             Lists.of(StoragePath.parse("/dir1/missing.json")),
             null
+        );
+    }
+
+    @Test
+    public void testApplyStorageEntryPresentAndMissingPath() {
+        final InvalidStoragePathException thrown = assertThrows(
+            InvalidStoragePathException.class,
+            () -> this.apply2()
+        );
+
+        this.getMessageAndCheck(
+            thrown,
+            "Unsupported file read \"/dir1/\""
         );
     }
 

@@ -78,10 +78,10 @@ final class StorageExpressionFunctionReadText<C extends StorageExpressionEvaluat
         return context.convertOrFail(
             context.convertOrFail(
                 value,
-                context.convertOrFail(
+                context.convert(
                     path,
                     Class.class
-                )
+                ).orElseLeftThrow(() -> path.invalidStoragePathException("Unsupported file read"))
             ),
             String.class
         );
