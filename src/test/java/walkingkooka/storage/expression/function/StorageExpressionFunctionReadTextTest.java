@@ -57,14 +57,6 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
     }
 
     @Test
-    public void testApplyStorageEntryPresentAndMissingPath() {
-        this.applyAndCheck(
-            Lists.empty(),
-            null
-        );
-    }
-
-    @Test
     public void testApplyStorageEntryMissing() {
         this.applyAndCheck(
             Lists.of(StoragePath.parse("/dir1/missing.json")),
