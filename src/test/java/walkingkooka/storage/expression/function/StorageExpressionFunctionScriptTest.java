@@ -28,7 +28,6 @@ import walkingkooka.storage.FakeStorage;
 import walkingkooka.storage.InvalidStoragePathException;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
-import walkingkooka.storage.convert.StorageConverters;
 import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCase.TestStorageExpressionEvaluationContext;
 import walkingkooka.tree.json.convert.JsonNodeConverters;
 
@@ -122,7 +121,6 @@ public final class StorageExpressionFunctionScriptTest extends StorageExpression
             private final Converter<TestStorageExpressionEvaluationContext> converters = Converters.collection(
                 Lists.of(
                     Converters.simple(),
-                    StorageConverters.storagePathJsonToClass(),
                     JsonNodeConverters.toJsonNode(),
                     JsonNodeConverters.toJsonText()
                 )
