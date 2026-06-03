@@ -18,4 +18,5 @@ ExpressionFunctions that read/write to a Store
 - [StorageList](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionList.java)
 - [StorageRead](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionRead.java)
 - [StorageReadText](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionReadText.java)
+- [StorageWrite](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionWrite.java)
 - [StorageWriteText](https://github.com/mP1/walkingkooka-storage-expression-function/blob/master/src/main/java/walkingkooka/storage/expression/function/StorageExpressionFunctionWriteText.java)
