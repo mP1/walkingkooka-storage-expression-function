@@ -29,7 +29,6 @@ import walkingkooka.storage.FakeStorage;
 import walkingkooka.storage.InvalidStoragePathException;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
-import walkingkooka.storage.convert.StorageConverters;
 import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCase.TestStorageExpressionEvaluationContext;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonString;
@@ -47,25 +46,31 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
 
     private final static StoragePath PATH = StoragePath.parse("/dir1/file2.json");
 
-    private final static String TEXT = "Hello World";
+    private final static JsonNode JSON = JsonNode.parse("{ \"Hello\": \"World\" }");
 
     @Test
     public void testApplyStorageEntryPresent() {
         this.applyAndCheck(
             Lists.of(PATH),
-            JsonNode.string(TEXT)
-                .toJsonText(
-                    INDENTATION,
-                    LINE_ENDING
-                )
+            JSON.toJsonText(
+                INDENTATION,
+                LINE_ENDING
+            )
         );
     }
 
     @Test
     public void testApplyStorageEntryMissing() {
-        this.applyAndCheck(
-            Lists.of(StoragePath.parse("/dir1/missing.json")),
-            null
+        final InvalidStoragePathException thrown = assertThrows(
+            InvalidStoragePathException.class,
+            () -> this.apply2(
+                StoragePath.parse("/dir1/missing.json")
+            )
+        );
+
+        this.getMessageAndCheck(
+            thrown,
+            "Unable to read text \"/dir1/missing.json\""
         );
     }
 
@@ -78,7 +83,7 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
 
         this.getMessageAndCheck(
             thrown,
-            "Unsupported file read \"/dir1/\""
+            "Unable to read text \"/dir1/\""
         );
     }
 
@@ -103,7 +108,7 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
                         path.equals(PATH) ?
                             StorageValue.with(path)
                                 .setValue(
-                                    Optional.of(TEXT)
+                                    Optional.of(JSON)
                                 ) :
                             null
                     );
@@ -134,7 +139,6 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
             private final Converter<TestStorageExpressionEvaluationContext> converters = Converters.collection(
                 Lists.of(
                     Converters.simple(),
-                    StorageConverters.storagePathJsonToClass(),
                     JsonNodeConverters.toJsonNode(),
                     JsonNodeConverters.toJsonText()
                 )
@@ -173,7 +177,7 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
 
     @Override
     public int minimumParameterCount() {
-        return 1;
+        return 0;
     }
 
     // toString.........................................................................................................
