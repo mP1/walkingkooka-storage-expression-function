@@ -65,7 +65,7 @@ final class StorageExpressionFunctionReadText<C extends StorageExpressionEvaluat
 
         final StorageValue storageValue = context.loadStorage(
             path
-        ).orElse(null);
+        ).orElseThrow(() -> path.invalidStoragePathException("Unable to read text"));
 
         Object value = null != storageValue ?
             storageValue.value()
@@ -75,15 +75,9 @@ final class StorageExpressionFunctionReadText<C extends StorageExpressionEvaluat
         // Convert StoragePath to Class
         // eg:  *.json -> JsonNode
         // then value
-        return context.convertOrFail(
-            context.convertOrFail(
-                value,
-                context.convert(
-                    path,
-                    Class.class
-                ).orElseLeftThrow(() -> path.invalidStoragePathException("Unsupported file read"))
-            ),
+        return context.convert(
+            value,
             String.class
-        );
+        ).orElseLeftThrow(() -> path.invalidStoragePathException("Reading text failed"));
     }
 }
