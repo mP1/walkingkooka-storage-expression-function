@@ -60,6 +60,13 @@ public final class StorageExpressionFunctions implements PublicStaticHelper {
     }
 
     /**
+     * {@see StorageExpressionFunctionRead}
+     */
+    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Object, C> storageRead() {
+        return StorageExpressionFunctionRead.instance();
+    }
+
+    /**
      * {@see StorageExpressionFunctionReadText}
      */
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<String, C> storageReadText() {
