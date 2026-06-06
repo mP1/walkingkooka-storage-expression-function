@@ -28,7 +28,7 @@ import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentContexts;
 import walkingkooka.environment.EnvironmentValueName;
-import walkingkooka.environment.EnvironmentValueWatcher;
+import walkingkooka.environment.EnvironmentWatcher;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContextDelegator;
 import walkingkooka.locale.LocaleContexts;
@@ -503,13 +503,13 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         private final EnvironmentContext environmentContext;
 
         @Override
-        public Runnable addEnvironmentValueWatcher(final EnvironmentValueWatcher watcher) {
+        public Runnable addEnvironmentWatcher(final EnvironmentWatcher watcher) {
             Objects.requireNonNull(watcher, "watcher");
             throw new UnsupportedOperationException();
         }
 
         @Override
-        public Runnable addEnvironmentValueWatcherOnce(final EnvironmentValueWatcher watcher) {
+        public Runnable addEnvironmentWatcherOnce(final EnvironmentWatcher watcher) {
             Objects.requireNonNull(watcher, "watcher");
             throw new UnsupportedOperationException();
         }
