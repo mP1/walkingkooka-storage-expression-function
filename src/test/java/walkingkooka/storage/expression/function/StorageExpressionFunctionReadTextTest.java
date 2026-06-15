@@ -100,7 +100,7 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
     @Override
     public TestStorageExpressionEvaluationContext createContext() {
         return new TestStorageExpressionEvaluationContext(
-            new FakeStorage<TestStorageExpressionEvaluationContext>() {
+            new FakeStorage<>() {
                 @Override
                 public Optional<StorageValue> load(final StoragePath path,
                                                    final TestStorageExpressionEvaluationContext context) {
