@@ -83,7 +83,7 @@ public final class StorageExpressionFunctionListTest extends StorageExpressionFu
     @Override
     public TestStorageExpressionEvaluationContext createContext() {
         return new TestStorageExpressionEvaluationContext(
-            new FakeStorage<TestStorageExpressionEvaluationContext>() {
+            new FakeStorage<>() {
 
                 @Override
                 public List<StorageValueInfo> list(final StoragePath path,
