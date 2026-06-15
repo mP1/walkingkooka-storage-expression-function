@@ -38,7 +38,7 @@ public final class StorageExpressionFunctionWriteTest extends StorageExpressionF
 
     private final static EmailAddress USER = EmailAddress.parse("user@example.com");
 
-    private final static ExpressionNumber VALUE = ExpressionNumberKind.DEFAULT.create(123.5);;
+    private final static ExpressionNumber VALUE = ExpressionNumberKind.DEFAULT.create(123.5);
 
     @Test
     public void testApply() {
