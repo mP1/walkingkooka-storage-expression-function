@@ -42,7 +42,7 @@ final class StorageExpressionFunctionWriteText<C extends StorageExpressionEvalua
     final static StorageExpressionFunctionWriteText<?> INSTANCE = new StorageExpressionFunctionWriteText<>();
 
     private StorageExpressionFunctionWriteText() {
-        super("storageWriteText");
+        super("writeStorageText");
     }
 
     @Override
