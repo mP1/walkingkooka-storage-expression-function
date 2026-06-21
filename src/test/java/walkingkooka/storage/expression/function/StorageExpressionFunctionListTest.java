@@ -109,7 +109,7 @@ public final class StorageExpressionFunctionListTest extends StorageExpressionFu
     public void testToString() {
         this.toStringAndCheck(
             StorageExpressionFunctionList.instance(),
-            "storageList"
+            "listStorage"
         );
     }
 
