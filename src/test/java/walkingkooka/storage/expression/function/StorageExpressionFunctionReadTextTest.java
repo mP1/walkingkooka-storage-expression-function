@@ -186,7 +186,7 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
     public void testToString() {
         this.toStringAndCheck(
             StorageExpressionFunctionReadText.instance(),
-            "storageReadText"
+            "readStorageText"
         );
     }
 

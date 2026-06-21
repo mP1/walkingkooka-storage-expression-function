@@ -53,6 +53,13 @@ public final class StorageExpressionFunctions implements PublicStaticHelper {
     }
 
     /**
+     * {@see StorageExpressionFunctionReadText}
+     */
+    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<String, C> readStorageText() {
+        return StorageExpressionFunctionReadText.instance();
+    }
+
+    /**
      * {@see StorageExpressionFunctionScript}
      */
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Object, C> script() {
@@ -71,13 +78,6 @@ public final class StorageExpressionFunctions implements PublicStaticHelper {
      */
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> setHomeDirectory() {
         return StorageExpressionFunctionSetHomeDirectory.instance();
-    }
-
-    /**
-     * {@see StorageExpressionFunctionReadText}
-     */
-    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<String, C> storageReadText() {
-        return StorageExpressionFunctionReadText.instance();
     }
 
     /**
