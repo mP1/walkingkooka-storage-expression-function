@@ -112,7 +112,7 @@ public final class StorageExpressionFunctionWriteTest extends StorageExpressionF
     public void testToString() {
         this.toStringAndCheck(
             StorageExpressionFunctionWrite.instance(),
-            "storageWrite"
+            "writeStorage"
         );
     }
 
