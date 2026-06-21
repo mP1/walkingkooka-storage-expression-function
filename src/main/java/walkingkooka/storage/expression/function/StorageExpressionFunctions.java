@@ -25,6 +25,13 @@ import walkingkooka.tree.expression.function.ExpressionFunction;
 public final class StorageExpressionFunctions implements PublicStaticHelper {
 
     /**
+     * {@see StorageExpressionFunctionDelete}
+     */
+    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> deleteStorage() {
+        return StorageExpressionFunctionDelete.instance();
+    }
+
+    /**
      * {@see StorageExpressionFunctionGetCurrentWorkingDirectory}
      */
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<StoragePath, C> getCurrentWorkingDirectory() {
@@ -71,13 +78,6 @@ public final class StorageExpressionFunctions implements PublicStaticHelper {
      */
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<String, C> storageReadText() {
         return StorageExpressionFunctionReadText.instance();
-    }
-
-    /**
-     * {@see StorageExpressionFunctionDelete}
-     */
-    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> storageDelete() {
-        return StorageExpressionFunctionDelete.instance();
     }
 
     /**
