@@ -39,7 +39,7 @@ final class StorageExpressionFunctionList<C extends StorageExpressionEvaluationC
     final static StorageExpressionFunctionList<?> INSTANCE = new StorageExpressionFunctionList<>();
 
     private StorageExpressionFunctionList() {
-        super("storageList");
+        super("listStorage");
     }
 
     @Override
