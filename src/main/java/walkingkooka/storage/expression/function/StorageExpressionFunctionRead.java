@@ -39,7 +39,7 @@ final class StorageExpressionFunctionRead<C extends StorageExpressionEvaluationC
     final static StorageExpressionFunctionRead<?> INSTANCE = new StorageExpressionFunctionRead<>();
 
     private StorageExpressionFunctionRead() {
-        super("storageRead");
+        super("readStorage");
     }
 
     @Override
