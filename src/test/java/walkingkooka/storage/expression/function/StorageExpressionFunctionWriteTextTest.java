@@ -111,7 +111,7 @@ public final class StorageExpressionFunctionWriteTextTest extends StorageExpress
     public void testToString() {
         this.toStringAndCheck(
             StorageExpressionFunctionWriteText.instance(),
-            "storageWriteText"
+            "writeStorageText"
         );
     }
 

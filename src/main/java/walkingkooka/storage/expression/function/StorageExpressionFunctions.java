@@ -88,17 +88,17 @@ public final class StorageExpressionFunctions implements PublicStaticHelper {
     }
 
     /**
-     * {@see StorageExpressionFunctionWriteText}
-     */
-    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> storageWriteText() {
-        return StorageExpressionFunctionWriteText.instance();
-    }
-
-    /**
      * {@see StorageExpressionFunctionWrite}
      */
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> writeStorage() {
         return StorageExpressionFunctionWrite.instance();
+    }
+
+    /**
+     * {@see StorageExpressionFunctionWriteText}
+     */
+    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> writeStorageText() {
+        return StorageExpressionFunctionWriteText.instance();
     }
 
     /**
