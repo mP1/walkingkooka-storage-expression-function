@@ -39,7 +39,7 @@ public interface StorageExpressionEvaluationContextTesting2<C extends StorageExp
     // loadStorage......................................................................................................
 
     @Test
-    default void testLoadStorageWithNullIdFails() {
+    default void testLoadStorageWithNullPathFails() {
         assertThrows(
             NullPointerException.class,
             () -> this.createContext()
