@@ -61,7 +61,7 @@ public interface StorageExpressionEvaluationContextTesting2<C extends StorageExp
     // deleteStorage....................................................................................................
 
     @Test
-    default void testDeleteStorageWithNullValueFails() {
+    default void testDeleteStorageWithNullPathFails() {
         assertThrows(
             NullPointerException.class,
             () -> this.createContext()
