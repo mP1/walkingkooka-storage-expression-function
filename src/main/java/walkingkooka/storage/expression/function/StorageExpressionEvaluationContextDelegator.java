@@ -17,9 +17,11 @@
 
 package walkingkooka.storage.expression.function;
 
+import walkingkooka.Binary;
 import walkingkooka.currency.CurrencyCode;
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.locale.LocaleLanguageTag;
+import walkingkooka.net.header.MediaType;
 import walkingkooka.storage.StorageEnvironmentContext;
 import walkingkooka.storage.StorageEnvironmentContextDelegator;
 import walkingkooka.storage.StoragePath;
@@ -99,6 +101,16 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
     }
 
     // StorageExpressionEvaluationContext...............................................................................
+
+    @Override
+    default MediaType detect(final String filename,
+                             final Binary content) {
+        return this.storageExpressionEvaluationContext()
+            .detect(
+                filename,
+                content
+            );
+    }
 
     @Override
     default Optional<StorageValue> loadStorage(final StoragePath path) {

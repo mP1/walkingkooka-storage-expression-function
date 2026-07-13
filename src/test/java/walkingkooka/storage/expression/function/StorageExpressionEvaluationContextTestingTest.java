@@ -18,6 +18,7 @@
 package walkingkooka.storage.expression.function;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Binary;
 import walkingkooka.Either;
 import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyExchange;
@@ -37,6 +38,8 @@ import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.net.email.EmailAddress;
+import walkingkooka.net.header.MediaType;
+import walkingkooka.net.header.MediaTypeDetectors;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageContext;
 import walkingkooka.storage.StorageContexts;
@@ -502,6 +505,16 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         }
 
         private final Storage<StorageContext> storage = Storages.treeMapStore();
+
+        @Override
+        public MediaType detect(final String filename,
+                                final Binary content) {
+            return MediaTypeDetectors.binary()
+                .detect(
+                    filename,
+                    content
+                );
+        }
 
         @Override
         public <T> Either<T, String> convert(final Object value,
