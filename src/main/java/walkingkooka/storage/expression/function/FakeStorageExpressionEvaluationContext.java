@@ -17,7 +17,9 @@
 
 package walkingkooka.storage.expression.function;
 
+import walkingkooka.Binary;
 import walkingkooka.environment.EnvironmentContext;
+import walkingkooka.net.header.MediaType;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
@@ -42,6 +44,12 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
     }
 
     // StorageConverterContext..........................................................................................
+
+    @Override
+    public MediaType detect(final String filename,
+                            final Binary content) {
+        throw new UnsupportedOperationException();
+    }
 
     @Override
     public Optional<StoragePath> currentWorkingDirectory() {
