@@ -36,8 +36,10 @@ import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCase.TestStorageExpressionEvaluationContext;
+import walkingkooka.text.BinaryTextContext;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.TextPrinting;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContexts;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
@@ -65,6 +67,11 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
     final static Indentation INDENTATION = Indentation.SPACES4;
 
     final static LineEnding LINE_ENDING = LineEnding.NL;
+
+    final static BinaryTextContext BINARY_TEXT_CONTEXT = TextPrinting.with(
+        INDENTATION,
+        LineEnding.NL
+    ).setCharset(StandardCharsets.UTF_8);
 
     @Override
     public final void testTypeNaming() {
@@ -143,13 +150,11 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
                     BinaryNumberConverterFunctions.fake(),
                     ConverterContexts.basic(
                         false, // canNumbersHaveGroupSeparator
-                        StandardCharsets.UTF_8,
                         0L, // dateTimeOffset
-                        StorageExpressionFunctionTestCase.INDENTATION,
-                        StorageExpressionFunctionTestCase.LINE_ENDING,
                         ',', // valueSeparator
                         Converters.fake(),
                         BinaryNumberConverterFunctions.fake(),
+                        BINARY_TEXT_CONTEXT,
                         CurrencyLocaleContexts.fake(),
                         DateTimeContexts.fake(),
                         DecimalNumberContexts.fake()
