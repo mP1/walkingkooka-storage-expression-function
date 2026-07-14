@@ -53,8 +53,7 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
         this.applyAndCheck(
             Lists.of(PATH),
             JSON.toJsonText(
-                INDENTATION,
-                LINE_ENDING
+                BINARY_TEXT_CONTEXT
             )
         );
     }
