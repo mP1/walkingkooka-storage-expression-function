@@ -70,7 +70,7 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
 
     final static BinaryTextContext BINARY_TEXT_CONTEXT = TextPrinting.with(
         INDENTATION,
-        LineEnding.NL
+        LINE_ENDING
     ).setCharset(StandardCharsets.UTF_8);
 
     @Override
