@@ -442,7 +442,7 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
                     StandardCharsets.UTF_8,
                     Currency.getInstance("AUD"),
                     Indentation.SPACES2,
-                    LineEnding.NL,
+                    StorageExpressionEvaluationContextTestingTest.LINE_ENDING,
                     StorageExpressionEvaluationContextTestingTest.LOCALE,
                     () -> LocalDateTime.MIN,
                     ANONYMOUS
