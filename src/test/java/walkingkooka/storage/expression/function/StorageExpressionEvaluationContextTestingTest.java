@@ -82,8 +82,6 @@ import java.util.function.Function;
 public final class StorageExpressionEvaluationContextTestingTest implements StorageExpressionEvaluationContextTesting2<TestStorageExpressionEvaluationContext>,
     DecimalNumberContextDelegator {
 
-    private final static Locale LOCALE = Locale.ENGLISH;
-
     private final static StoragePath CURRENT_WORKING_PATH = StoragePath.parse("/current1/working2/directory3");
 
     @Override
