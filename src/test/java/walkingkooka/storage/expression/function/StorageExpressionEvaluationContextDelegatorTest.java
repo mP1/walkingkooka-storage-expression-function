@@ -82,13 +82,11 @@ import java.util.function.Function;
 public final class StorageExpressionEvaluationContextDelegatorTest implements StorageExpressionEvaluationContextTesting2<TestStorageExpressionEvaluationContextDelegator>,
     DecimalNumberContextDelegator {
 
-    private final static StoragePath HOME_PATH = StoragePath.parse("/home/user123");
-
     @Test
     public void testHomeDirectory() {
         this.homeDirectoryAndCheck(
             this.createContext(),
-            HOME_PATH
+            HOME_DIRECTORY
         );
     }
 
@@ -374,7 +372,7 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
         @Override
         public Optional<StoragePath> homeDirectory() {
-            return Optional.of(HOME_PATH);
+            return Optional.of(StorageExpressionEvaluationContextDelegatorTest.HOME_DIRECTORY);
         }
 
         @Override
@@ -495,7 +493,7 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
             );
             this.environmentContext.setEnvironmentValue(
                 HOME_DIRECTORY,
-                HOME_PATH
+                StorageExpressionEvaluationContextDelegatorTest.HOME_DIRECTORY
             );
         }
 
