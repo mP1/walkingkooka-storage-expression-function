@@ -18,15 +18,15 @@
 package walkingkooka.storage.expression.function;
 
 import walkingkooka.collect.list.Lists;
+import walkingkooka.storage.StorageEnvironmentContextTesting;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
-import walkingkooka.text.printer.TreePrintableTesting;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface StorageExpressionEvaluationContextTesting extends TreePrintableTesting {
+public interface StorageExpressionEvaluationContextTesting extends StorageEnvironmentContextTesting {
 
     // loadStorage......................................................................................................
 

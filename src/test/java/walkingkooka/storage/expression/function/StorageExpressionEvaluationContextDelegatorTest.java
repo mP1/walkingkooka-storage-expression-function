@@ -82,8 +82,6 @@ import java.util.function.Function;
 public final class StorageExpressionEvaluationContextDelegatorTest implements StorageExpressionEvaluationContextTesting2<TestStorageExpressionEvaluationContextDelegator>,
     DecimalNumberContextDelegator {
 
-    private final static StoragePath CURRENT_WORKING_PATH = StoragePath.parse("/current1/working2/directory3");
-
     private final static StoragePath HOME_PATH = StoragePath.parse("/home/user123");
 
     @Test
@@ -363,7 +361,7 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         
         @Override
         public Optional<StoragePath> currentWorkingDirectory() {
-            return Optional.of(CURRENT_WORKING_PATH);
+            return OPTIONAL_CURRENT_WORKING_DIRECTORY;
         }
 
         @Override

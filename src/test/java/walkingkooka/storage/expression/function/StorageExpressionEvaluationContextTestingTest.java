@@ -82,8 +82,6 @@ import java.util.function.Function;
 public final class StorageExpressionEvaluationContextTestingTest implements StorageExpressionEvaluationContextTesting2<TestStorageExpressionEvaluationContext>,
     DecimalNumberContextDelegator {
 
-    private final static StoragePath CURRENT_WORKING_PATH = StoragePath.parse("/current1/working2/directory3");
-
     @Override
     public TestStorageExpressionEvaluationContext createContext() {
         return new TestStorageExpressionEvaluationContext();
@@ -158,7 +156,7 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
     public void testCurrentWorkingDirectory() {
         this.currentWorkingDirectoryAndCheck(
             this.createContext(),
-            CURRENT_WORKING_PATH
+            CURRENT_WORKING_DIRECTORY
         );
     }
 
@@ -448,7 +446,7 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
             );
             this.environmentContext.setEnvironmentValue(
                 CURRENT_WORKING_DIRECTORY,
-                StorageExpressionEvaluationContextTestingTest.CURRENT_WORKING_PATH
+                StorageExpressionEvaluationContextTestingTest.CURRENT_WORKING_DIRECTORY
             );
         }
 
