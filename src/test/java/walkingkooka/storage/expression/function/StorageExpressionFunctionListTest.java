@@ -66,7 +66,7 @@ public final class StorageExpressionFunctionListTest extends StorageExpressionFu
     public void testApplyMissingPath() {
         this.applyAndCheck(
             Lists.empty(),
-            LIST
+            StorageValueInfoList.EMPTY
         );
     }
 

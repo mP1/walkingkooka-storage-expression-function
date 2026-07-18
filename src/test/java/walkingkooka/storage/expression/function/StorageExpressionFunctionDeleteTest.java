@@ -91,14 +91,12 @@ public final class StorageExpressionFunctionDeleteTest extends StorageExpression
 
             @Override
             public Optional<EmailAddress> user() {
-                return Optional.of(
-                    EmailAddress.parse("user@example.com")
-                );
+                return OPTIONAL_USER;
             }
 
             @Override
             public LocalDateTime now() {
-                return LocalDateTime.now();
+                return StorageExpressionFunctionDeleteTest.NOW;
             }
         };
     }

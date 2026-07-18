@@ -32,46 +32,31 @@ import walkingkooka.net.email.EmailAddress;
 import walkingkooka.net.header.MediaType;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageContext;
+import walkingkooka.storage.StorageEnvironmentContextTesting;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCase.TestStorageExpressionEvaluationContext;
-import walkingkooka.text.BinaryTextContext;
+import walkingkooka.text.BinaryTextContextTesting;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
-import walkingkooka.text.TextPrinting;
-import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContexts;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
 import walkingkooka.tree.json.convert.JsonNodeConverterContext;
 import walkingkooka.tree.json.convert.JsonNodeConverterContextDelegator;
 import walkingkooka.tree.json.convert.JsonNodeConverterContexts;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallContextObjectPostProcessor;
-import walkingkooka.tree.json.marshall.JsonNodeMarshallContexts;
-import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContexts;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextTesting;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
-import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
 
-import java.math.MathContext;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
-public abstract class StorageExpressionFunctionTestCase<F extends StorageExpressionFunction<TestStorageExpressionEvaluationContext, T>, T> implements ExpressionFunctionTesting<F, T, TestStorageExpressionEvaluationContext> {
-
-    final static Optional<StoragePath> CURRENT_WORKING_DIRECTORY = Optional.of(
-        StoragePath.parse("/dir1/")
-    );
-
-    final static Indentation INDENTATION = Indentation.SPACES4;
-
-    final static LineEnding LINE_ENDING = LineEnding.NL;
-
-    final static BinaryTextContext BINARY_TEXT_CONTEXT = TextPrinting.with(
-        INDENTATION,
-        LINE_ENDING
-    ).setCharset(StandardCharsets.UTF_8);
+public abstract class StorageExpressionFunctionTestCase<F extends StorageExpressionFunction<TestStorageExpressionEvaluationContext, T>, T> implements ExpressionFunctionTesting<F, T, TestStorageExpressionEvaluationContext>,
+    BinaryTextContextTesting,
+    JsonNodeMarshallUnmarshallContextTesting,
+    StorageEnvironmentContextTesting {
 
     @Override
     public final void testTypeNaming() {
@@ -142,8 +127,6 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
 
         @Override
         public JsonNodeConverterContext jsonNodeConverterContext() {
-            final ExpressionNumberKind expressionNumberKind = ExpressionNumberKind.BIG_DECIMAL;
-
             return JsonNodeConverterContexts.basic(
                 ExpressionNumberConverterContexts.basic(
                     Converters.fake(),
@@ -159,16 +142,9 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
                         DateTimeContexts.fake(),
                         DecimalNumberContexts.fake()
                     ),
-                    expressionNumberKind
+                    EXPRESSION_NUMBER_KIND
                 ),
-                JsonNodeMarshallUnmarshallContexts.basic(
-                    JsonNodeMarshallContexts.basic(),
-                    JsonNodeUnmarshallContexts.basic(
-                        expressionNumberKind,
-                        CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
-                        MathContext.DECIMAL32
-                    )
-                )
+                JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
             );
         }
 
@@ -207,7 +183,7 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
 
         @Override
         public Optional<StoragePath> currentWorkingDirectory() {
-            return StorageExpressionFunctionListTest.CURRENT_WORKING_DIRECTORY;
+            return OPTIONAL_CURRENT_WORKING_DIRECTORY;
         }
 
         @Override
