@@ -33,8 +33,6 @@ import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCas
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonString;
 import walkingkooka.tree.json.convert.JsonNodeConverters;
-import walkingkooka.tree.json.marshall.JsonNodeMarshallContext;
-import walkingkooka.tree.json.marshall.JsonNodeMarshallContexts;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -80,7 +78,7 @@ public final class StorageExpressionFunctionReadTest extends StorageExpressionFu
 
         this.getMessageAndCheck(
             thrown,
-            "Unable to read \"/dir1/\""
+            "Unable to read \"/current1/working2/directory3\""
         );
     }
 
@@ -142,32 +140,28 @@ public final class StorageExpressionFunctionReadTest extends StorageExpressionFu
 
             @Override
             public Optional<StoragePath> currentWorkingDirectory() {
-                return StorageExpressionFunctionReadTest.CURRENT_WORKING_DIRECTORY;
+                return OPTIONAL_CURRENT_WORKING_DIRECTORY;
             }
 
             @Override
             public LocalDateTime now() {
-                return LocalDateTime.now();
+                return StorageExpressionFunctionReadTextTest.NOW;
             }
 
             @Override
             public Optional<EmailAddress> user() {
-                return Optional.of(
-                    EmailAddress.parse("user@example.com")
-                );
+                return OPTIONAL_USER;
             }
 
             @Override
             public JsonNode marshall(final Object value) {
-                return context.marshall(value);
+                return JSON_NODE_MARSHALL_CONTEXT.marshall(value);
             }
 
             @Override
             public Optional<JsonString> typeName(final Class<?> type) {
-                return this.context.typeName(type);
+                return JSON_NODE_MARSHALL_CONTEXT.typeName(type);
             }
-
-            private final JsonNodeMarshallContext context = JsonNodeMarshallContexts.basic();
         };
     }
 

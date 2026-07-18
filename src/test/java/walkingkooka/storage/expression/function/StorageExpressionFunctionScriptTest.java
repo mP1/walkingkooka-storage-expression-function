@@ -133,19 +133,17 @@ public final class StorageExpressionFunctionScriptTest extends StorageExpression
 
             @Override
             public Optional<StoragePath> currentWorkingDirectory() {
-                return StorageExpressionFunctionScriptTest.CURRENT_WORKING_DIRECTORY;
+                return OPTIONAL_CURRENT_WORKING_DIRECTORY;
             }
 
             @Override
             public LocalDateTime now() {
-                return LocalDateTime.now();
+                return StorageExpressionFunctionScriptTest.NOW;
             }
 
             @Override
             public Optional<EmailAddress> user() {
-                return Optional.of(
-                    EmailAddress.parse("user@example.com")
-                );
+                return OPTIONAL_USER;
             }
         };
     }
