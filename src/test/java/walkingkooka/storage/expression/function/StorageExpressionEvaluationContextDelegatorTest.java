@@ -27,7 +27,6 @@ import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.EnvironmentContext;
-import walkingkooka.environment.EnvironmentContexts;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.environment.EnvironmentWatcher;
 import walkingkooka.locale.LocaleContext;
@@ -64,7 +63,6 @@ import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
 
 import java.math.MathContext;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -477,17 +475,7 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         }
 
         {
-            this.environmentContext = EnvironmentContexts.map(
-                EnvironmentContexts.empty(
-                    StandardCharsets.UTF_8,
-                    Currency.getInstance("AUD"),
-                    Indentation.SPACES2,
-                    LineEnding.NL,
-                    StorageExpressionEvaluationContextDelegatorTest.LOCALE,
-                    () -> LocalDateTime.MIN,
-                    ANONYMOUS
-                )
-            );
+            this.environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
             this.environmentContext.setEnvironmentValue(
                 HOME_DIRECTORY,
                 StorageExpressionEvaluationContextDelegatorTest.HOME_DIRECTORY
