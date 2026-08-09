@@ -18,6 +18,7 @@
 package walkingkooka.storage.expression.function;
 
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.storage.Storage;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValueInfoList;
 import walkingkooka.tree.expression.function.ExpressionFunction;
@@ -85,6 +86,13 @@ public final class StorageExpressionFunctions implements PublicStaticHelper {
      */
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> setHomeDirectory() {
         return StorageExpressionFunctionSetHomeDirectory.instance();
+    }
+
+    /**
+     * {@see StorageExpressionFunctionTreeMapStorage}
+     */
+    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Storage<C>, C> treeMapStorage() {
+        return StorageExpressionFunctionTreeMapStorage.instance();
     }
 
     /**
