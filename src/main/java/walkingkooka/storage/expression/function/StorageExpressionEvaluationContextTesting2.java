@@ -18,6 +18,7 @@
 package walkingkooka.storage.expression.function;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.storage.StorageContextTesting2;
 import walkingkooka.storage.StorageEnvironmentContextTesting2;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.convert.StorageConverterContextTesting;
@@ -26,6 +27,7 @@ import walkingkooka.tree.expression.ExpressionEvaluationContextTesting;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface StorageExpressionEvaluationContextTesting2<C extends StorageExpressionEvaluationContext> extends ExpressionEvaluationContextTesting<C>,
+    StorageContextTesting2<C>,
     StorageExpressionEvaluationContextTesting,
     StorageEnvironmentContextTesting2<C>,
     StorageConverterContextTesting<C> {
@@ -136,7 +138,17 @@ public interface StorageExpressionEvaluationContextTesting2<C extends StorageExp
     }
 
     @Override
+    default C createCanParseStoragePath() {
+        return this.createContext();
+    }
+
+    @Override
     default C createConverterLike() {
+        return this.createContext();
+    }
+
+    @Override
+    default C createMediaTypeDetector() {
         return this.createContext();
     }
 
