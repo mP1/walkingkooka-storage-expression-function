@@ -55,7 +55,7 @@ public interface StorageExpressionEvaluationContext extends ExpressionEvaluation
                                        final int offset,
                                        final int count);
 
-    void mountStoragePoint(final StorageMountPoint<?> mountPoint);
+    void mountStorage(final StorageMountPoint<?> mountPoint);
 
     void unmountStorage(final StoragePath path);
 
