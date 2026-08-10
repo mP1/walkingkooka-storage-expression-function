@@ -241,6 +241,11 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public List<StorageMountPoint<?>> storageMountPoints() {
+        throw new UnsupportedOperationException();
+    }
+
     // StorageContext...................................................................................................
 
     @Override

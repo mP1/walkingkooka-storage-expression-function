@@ -550,6 +550,13 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
             );
         }
 
+        @Override
+        public List<StorageMountPoint<?>> storageMountPoints() {
+            return Cast.to(
+                this.storage.mountPoints()
+            );
+        }
+
         private final Storage<StorageContext> storage = Storages.treeMapStore();
 
         @Override
