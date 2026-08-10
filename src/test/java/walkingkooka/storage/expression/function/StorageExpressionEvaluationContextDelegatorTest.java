@@ -19,6 +19,7 @@ package walkingkooka.storage.expression.function;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Binary;
+import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyExchange;
@@ -42,6 +43,7 @@ import walkingkooka.net.header.MediaTypeDetectors;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageContext;
 import walkingkooka.storage.StorageContexts;
+import walkingkooka.storage.StorageMountPoint;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
@@ -529,6 +531,14 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
                 offset,
                 count,
                 StorageContexts.fake()
+            );
+        }
+
+        @Override
+        public void mount(final StorageMountPoint<?> mountPoint) {
+            this.storage.mount(
+                Cast.to(mountPoint),
+                this
             );
         }
 

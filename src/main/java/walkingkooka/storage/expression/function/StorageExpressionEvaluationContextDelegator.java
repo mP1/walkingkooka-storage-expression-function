@@ -24,6 +24,7 @@ import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.net.header.MediaType;
 import walkingkooka.storage.StorageEnvironmentContext;
 import walkingkooka.storage.StorageEnvironmentContextDelegator;
+import walkingkooka.storage.StorageMountPoint;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
@@ -140,6 +141,12 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
                 offset,
                 count
             );
+    }
+
+    @Override
+    default void mount(final StorageMountPoint<?> mountPoint) {
+        this.storageExpressionEvaluationContext()
+            .mount(mountPoint);
     }
 
     StorageExpressionEvaluationContext storageExpressionEvaluationContext();

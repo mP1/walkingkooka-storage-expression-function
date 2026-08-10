@@ -21,6 +21,7 @@ import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageContext;
 import walkingkooka.storage.StorageEnvironmentContext;
+import walkingkooka.storage.StorageMountPoint;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
@@ -53,6 +54,9 @@ public interface StorageExpressionEvaluationContext extends ExpressionEvaluation
     List<StorageValueInfo> listStorage(final StoragePath parent,
                                        final int offset,
                                        final int count);
+
+    void mount(final StorageMountPoint<?> mountPoint);
+
     // EnvironmentContext...............................................................................................
 
     @Override
