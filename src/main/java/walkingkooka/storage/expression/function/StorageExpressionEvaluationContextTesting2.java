@@ -131,6 +131,15 @@ public interface StorageExpressionEvaluationContextTesting2<C extends StorageExp
         );
     }
 
+    @Test
+    default void testUnmountStorageWithNullStoragePathFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createContext()
+                .unmountStorage(null)
+        );
+    }
+
     @Override
     default C createCanDateTimeSymbolsForLocale() {
         return this.createContext();
