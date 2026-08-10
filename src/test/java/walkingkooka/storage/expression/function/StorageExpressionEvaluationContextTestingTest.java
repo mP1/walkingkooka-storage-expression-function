@@ -503,6 +503,13 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
             );
         }
 
+        @Override
+        public List<StorageMountPoint<?>> storageMountPoints() {
+            return Cast.to(
+                this.storage.mountPoints()
+            );
+        }
+
         private final Storage<StorageContext> storage = Storages.treeMapStore();
 
         @Override

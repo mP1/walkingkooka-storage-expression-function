@@ -20,6 +20,7 @@ package walkingkooka.storage.expression.function;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.storage.StorageContextTesting;
 import walkingkooka.storage.StorageEnvironmentContextTesting;
+import walkingkooka.storage.StorageMountPoint;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
@@ -102,6 +103,25 @@ public interface StorageExpressionEvaluationContextTesting extends StorageContex
                 count
             ),
             () -> "listStorage parent=" + parent + " offset=" + offset + " count=" + count
+        );
+    }
+
+    // storageMountPoints...............................................................................................
+
+    default void storageMountPoints(final StorageExpressionEvaluationContext context,
+                                    final StorageMountPoint<?>... expected) {
+        this.storageMountPoints(
+            context,
+            Lists.of(expected)
+        );
+    }
+
+    default void storageMountPoints(final StorageExpressionEvaluationContext context,
+                                    final List<StorageMountPoint<?>> expected) {
+        this.checkEquals(
+            expected,
+            context.storageMountPoints(),
+            context::toString
         );
     }
 }
