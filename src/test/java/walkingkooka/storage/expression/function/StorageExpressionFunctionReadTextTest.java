@@ -80,7 +80,7 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
 
         this.getMessageAndCheck(
             thrown,
-            "Unable to read text \"/current1/working2/directory3/\""
+            "Unable to read text \"/current1/working2/directory3\""
         );
     }
 
