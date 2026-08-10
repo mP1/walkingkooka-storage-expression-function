@@ -232,7 +232,7 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
     }
 
     @Override
-    public void mount(final StorageMountPoint<?> mountPoint) {
+    public void mountStoragePoint(final StorageMountPoint<?> mountPoint) {
         throw new UnsupportedOperationException();
     }
 
