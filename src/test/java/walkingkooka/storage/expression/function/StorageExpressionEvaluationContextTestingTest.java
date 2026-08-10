@@ -488,7 +488,7 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         }
 
         @Override
-        public void mountStoragePoint(final StorageMountPoint<?> mountPoint) {
+        public void mountStorage(final StorageMountPoint<?> mountPoint) {
             this.storage.mount(
                 Cast.to(mountPoint),
                 this

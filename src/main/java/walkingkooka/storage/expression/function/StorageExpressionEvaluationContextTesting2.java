@@ -123,11 +123,11 @@ public interface StorageExpressionEvaluationContextTesting2<C extends StorageExp
     }
 
     @Test
-    default void testMountStoragePointWithNullStorageMountStoragePointFails() {
+    default void testMountStorageWithNullStorageMountStorageFails() {
         assertThrows(
             NullPointerException.class,
             () -> this.createContext()
-                .mountStoragePoint(null)
+                .mountStorage(null)
         );
     }
 
