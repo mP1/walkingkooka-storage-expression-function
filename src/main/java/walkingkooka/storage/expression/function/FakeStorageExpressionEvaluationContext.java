@@ -20,6 +20,7 @@ package walkingkooka.storage.expression.function;
 import walkingkooka.Binary;
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.net.header.MediaType;
+import walkingkooka.storage.StorageMountPoint;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
@@ -227,6 +228,11 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
     public List<StorageValueInfo> listStorage(final StoragePath parent,
                                               final int offset,
                                               final int count) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void mount(final StorageMountPoint<?> mountPoint) {
         throw new UnsupportedOperationException();
     }
 
