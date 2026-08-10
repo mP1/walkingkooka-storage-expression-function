@@ -495,6 +495,14 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
             );
         }
 
+        @Override
+        public void unmountStorage(final StoragePath path) {
+            this.storage.unmount(
+                path,
+                this
+            );
+        }
+
         private final Storage<StorageContext> storage = Storages.treeMapStore();
 
         @Override

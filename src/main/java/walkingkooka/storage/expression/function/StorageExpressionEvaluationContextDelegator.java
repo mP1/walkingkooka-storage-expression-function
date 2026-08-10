@@ -149,5 +149,11 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
             .mountStoragePoint(mountPoint);
     }
 
+    @Override
+    default void unmountStorage(final StoragePath path) {
+        this.storageExpressionEvaluationContext()
+            .unmountStorage(path);
+    }
+
     StorageExpressionEvaluationContext storageExpressionEvaluationContext();
 }

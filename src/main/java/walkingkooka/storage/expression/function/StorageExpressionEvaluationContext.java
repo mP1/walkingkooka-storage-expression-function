@@ -57,6 +57,8 @@ public interface StorageExpressionEvaluationContext extends ExpressionEvaluation
 
     void mountStoragePoint(final StorageMountPoint<?> mountPoint);
 
+    void unmountStorage(final StoragePath path);
+
     // EnvironmentContext...............................................................................................
 
     @Override

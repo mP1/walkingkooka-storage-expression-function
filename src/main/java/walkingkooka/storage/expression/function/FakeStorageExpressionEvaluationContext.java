@@ -236,6 +236,11 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public void unmountStorage(final StoragePath path) {
+        throw new UnsupportedOperationException();
+    }
+
     // StorageContext...................................................................................................
 
     @Override
