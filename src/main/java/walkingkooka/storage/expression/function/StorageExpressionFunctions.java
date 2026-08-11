@@ -54,6 +54,13 @@ public final class StorageExpressionFunctions implements PublicStaticHelper {
     }
 
     /**
+     * {@see StorageExpressionFunctionMount}
+     */
+    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> mountStorage() {
+        return StorageExpressionFunctionMount.instance();
+    }
+
+    /**
      * {@see StorageExpressionFunctionRead}
      */
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Object, C> readStorage() {
