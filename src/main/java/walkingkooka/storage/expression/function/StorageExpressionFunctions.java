@@ -96,6 +96,13 @@ public final class StorageExpressionFunctions implements PublicStaticHelper {
     }
 
     /**
+     * {@see StorageExpressionFunctionUnmount}
+     */
+    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> unmountStorage() {
+        return StorageExpressionFunctionUnmount.instance();
+    }
+
+    /**
      * {@see StorageExpressionFunctionWrite}
      */
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> writeStorage() {
