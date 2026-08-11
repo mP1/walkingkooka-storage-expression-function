@@ -18,6 +18,7 @@
 package walkingkooka.storage.expression.function;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.reflect.ThrowableTesting;
 import walkingkooka.storage.StorageContextTesting2;
 import walkingkooka.storage.StorageEnvironmentContextTesting2;
 import walkingkooka.storage.StoragePath;
@@ -30,7 +31,8 @@ public interface StorageExpressionEvaluationContextTesting2<C extends StorageExp
     StorageContextTesting2<C>,
     StorageExpressionEvaluationContextTesting,
     StorageEnvironmentContextTesting2<C>,
-    StorageConverterContextTesting<C> {
+    StorageConverterContextTesting<C>,
+    ThrowableTesting {
 
     @Test
     @Override
@@ -98,9 +100,9 @@ public interface StorageExpressionEvaluationContextTesting2<C extends StorageExp
                 )
         );
 
-        this.checkEquals(
-            "Invalid offset -1 < 0",
-            thrown.getMessage()
+        this.getMessageAndCheck(
+            thrown,
+            "Invalid offset -1 < 0"
         );
     }
 
@@ -116,9 +118,9 @@ public interface StorageExpressionEvaluationContextTesting2<C extends StorageExp
                 )
         );
 
-        this.checkEquals(
-            "Invalid count -1 < 0",
-            thrown.getMessage()
+        this.getMessageAndCheck(
+            thrown,
+            "Invalid count -1 < 0"
         );
     }
 
