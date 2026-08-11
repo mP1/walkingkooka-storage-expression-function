@@ -22,6 +22,7 @@ import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageMountPoint;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 
 import java.util.List;
@@ -47,7 +48,8 @@ final class StorageExpressionFunctionMount<C extends StorageExpressionEvaluation
     private final static Class<Storage<?>> STORAGE_WILDCARD = Cast.to(Storage.class);
 
     final static ExpressionFunctionParameter<Storage<?>> STORAGE_REQUIRED = ExpressionFunctionParameterName.with("storage")
-        .required(STORAGE_WILDCARD);
+        .required(STORAGE_WILDCARD)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
         PATH_REQUIRED,
