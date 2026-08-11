@@ -34,9 +34,9 @@ public final class StorageExpressionFunctionMountTest extends StorageExpressionF
 
     @Test
     public void testApply() {
-        final Storage<TestStorageExpressionEvaluationContext> storage = Storages.mount(
-            Storages.treeMapStore()
-        );
+        final Storage<TestStorageExpressionEvaluationContext> root = Storages.treeMapStore();
+        final Storage<TestStorageExpressionEvaluationContext> storage = Storages.mount(root);
+
         final TestStorageExpressionEvaluationContext context = this.createContext(storage);
 
         final Storage<TestStorageExpressionEvaluationContext> mounted = Storages.treeMapStore();
@@ -53,6 +53,10 @@ public final class StorageExpressionFunctionMountTest extends StorageExpressionF
 
         this.mountPointsAndCheck(
             storage,
+            StorageMountPoint.with(
+                StoragePath.ROOT,
+                root
+            ),
             StorageMountPoint.with(
                 PATH,
                 mounted
