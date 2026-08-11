@@ -34,9 +34,9 @@ public final class StorageExpressionFunctionUnmountTest extends StorageExpressio
 
     @Test
     public void testApplyUnmount() {
-        final Storage<TestStorageExpressionEvaluationContext> storage = Storages.mount(
-            Storages.treeMapStore()
-        );
+        final Storage<TestStorageExpressionEvaluationContext> root = Storages.treeMapStore();
+
+        final Storage<TestStorageExpressionEvaluationContext> storage = Storages.mount(root);
         final TestStorageExpressionEvaluationContext context = this.createContext(storage);
 
         storage.mount(
@@ -55,7 +55,11 @@ public final class StorageExpressionFunctionUnmountTest extends StorageExpressio
         );
 
         this.mountPointsAndCheck(
-            storage
+            storage,
+            StorageMountPoint.with(
+                StoragePath.ROOT,
+                root
+            )
         );
     }
 
