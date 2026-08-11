@@ -49,7 +49,7 @@ final class StorageExpressionFunctionMount<C extends StorageExpressionEvaluation
 
     final static ExpressionFunctionParameter<Storage<?>> STORAGE_REQUIRED = ExpressionFunctionParameterName.with("storage")
         .required(STORAGE_WILDCARD)
-        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+        .setKinds(ExpressionFunctionParameterKind.EVALUATE_RESOLVE_REFERENCES);
 
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
         PATH_REQUIRED,
