@@ -21,17 +21,10 @@ import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageContext;
 import walkingkooka.storage.StorageEnvironmentContext;
-import walkingkooka.storage.StorageMountPoint;
-import walkingkooka.storage.StoragePath;
-import walkingkooka.storage.StorageValue;
-import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.storage.convert.StorageConverterContext;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallContextObjectPostProcessor;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * A {@link ExpressionEvaluationContext} that adds methods that should delegate to an internal {@link Storage}.
@@ -40,26 +33,6 @@ public interface StorageExpressionEvaluationContext extends ExpressionEvaluation
     StorageContext,
     StorageConverterContext,
     StorageEnvironmentContext {
-
-    Optional<StorageValue> loadStorage(final StoragePath path);
-
-    StorageValue saveStorage(final StorageValue value);
-
-    void deleteStorage(final StoragePath path);
-
-    /**
-     * Gets the {@link StorageValueInfo} for the given range.<br>
-     * Conceptually equivalent to getting a directory listing.
-     */
-    List<StorageValueInfo> listStorage(final StoragePath parent,
-                                       final int offset,
-                                       final int count);
-
-    void mountStorage(final StorageMountPoint<?> mountPoint);
-
-    void unmountStorage(final StoragePath path);
-
-    List<StorageMountPoint<?>> storageMountPoints();
 
     // EnvironmentContext...............................................................................................
 
