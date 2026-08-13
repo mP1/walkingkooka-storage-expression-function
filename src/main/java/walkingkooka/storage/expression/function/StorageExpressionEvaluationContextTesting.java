@@ -19,7 +19,9 @@ package walkingkooka.storage.expression.function;
 
 import walkingkooka.storage.StorageContextTesting;
 import walkingkooka.storage.StorageEnvironmentContextTesting;
+import walkingkooka.storage.convert.StorageConverterContextTesting;
 
 public interface StorageExpressionEvaluationContextTesting extends StorageContextTesting,
+    StorageConverterContextTesting,
     StorageEnvironmentContextTesting {
 }
