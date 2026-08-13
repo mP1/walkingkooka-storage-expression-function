@@ -20,18 +20,17 @@ package walkingkooka.storage.expression.function;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.environment.AuditInfo;
-import walkingkooka.net.email.EmailAddress;
+import walkingkooka.environment.AuditInfoTesting;
 import walkingkooka.storage.FakeStorage;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.storage.StorageValueInfoList;
 import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCase.TestStorageExpressionEvaluationContext;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
-public final class StorageExpressionFunctionListTest extends StorageExpressionFunctionTestCase<StorageExpressionFunctionList<TestStorageExpressionEvaluationContext>, StorageValueInfoList> {
+public final class StorageExpressionFunctionListTest extends StorageExpressionFunctionTestCase<StorageExpressionFunctionList<TestStorageExpressionEvaluationContext>, StorageValueInfoList>
+    implements AuditInfoTesting {
 
     private final static StoragePath PATH = StoragePath.parse("/dir1/");
 
@@ -39,17 +38,11 @@ public final class StorageExpressionFunctionListTest extends StorageExpressionFu
         Lists.of(
             StorageValueInfo.with(
                 StoragePath.parse("/dir1/file1.txt"),
-                AuditInfo.create(
-                    EmailAddress.parse("user1@example.com"),
-                    LocalDateTime.MIN
-                )
+                AUDIT_INFO
             ),
             StorageValueInfo.with(
                 StoragePath.parse("/dir1/file2.txt"),
-                AuditInfo.create(
-                    EmailAddress.parse("user2@example.com"),
-                    LocalDateTime.MIN
-                )
+                DIFFERENT_AUDIT_INFO
             )
         )
     );
