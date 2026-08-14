@@ -120,6 +120,12 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
     }
 
     @Override
+    default boolean canWriteStorage(final StoragePath path) {
+        return this.storageExpressionEvaluationContext()
+            .canWriteStorage(path);
+    }
+
+    @Override
     default Optional<StorageValue> loadStorage(final StoragePath path) {
         return this.storageExpressionEvaluationContext()
             .loadStorage(path);
