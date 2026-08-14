@@ -156,6 +156,12 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
     }
 
     @Override
+    default void setAuditInfoStorage(final StorageValueInfo info) {
+        this.storageExpressionEvaluationContext()
+            .setAuditInfoStorage(info);
+    }
+
+    @Override
     default void mountStorage(final StorageMountPoint<?> mountPoint) {
         this.storageExpressionEvaluationContext()
             .mountStorage(mountPoint);

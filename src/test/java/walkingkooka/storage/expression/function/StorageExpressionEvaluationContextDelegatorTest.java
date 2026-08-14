@@ -551,6 +551,14 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         }
 
         @Override
+        public void setAuditInfoStorage(final StorageValueInfo info) {
+            this.storage.setAuditInfo(
+                info,
+                this
+            );
+        }
+
+        @Override
         public void mountStorage(final StorageMountPoint<?> mountPoint) {
             this.storage.mount(
                 Cast.to(mountPoint),
