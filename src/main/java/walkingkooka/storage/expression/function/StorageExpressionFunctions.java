@@ -71,7 +71,7 @@ public final class StorageExpressionFunctions implements PublicStaticHelper {
     }
 
     /**
-     * {@see StorageExpressionFunctionMount}
+     * {@see StorageExpressionFunctionMountPoints}
      */
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<List<StorageMountPoint<C>>, C> mountPoints() {
         return StorageExpressionFunctionMountPoints.instance();
