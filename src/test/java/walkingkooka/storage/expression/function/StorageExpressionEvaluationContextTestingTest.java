@@ -25,18 +25,14 @@ import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
-import walkingkooka.datetime.DateTimeContexts;
-import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.environment.EnvironmentWatcher;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContextDelegator;
-import walkingkooka.locale.LocaleContexts;
 import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
-import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.net.header.MediaType;
 import walkingkooka.net.header.MediaTypeDetectors;
@@ -64,7 +60,6 @@ import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
 
 import java.math.MathContext;
 import java.nio.charset.Charset;
-import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Currency;
@@ -173,8 +168,6 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         return DECIMAL_NUMBER_CONTEXT.mathContext();
     }
 
-    private final static DecimalNumberContext DECIMAL_NUMBER_CONTEXT = DecimalNumberContexts.american(MathContext.DECIMAL64);
-
     // class............................................................................................................
 
     @Override
@@ -264,15 +257,7 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
 
         @Override
         public DateTimeContext dateTimeContext() {
-            return DateTimeContexts.basic(
-                DateTimeSymbols.fromDateFormatSymbols(
-                    new DateFormatSymbols(StorageExpressionEvaluationContextTestingTest.LOCALE)
-                ),
-                StorageExpressionEvaluationContextTestingTest.LOCALE,
-                1950,
-                50,
-                LocalDateTime::now
-            );
+            return DATE_TIME_CONTEXT;
         }
 
         @Override
@@ -318,7 +303,7 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
 
         @Override
         public LocaleContext localeContext() {
-            return LocaleContexts.jre(StorageExpressionEvaluationContextTestingTest.LOCALE);
+            return LOCALE_CONTEXT;
         }
 
         @Override
@@ -428,15 +413,7 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
             );
         }
 
-        {
-            this.environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
-            this.environmentContext.setEnvironmentValue(
-                CURRENT_WORKING_DIRECTORY,
-                StorageExpressionEvaluationContextTestingTest.CURRENT_WORKING_DIRECTORY
-            );
-        }
-
-        private final EnvironmentContext environmentContext;
+        private final EnvironmentContext environmentContext = STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment();
 
         @Override
         public Runnable addEnvironmentWatcher(final EnvironmentWatcher watcher) {
