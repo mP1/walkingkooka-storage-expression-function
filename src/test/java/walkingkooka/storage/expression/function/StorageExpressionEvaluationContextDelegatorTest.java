@@ -499,6 +499,14 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         }
 
         @Override
+        public boolean canReadStorage(final StoragePath path) {
+            return this.storage.canRead(
+                path,
+                this
+            );
+        }
+
+        @Override
         public Optional<StorageValue> loadStorage(final StoragePath path) {
             return this.storage.load(
                 path,
