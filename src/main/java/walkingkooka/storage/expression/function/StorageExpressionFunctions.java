@@ -19,9 +19,12 @@ package walkingkooka.storage.expression.function;
 
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.storage.Storage;
+import walkingkooka.storage.StorageMountPoint;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValueInfoList;
 import walkingkooka.tree.expression.function.ExpressionFunction;
+
+import java.util.List;
 
 public final class StorageExpressionFunctions implements PublicStaticHelper {
 
@@ -65,6 +68,13 @@ public final class StorageExpressionFunctions implements PublicStaticHelper {
      */
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Void, C> mountStorage() {
         return StorageExpressionFunctionMount.instance();
+    }
+
+    /**
+     * {@see StorageExpressionFunctionMount}
+     */
+    public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<List<StorageMountPoint<C>>, C> mountPoints() {
+        return StorageExpressionFunctionMountPoints.instance();
     }
 
     /**
