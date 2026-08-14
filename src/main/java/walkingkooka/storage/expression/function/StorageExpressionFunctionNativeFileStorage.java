@@ -1,5 +1,6 @@
 package walkingkooka.storage.expression.function;
 
+import javaemul.internal.annotations.GwtIncompatible;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.storage.Storage;
@@ -15,6 +16,7 @@ import java.util.List;
 /**
  * A function that maps a {@link Path} as a {@link Storages#nativeStorage(Path, StorageContext)}.
  */
+@GwtIncompatible
 final class StorageExpressionFunctionNativeFileStorage<C extends StorageExpressionEvaluationContext> extends StorageExpressionFunction<C, Storage<C>> {
 
     /**
