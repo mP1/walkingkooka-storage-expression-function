@@ -17,6 +17,7 @@
 
 package walkingkooka.storage.expression.function;
 
+import javaemul.internal.annotations.GwtIncompatible;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageMountPoint;
@@ -38,6 +39,7 @@ public final class StorageExpressionFunctions implements PublicStaticHelper {
     /**
      * {@see StorageExpressionFunctionNativeFileStorage}
      */
+    @GwtIncompatible
     public static <C extends StorageExpressionEvaluationContext> ExpressionFunction<Storage<C>, C> fileStorage() {
         return StorageExpressionFunctionNativeFileStorage.instance();
     }
