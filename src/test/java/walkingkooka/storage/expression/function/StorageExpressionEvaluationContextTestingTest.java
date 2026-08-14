@@ -42,7 +42,6 @@ import walkingkooka.net.header.MediaType;
 import walkingkooka.net.header.MediaTypeDetectors;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageContext;
-import walkingkooka.storage.StorageContexts;
 import walkingkooka.storage.StorageMountPoint;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
@@ -471,7 +470,7 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         public Optional<StorageValue> loadStorage(final StoragePath path) {
             return this.storage.load(
                 path,
-                StorageContexts.fake()
+                this
             );
         }
 
@@ -479,7 +478,7 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         public StorageValue saveStorage(final StorageValue value) {
             return this.storage.save(
                 value,
-                StorageContexts.fake()
+                this
             );
         }
 
@@ -487,7 +486,7 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         public void deleteStorage(final StoragePath path) {
             this.storage.delete(
                 path,
-                StorageContexts.fake()
+                this
             );
         }
 
@@ -499,7 +498,7 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
                 parent,
                 offset,
                 count,
-                StorageContexts.fake()
+                this
             );
         }
 
