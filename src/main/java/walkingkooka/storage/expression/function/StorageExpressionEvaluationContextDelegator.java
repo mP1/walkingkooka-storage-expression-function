@@ -28,6 +28,7 @@ import walkingkooka.storage.StorageMountPoint;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
+import walkingkooka.storage.StorageWatcher;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionEvaluationContextDelegator;
 import walkingkooka.tree.expression.ExpressionNumberKind;
@@ -177,6 +178,18 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
     default List<StorageMountPoint<?>> storageMountPoints() {
         return this.storageExpressionEvaluationContext()
             .storageMountPoints();
+    }
+
+    @Override
+    default Runnable addStorageWatcher(final StorageWatcher watcher) {
+        return this.storageExpressionEvaluationContext()
+            .addStorageWatcher(watcher);
+    }
+
+    @Override
+    default Runnable addStorageWatcherOnce(final StorageWatcher watcher) {
+        return this.storageExpressionEvaluationContext()
+            .addStorageWatcherOnce(watcher);
     }
 
     StorageExpressionEvaluationContext storageExpressionEvaluationContext();
