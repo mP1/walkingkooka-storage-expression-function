@@ -477,7 +477,7 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         }
 
         {
-            this.environmentContext = ENVIRONMENT_CONTEXT.cloneEnvironment();
+            this.environmentContext = STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment();
             this.environmentContext.setEnvironmentValue(
                 HOME_DIRECTORY,
                 StorageExpressionEvaluationContextDelegatorTest.HOME_DIRECTORY
@@ -496,6 +496,11 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         public Runnable addEnvironmentWatcherOnce(final EnvironmentWatcher watcher) {
             Objects.requireNonNull(watcher, "watcher");
             throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public EnvironmentValueName<?> parseEnvironmentValueName(final String name) {
+            return this.environmentContext.parseEnvironmentValueName(name);
         }
 
         @Override

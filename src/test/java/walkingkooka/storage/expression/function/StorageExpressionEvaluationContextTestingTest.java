@@ -428,6 +428,13 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
             throw new UnsupportedOperationException();
         }
 
+        // CanParseEnvironmentValueName.....................................................................................
+
+        @Override
+        public EnvironmentValueName<?> parseEnvironmentValueName(final String name) {
+            return STORAGE_ENVIRONMENT_CONTEXT.parseEnvironmentValueName(name);
+        }
+
         @Override
         public boolean canReadStorage(final StoragePath path) {
             return this.storage.canRead(
