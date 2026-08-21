@@ -109,42 +109,12 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
     }
 
     @Override
-    public void testSetCurrencyWithDifferentAndWatcher() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetIndentationWithDifferentAndWatcher() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetLineEndingWithDifferentAndWatcher() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetLocaleWithDifferentAndWatcher() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public void testSetObjectPostProcessor() {
         throw new UnsupportedOperationException();
     }
 
     @Override
     public void testSetPreProcessor() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetTimeOffsetWithDifferentAndWatcher() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void testSetUserWithDifferentAndWatcher() {
         throw new UnsupportedOperationException();
     }
 
@@ -475,14 +445,12 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
         @Override
         public Runnable addEnvironmentWatcher(final EnvironmentWatcher watcher) {
-            Objects.requireNonNull(watcher, "watcher");
-            throw new UnsupportedOperationException();
+            return this.storageEnvironmentContext.addEnvironmentWatcher(watcher);
         }
 
         @Override
         public Runnable addEnvironmentWatcherOnce(final EnvironmentWatcher watcher) {
-            Objects.requireNonNull(watcher, "watcher");
-            throw new UnsupportedOperationException();
+            return this.storageEnvironmentContext.addEnvironmentWatcherOnce(watcher);
         }
 
         @Override
