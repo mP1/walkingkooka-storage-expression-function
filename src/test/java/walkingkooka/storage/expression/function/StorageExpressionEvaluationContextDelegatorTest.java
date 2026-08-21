@@ -42,6 +42,7 @@ import walkingkooka.net.header.MediaType;
 import walkingkooka.net.header.MediaTypeDetectors;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageContext;
+import walkingkooka.storage.StorageEnvironmentContext;
 import walkingkooka.storage.StorageMountPoint;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
@@ -336,58 +337,52 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
         @Override
         public Charset charset() {
-            return this.environmentContext.charset();
+            return this.storageEnvironmentContext.charset();
         }
 
         @Override
         public void setCharset(final Charset charset) {
-            this.environmentContext.setCharset(charset);
+            this.storageEnvironmentContext.setCharset(charset);
         }
         
         @Override
         public Currency currency() {
-            return this.environmentContext.currency();
+            return this.storageEnvironmentContext.currency();
         }
 
         @Override
         public void setCurrency(final Currency currency) {
-            this.environmentContext.setCurrency(currency);
+            this.storageEnvironmentContext.setCurrency(currency);
         }
         
         @Override
         public Optional<StoragePath> currentWorkingDirectory() {
-            return OPTIONAL_CURRENT_WORKING_DIRECTORY;
+            return this.storageEnvironmentContext.currentWorkingDirectory();
         }
 
         @Override
         public void setCurrentWorkingDirectory(final Optional<StoragePath> currentWorkingDirectory) {
-            this.setOrRemoveEnvironmentValue(
-                CURRENT_WORKING_DIRECTORY,
-                currentWorkingDirectory
-            );
+            this.storageEnvironmentContext.setCurrentWorkingDirectory(currentWorkingDirectory);
         }
 
         @Override
         public Optional<StoragePath> homeDirectory() {
-            return Optional.of(StorageExpressionEvaluationContextDelegatorTest.HOME_DIRECTORY);
+            return this.storageEnvironmentContext.homeDirectory();
         }
 
         @Override
         public void setHomeDirectory(final Optional<StoragePath> homeDirectory) {
-            this.setOrRemoveEnvironmentValue(
-                HOME_DIRECTORY,
-                homeDirectory
-            );
+            this.storageEnvironmentContext.setHomeDirectory(homeDirectory);
         }
 
         @Override
         public LineEnding lineEnding() {
-            return this.environmentContext.lineEnding();
+            return this.storageEnvironmentContext.lineEnding();
         }
 
         @Override
         public void setLineEnding(final LineEnding lineEnding) {
-            this.environmentContext.setLineEnding(lineEnding);
+            this.storageEnvironmentContext.setLineEnding(lineEnding);
         }
 
         @Override
@@ -397,47 +392,47 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
         @Override
         public Indentation indentation() {
-            return this.environmentContext.indentation();
+            return this.storageEnvironmentContext.indentation();
         }
 
         @Override
         public void setIndentation(final Indentation indentation) {
-            this.environmentContext.setIndentation(indentation);
+            this.storageEnvironmentContext.setIndentation(indentation);
         }
 
         @Override
         public Locale locale() {
-            return this.environmentContext.locale();
+            return this.storageEnvironmentContext.locale();
         }
 
         @Override
         public void setLocale(final Locale locale) {
-            this.environmentContext.setLocale(locale);
+            this.storageEnvironmentContext.setLocale(locale);
         }
 
         @Override
         public LocalDateTime now() {
-            return this.environmentContext.now();
+            return this.storageEnvironmentContext.now();
         }
 
         @Override
         public ZoneOffset timeOffset() {
-            return this.environmentContext.timeOffset();
+            return this.storageEnvironmentContext.timeOffset();
         }
 
         @Override
         public void setTimeOffset(final ZoneOffset timeOffset) {
-            this.environmentContext.setTimeOffset(timeOffset);
+            this.storageEnvironmentContext.setTimeOffset(timeOffset);
         }
 
         @Override
         public Optional<EmailAddress> user() {
-            return this.environmentContext.user();
+            return this.storageEnvironmentContext.user();
         }
 
         @Override
         public void setUser(final Optional<EmailAddress> user) {
-            this.environmentContext.setUser(user);
+            this.storageEnvironmentContext.setUser(user);
         }
 
         @Override
@@ -454,18 +449,18 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
         @Override
         public <T> Optional<T> environmentValue(final EnvironmentValueName<T> environmentValueName) {
-            return this.environmentContext.environmentValue(environmentValueName);
+            return this.storageEnvironmentContext.environmentValue(environmentValueName);
         }
 
         @Override
         public Set<EnvironmentValueName<?>> environmentValueNames() {
-            return this.environmentContext.environmentValueNames();
+            return this.storageEnvironmentContext.environmentValueNames();
         }
 
         @Override
         public <T> void setEnvironmentValue(final EnvironmentValueName<T> name,
                                             final T value) {
-            this.environmentContext.setEnvironmentValue(
+            this.storageEnvironmentContext.setEnvironmentValue(
                 name,
                 value
             );
@@ -473,18 +468,10 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
         @Override
         public void removeEnvironmentValue(final EnvironmentValueName<?> name) {
-            this.environmentContext.removeEnvironmentValue(name);
+            this.storageEnvironmentContext.removeEnvironmentValue(name);
         }
 
-        {
-            this.environmentContext = STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment();
-            this.environmentContext.setEnvironmentValue(
-                HOME_DIRECTORY,
-                StorageExpressionEvaluationContextDelegatorTest.HOME_DIRECTORY
-            );
-        }
-
-        private final EnvironmentContext environmentContext;
+        private final StorageEnvironmentContext storageEnvironmentContext = STORAGE_ENVIRONMENT_CONTEXT.cloneEnvironment();
 
         @Override
         public Runnable addEnvironmentWatcher(final EnvironmentWatcher watcher) {
@@ -500,7 +487,7 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
 
         @Override
         public EnvironmentValueName<?> parseEnvironmentValueName(final String name) {
-            return this.environmentContext.parseEnvironmentValueName(name);
+            return this.storageEnvironmentContext.parseEnvironmentValueName(name);
         }
 
         @Override
