@@ -118,6 +118,19 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         throw new UnsupportedOperationException();
     }
 
+    // HasEnvironmentContext............................................................................................
+
+    @Test
+    @Override
+    public void testEnvironmentContext() {
+        final TestStorageExpressionEvaluationContextDelegator context = this.createContext();
+
+        this.environmentContextAndCheck(
+            context,
+            context.storageExpressionEvaluationContext
+        );
+    }
+
     // DecimalNumberContext.............................................................................................
 
     @Override
