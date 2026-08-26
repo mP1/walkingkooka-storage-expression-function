@@ -158,6 +158,11 @@ public interface StorageExpressionEvaluationContextTesting2<C extends StorageExp
     }
 
     @Override
+    default C createCanParseEnvironmentValueName() {
+        return this.createContext();
+    }
+
+    @Override
     default C createCanParseStoragePath() {
         return this.createContext();
     }
