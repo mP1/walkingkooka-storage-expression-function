@@ -134,7 +134,6 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
         @Override
         public JsonNodeConverterContext jsonNodeConverterContext() {
             return JsonNodeConverterContexts.basic(
-                ENVIRONMENT_CONTEXT, // CanParseEnvironmentValueName
                 ExpressionNumberConverterContexts.basic(
                     Converters.fake(),
                     BinaryNumberConverterFunctions.fake(),
