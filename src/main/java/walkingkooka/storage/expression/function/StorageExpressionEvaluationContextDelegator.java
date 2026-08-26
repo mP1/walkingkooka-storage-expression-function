@@ -19,6 +19,7 @@ package walkingkooka.storage.expression.function;
 
 import walkingkooka.Binary;
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.environment.CanParseEnvironmentValueName;
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.net.header.MediaType;
@@ -68,6 +69,13 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
     default StoragePath parseStoragePath(final String text) {
         return this.storageExpressionEvaluationContext()
             .parseStoragePath(text);
+    }
+
+    // CanParseEnvironmentValueNameDelegator............................................................................
+
+    @Override
+    default CanParseEnvironmentValueName canParseEnvironmentValueName() {
+        return this.environmentContext();
     }
 
     // ExpressionEvaluationContextDelegator.............................................................................
