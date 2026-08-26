@@ -23,6 +23,7 @@ import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
 import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.datetime.DateTimeContexts;
+import walkingkooka.environment.CanParseEnvironmentValueName;
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.environment.EnvironmentContextDelegator;
 import walkingkooka.environment.EnvironmentContexts;
@@ -81,6 +82,11 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
         }
 
         @Override
+        public EnvironmentValueName<?> parseEnvironmentValueName(final String name) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
         public StoragePath parseStoragePath(final String text) {
             throw new UnsupportedOperationException();
         }
@@ -128,6 +134,7 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
         @Override
         public JsonNodeConverterContext jsonNodeConverterContext() {
             return JsonNodeConverterContexts.basic(
+                ENVIRONMENT_CONTEXT, // CanParseEnvironmentValueName
                 ExpressionNumberConverterContexts.basic(
                     Converters.fake(),
                     BinaryNumberConverterFunctions.fake(),
@@ -156,6 +163,11 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
         @Override
         public StorageExpressionEvaluationContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor preProcessor) {
             throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public final CanParseEnvironmentValueName canParseEnvironmentValueName() {
+            return this;
         }
 
         // EnvironmentContextDelegator..................................................................................
