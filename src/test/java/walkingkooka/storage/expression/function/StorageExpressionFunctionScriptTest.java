@@ -122,7 +122,7 @@ public final class StorageExpressionFunctionScriptTest extends StorageExpression
                 Lists.of(
                     Converters.simple(),
                     JsonNodeConverters.toJsonNode(),
-                    JsonNodeConverters.toJsonText()
+                    Converters.toText()
                 )
             );
 
