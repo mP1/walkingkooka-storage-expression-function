@@ -50,9 +50,7 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
     public void testApplyStorageEntryPresent() {
         this.applyAndCheck(
             Lists.of(PATH),
-            JSON.toJsonText(
-                BINARY_TEXT_CONTEXT
-            )
+            "World"
         );
     }
 
@@ -137,7 +135,7 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
                 Lists.of(
                     Converters.simple(),
                     JsonNodeConverters.toJsonNode(),
-                    JsonNodeConverters.toJsonText()
+                    Converters.toText()
                 )
             );
 
