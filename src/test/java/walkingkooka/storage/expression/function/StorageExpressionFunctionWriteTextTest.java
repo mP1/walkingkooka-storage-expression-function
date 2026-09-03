@@ -42,14 +42,12 @@ public final class StorageExpressionFunctionWriteTextTest extends StorageExpress
         final TestStorageExpressionEvaluationContext context = new TestStorageExpressionEvaluationContext(storage) {
             @Override
             public LocalDateTime now() {
-                return LocalDateTime.of(1999, 12, 31, 12, 58, 59);
+                return StorageExpressionFunctionWriteTextTest.NOW;
             }
 
             @Override
             public Optional<EmailAddress> user() {
-                return Optional.of(
-                    EmailAddress.parse("user@example.com")
-                );
+                return OPTIONAL_USER;
             }
         };
 
@@ -88,14 +86,12 @@ public final class StorageExpressionFunctionWriteTextTest extends StorageExpress
 
             @Override
             public LocalDateTime now() {
-                return LocalDateTime.now();
+                return StorageExpressionFunctionWriteTextTest.NOW;
             }
 
             @Override
             public Optional<EmailAddress> user() {
-                return Optional.of(
-                    EmailAddress.parse("user@example.com")
-                );
+                return OPTIONAL_USER;
             }
         };
     }
