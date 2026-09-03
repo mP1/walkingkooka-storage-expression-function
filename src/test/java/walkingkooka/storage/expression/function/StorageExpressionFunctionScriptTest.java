@@ -23,6 +23,7 @@ import walkingkooka.Either;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.convert.Converter;
 import walkingkooka.convert.Converters;
+import walkingkooka.reflect.ThrowableTesting;
 import walkingkooka.storage.FakeStorage;
 import walkingkooka.storage.InvalidStoragePathException;
 import walkingkooka.storage.StoragePath;
@@ -34,7 +35,8 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class StorageExpressionFunctionScriptTest extends StorageExpressionFunctionTestCase<StorageExpressionFunctionScript<TestStorageExpressionEvaluationContext>, Object> {
+public final class StorageExpressionFunctionScriptTest extends StorageExpressionFunctionTestCase<StorageExpressionFunctionScript<TestStorageExpressionEvaluationContext>, Object>
+    implements ThrowableTesting {
 
     private final static StoragePath SCRIPT = StoragePath.parse("/dir1/script.sh");
 
@@ -61,9 +63,9 @@ public final class StorageExpressionFunctionScriptTest extends StorageExpression
                 )
         );
 
-        this.checkEquals(
-            "Missing script \"/dir1/missing-script.sh\"",
-            thrown.getMessage()
+        this.getMessageAndCheck(
+            thrown,
+            "Missing script \"/dir1/missing-script.sh\""
         );
     }
 
