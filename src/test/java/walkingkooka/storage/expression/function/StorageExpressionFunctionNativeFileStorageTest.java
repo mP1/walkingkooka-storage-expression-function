@@ -20,7 +20,6 @@ package walkingkooka.storage.expression.function;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageTesting;
 import walkingkooka.storage.Storages;
@@ -28,8 +27,6 @@ import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCas
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 public final class StorageExpressionFunctionNativeFileStorageTest extends StorageExpressionFunctionTestCase<StorageExpressionFunctionNativeFileStorage<TestStorageExpressionEvaluationContext>, Storage<TestStorageExpressionEvaluationContext>>
     implements StorageTesting {
@@ -60,18 +57,7 @@ public final class StorageExpressionFunctionNativeFileStorageTest extends Storag
 
     @Override
     public TestStorageExpressionEvaluationContext createContext() {
-        return new TestStorageExpressionEvaluationContext(Storages.fake()) {
-
-            @Override
-            public LocalDateTime now() {
-                return StorageExpressionFunctionNativeFileStorageTest.NOW;
-            }
-
-            @Override
-            public Optional<EmailAddress> user() {
-                return OPTIONAL_USER;
-            }
-        };
+        return new TestStorageExpressionEvaluationContext(Storages.fake());
     }
 
     @Override

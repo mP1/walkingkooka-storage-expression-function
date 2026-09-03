@@ -50,6 +50,7 @@ import walkingkooka.tree.json.marshall.JsonNodeMarshallContextObjectPostProcesso
 import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextTesting;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -215,6 +216,16 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
         @Override
         public void setLocale(final Locale locale) {
             throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public final LocalDateTime now() {
+            return StorageExpressionFunctionTestCase.NOW;
+        }
+
+        @Override
+        public final Optional<EmailAddress> user() {
+            return OPTIONAL_USER;
         }
 
         @Override

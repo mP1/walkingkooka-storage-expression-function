@@ -20,14 +20,12 @@ package walkingkooka.storage.expression.function;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.Storages;
 import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCase.TestStorageExpressionEvaluationContext;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 public final class StorageExpressionFunctionDeleteTest extends StorageExpressionFunctionTestCase<StorageExpressionFunctionDelete<TestStorageExpressionEvaluationContext>, Void> {
@@ -87,18 +85,7 @@ public final class StorageExpressionFunctionDeleteTest extends StorageExpression
     }
 
     private TestStorageExpressionEvaluationContext createContext(final Storage<TestStorageExpressionEvaluationContext> storage) {
-        return new TestStorageExpressionEvaluationContext(storage) {
-
-            @Override
-            public Optional<EmailAddress> user() {
-                return OPTIONAL_USER;
-            }
-
-            @Override
-            public LocalDateTime now() {
-                return StorageExpressionFunctionDeleteTest.NOW;
-            }
-        };
+        return new TestStorageExpressionEvaluationContext(storage);
     }
 
     @Override

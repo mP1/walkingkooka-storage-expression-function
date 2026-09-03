@@ -23,7 +23,6 @@ import walkingkooka.Either;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.convert.Converter;
 import walkingkooka.convert.Converters;
-import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.FakeStorage;
 import walkingkooka.storage.InvalidStoragePathException;
 import walkingkooka.storage.StoragePath;
@@ -31,7 +30,6 @@ import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCase.TestStorageExpressionEvaluationContext;
 import walkingkooka.tree.json.convert.JsonNodeConverters;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -134,16 +132,6 @@ public final class StorageExpressionFunctionScriptTest extends StorageExpression
             @Override
             public Optional<StoragePath> currentWorkingDirectory() {
                 return OPTIONAL_CURRENT_WORKING_DIRECTORY;
-            }
-
-            @Override
-            public LocalDateTime now() {
-                return StorageExpressionFunctionScriptTest.NOW;
-            }
-
-            @Override
-            public Optional<EmailAddress> user() {
-                return OPTIONAL_USER;
             }
         };
     }

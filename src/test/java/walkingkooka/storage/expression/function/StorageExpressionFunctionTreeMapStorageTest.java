@@ -20,7 +20,6 @@ package walkingkooka.storage.expression.function;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageTesting;
@@ -28,7 +27,6 @@ import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.Storages;
 import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCase.TestStorageExpressionEvaluationContext;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 public final class StorageExpressionFunctionTreeMapStorageTest extends StorageExpressionFunctionTestCase<StorageExpressionFunctionTreeMapStorage<TestStorageExpressionEvaluationContext>, Storage<TestStorageExpressionEvaluationContext>>
@@ -77,18 +75,7 @@ public final class StorageExpressionFunctionTreeMapStorageTest extends StorageEx
 
     @Override
     public TestStorageExpressionEvaluationContext createContext() {
-        return new TestStorageExpressionEvaluationContext(Storages.fake()) {
-
-            @Override
-            public LocalDateTime now() {
-                return StorageExpressionFunctionTreeMapStorageTest.NOW;
-            }
-
-            @Override
-            public Optional<EmailAddress> user() {
-                return OPTIONAL_USER;
-            }
-        };
+        return new TestStorageExpressionEvaluationContext(Storages.fake());
     }
 
     @Override
