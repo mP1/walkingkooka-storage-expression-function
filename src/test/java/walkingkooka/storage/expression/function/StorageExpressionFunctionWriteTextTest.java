@@ -22,6 +22,7 @@ import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.Storage;
+import walkingkooka.storage.StorageContextTesting;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.Storages;
@@ -30,7 +31,8 @@ import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCas
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-public final class StorageExpressionFunctionWriteTextTest extends StorageExpressionFunctionTestCase<StorageExpressionFunctionWriteText<TestStorageExpressionEvaluationContext>, Void> {
+public final class StorageExpressionFunctionWriteTextTest extends StorageExpressionFunctionTestCase<StorageExpressionFunctionWriteText<TestStorageExpressionEvaluationContext>, Void>
+    implements StorageContextTesting {
 
     private final static StoragePath PATH = StoragePath.parse("/dir1/file2.txt");
 
@@ -39,17 +41,7 @@ public final class StorageExpressionFunctionWriteTextTest extends StorageExpress
     @Test
     public void testApplyStorageEntryPresent() {
         final Storage<TestStorageExpressionEvaluationContext> storage = Storages.treeMapStore();
-        final TestStorageExpressionEvaluationContext context = new TestStorageExpressionEvaluationContext(storage) {
-            @Override
-            public LocalDateTime now() {
-                return StorageExpressionFunctionWriteTextTest.NOW;
-            }
-
-            @Override
-            public Optional<EmailAddress> user() {
-                return OPTIONAL_USER;
-            }
-        };
+        final TestStorageExpressionEvaluationContext context = this.createContext(storage);
 
         this.applyAndCheck(
             StorageExpressionFunctionWriteText.instance(),
@@ -57,17 +49,17 @@ public final class StorageExpressionFunctionWriteTextTest extends StorageExpress
                 PATH,
                 TEXT
             ),
-            this.createContext(storage),
+            context,
             null
         );
 
-        this.checkEquals(
-            Optional.of(TEXT),
-            storage.load(
-                    PATH,
-                    context
-                ).map(StorageValue::value)
-                .orElse(null)
+        this.loadStorageAndCheck(
+            context,
+            PATH,
+            StorageValue.with(PATH)
+                .setValue(
+                    Optional.of(TEXT)
+                )
         );
     }
 
