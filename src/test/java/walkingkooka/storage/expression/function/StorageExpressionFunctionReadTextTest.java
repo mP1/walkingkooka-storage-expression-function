@@ -47,10 +47,12 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
     private final static JsonNode JSON = JsonNode.parse("{ \"Hello\": \"World\" }");
 
     @Test
-    public void testApplyStorageEntryPresent() {
+    public void testApplyWithJsonObject() {
         this.applyAndCheck(
             Lists.of(PATH),
-            "World"
+            "{\n" +
+                "  \"Hello\": \"World\"\n" +
+                "}"
         );
     }
 
@@ -135,6 +137,7 @@ public final class StorageExpressionFunctionReadTextTest extends StorageExpressi
                 Lists.of(
                     Converters.simple(),
                     JsonNodeConverters.toJsonNode(),
+                    Converters.toMultiLineText(),
                     Converters.toText()
                 )
             );

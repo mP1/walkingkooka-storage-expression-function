@@ -20,6 +20,7 @@ package walkingkooka.storage.expression.function;
 import walkingkooka.Cast;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
+import walkingkooka.text.MultiLineText;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 
 import java.util.List;
@@ -77,7 +78,8 @@ final class StorageExpressionFunctionReadText<C extends StorageExpressionEvaluat
         // then value
         return context.convert(
             value,
-            String.class
-        ).orElseLeftThrow(() -> path.invalidStoragePathException("Reading text failed"));
+            MultiLineText.class
+        ).orElseLeftThrow(() -> path.invalidStoragePathException("Reading text failed"))
+            .text();
     }
 }
