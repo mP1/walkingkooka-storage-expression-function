@@ -18,6 +18,7 @@
 package walkingkooka.storage.expression.function;
 
 import walkingkooka.Binary;
+import walkingkooka.Cast;
 import walkingkooka.convert.BinaryNumberConverterFunctions;
 import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
@@ -34,6 +35,7 @@ import walkingkooka.net.header.MediaType;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageContext;
 import walkingkooka.storage.StorageEnvironmentContextTesting;
+import walkingkooka.storage.StorageMountPoint;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
@@ -63,6 +65,10 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
     @Override
     public final void testTypeNaming() {
         throw new UnsupportedOperationException();
+    }
+
+    final TestStorageExpressionEvaluationContext createContext(final Storage<TestStorageExpressionEvaluationContext> storage) {
+        return new TestStorageExpressionEvaluationContext(storage);
     }
 
     static class TestStorageExpressionEvaluationContext extends FakeStorageExpressionEvaluationContext implements StorageContext,
@@ -124,6 +130,22 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
                 parent,
                 offset,
                 count,
+                this
+            );
+        }
+
+        @Override
+        public void mountStorage(final StorageMountPoint<?> mountPoint) {
+            this.storage.mount(
+                Cast.to(mountPoint),
+                this
+            );
+        }
+
+        @Override
+        public void unmountStorage(final StoragePath path) {
+            this.storage.unmount(
+                path,
                 this
             );
         }

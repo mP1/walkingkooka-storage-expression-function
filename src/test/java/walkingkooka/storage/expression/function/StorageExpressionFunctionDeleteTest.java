@@ -84,10 +84,6 @@ public final class StorageExpressionFunctionDeleteTest extends StorageExpression
         return this.createContext(Storages.empty());
     }
 
-    private TestStorageExpressionEvaluationContext createContext(final Storage<TestStorageExpressionEvaluationContext> storage) {
-        return new TestStorageExpressionEvaluationContext(storage);
-    }
-
     @Override
     public int minimumParameterCount() {
         return 1;
