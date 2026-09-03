@@ -48,7 +48,7 @@ public final class StorageExpressionFunctionWriteTest extends StorageExpressionF
                 PATH,
                 VALUE
             ),
-            this.createContext(storage),
+            context,
             null
         );
 
@@ -69,11 +69,7 @@ public final class StorageExpressionFunctionWriteTest extends StorageExpressionF
 
     @Override
     public TestStorageExpressionEvaluationContext createContext() {
-        return this.createContext(Storages.treeMapStore());
-    }
-
-    private TestStorageExpressionEvaluationContext createContext(final Storage<TestStorageExpressionEvaluationContext> storage) {
-        return new TestStorageExpressionEvaluationContext(storage);
+        return new TestStorageExpressionEvaluationContext(Storages.treeMapStore());
     }
 
     @Override

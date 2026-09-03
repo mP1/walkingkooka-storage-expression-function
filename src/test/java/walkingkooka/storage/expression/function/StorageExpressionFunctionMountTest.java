@@ -74,19 +74,6 @@ public final class StorageExpressionFunctionMountTest extends StorageExpressionF
         return this.createContext(Storages.empty());
     }
 
-    private TestStorageExpressionEvaluationContext createContext(final Storage<TestStorageExpressionEvaluationContext> storage) {
-        return new TestStorageExpressionEvaluationContext(storage) {
-
-            @Override
-            public void mountStorage(final StorageMountPoint<?> mountPoint) {
-                storage.mount(
-                    Cast.to(mountPoint),
-                    this
-                );
-            }
-        };
-    }
-
     @Override
     public int minimumParameterCount() {
         return 2;

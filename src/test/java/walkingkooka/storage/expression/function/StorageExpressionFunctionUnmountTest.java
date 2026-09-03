@@ -73,19 +73,6 @@ public final class StorageExpressionFunctionUnmountTest extends StorageExpressio
         return this.createContext(Storages.empty());
     }
 
-    private TestStorageExpressionEvaluationContext createContext(final Storage<TestStorageExpressionEvaluationContext> storage) {
-        return new TestStorageExpressionEvaluationContext(storage) {
-
-            @Override
-            public void unmountStorage(final StoragePath path) {
-                storage.unmount(
-                    path,
-                    this
-                );
-            }
-        };
-    }
-
     @Override
     public int minimumParameterCount() {
         return 1;
