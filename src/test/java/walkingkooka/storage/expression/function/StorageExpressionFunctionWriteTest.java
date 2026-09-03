@@ -20,7 +20,6 @@ package walkingkooka.storage.expression.function;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.net.email.EmailAddress;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
@@ -29,14 +28,11 @@ import walkingkooka.storage.expression.function.StorageExpressionFunctionTestCas
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 public final class StorageExpressionFunctionWriteTest extends StorageExpressionFunctionTestCase<StorageExpressionFunctionWrite<TestStorageExpressionEvaluationContext>, Void> {
 
     private final static StoragePath PATH = StoragePath.parse("/dir1/file2.doesnt.matter");
-
-    private final static EmailAddress USER = EmailAddress.parse("user@example.com");
 
     private final static ExpressionNumber VALUE = ExpressionNumberKind.DEFAULT.create(123.5);
 
@@ -44,17 +40,7 @@ public final class StorageExpressionFunctionWriteTest extends StorageExpressionF
     public void testApply() {
         final Storage<TestStorageExpressionEvaluationContext> storage = Storages.treeMapStore();
 
-        final TestStorageExpressionEvaluationContext context = new TestStorageExpressionEvaluationContext(storage) {
-            @Override
-            public LocalDateTime now() {
-                return LocalDateTime.of(1999, 12, 31, 12, 58, 59);
-            }
-
-            @Override
-            public Optional<EmailAddress> user() {
-                return Optional.of(StorageExpressionFunctionWriteTest.USER);
-            }
-        };
+        final TestStorageExpressionEvaluationContext context = new TestStorageExpressionEvaluationContext(storage);
 
         this.applyAndCheck(
             StorageExpressionFunctionWrite.instance(),
@@ -87,18 +73,7 @@ public final class StorageExpressionFunctionWriteTest extends StorageExpressionF
     }
 
     private TestStorageExpressionEvaluationContext createContext(final Storage<TestStorageExpressionEvaluationContext> storage) {
-        return new TestStorageExpressionEvaluationContext(storage) {
-
-            @Override
-            public LocalDateTime now() {
-                return LocalDateTime.now();
-            }
-
-            @Override
-            public Optional<EmailAddress> user() {
-                return Optional.of(StorageExpressionFunctionWriteTest.USER);
-            }
-        };
+        return new TestStorageExpressionEvaluationContext(storage);
     }
 
     @Override
