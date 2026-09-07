@@ -173,6 +173,7 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
                     ),
                     EXPRESSION_NUMBER_KIND
                 ),
+                ENVIRONMENT_CONTEXT,
                 JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
             );
         }
