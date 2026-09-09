@@ -158,6 +158,11 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
     }
 
     @Override
+    public void testTestNaming() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public void testTypeNaming() {
         throw new UnsupportedOperationException();
     }
