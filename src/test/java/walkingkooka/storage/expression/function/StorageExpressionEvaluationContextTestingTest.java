@@ -144,6 +144,11 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public void testTestNaming() {
+        throw new UnsupportedOperationException();
+    }
+
     @Test
     public void testCurrentWorkingDirectory() {
         this.currentWorkingDirectoryAndCheck(
