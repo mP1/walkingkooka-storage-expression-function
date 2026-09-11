@@ -34,6 +34,7 @@ import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContextDelegator;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.locale.LocaleLanguageTag;
+import walkingkooka.logging.LoggingLevel;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
@@ -399,6 +400,16 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         }
 
         @Override
+        public LoggingLevel loggingLevel() {
+            return this.storageEnvironmentContext.loggingLevel();
+        }
+
+        @Override
+        public void setLoggingLevel(final LoggingLevel loggingLevel) {
+            this.storageEnvironmentContext.setLoggingLevel(loggingLevel);
+        }
+
+        @Override
         public LocalDateTime now() {
             return this.storageEnvironmentContext.now();
         }
@@ -474,6 +485,112 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         @Override
         public EnvironmentValueName<?> parseEnvironmentValueName(final String name) {
             return this.storageEnvironmentContext.parseEnvironmentValueName(name);
+        }
+
+        @Override
+        public void debug(final String message) {
+            this.storageEnvironmentContext.debug(message);
+        }
+
+        @Override
+        public void debug(final String message,
+                           final Throwable throwable) {
+            this.storageEnvironmentContext.debug(
+                    message,
+                    throwable
+                );
+        }
+
+        @Override
+        public void info(final String message) {
+            this.storageEnvironmentContext.info(message);
+        }
+
+        @Override
+        public void info(final String message,
+                          final Throwable throwable) {
+            this.storageEnvironmentContext.info(
+                    message,
+                    throwable
+                );
+        }
+
+        @Override
+        public void warn(final String message) {
+            this.storageEnvironmentContext.warn(message);
+        }
+
+        @Override
+        public void warn(final String message,
+                          final Throwable throwable) {
+            this.storageEnvironmentContext.warn(
+                    message,
+                    throwable
+                );
+        }
+
+        @Override
+        public void error(final String message) {
+            this.storageEnvironmentContext.error(message);
+        }
+
+        @Override
+        public void error(final String message,
+                           final Throwable throwable) {
+            this.storageEnvironmentContext.error(
+                    message,
+                    throwable
+                );
+        }
+
+        @Override
+        public void log(final LoggingLevel level,
+                         final String message) {
+            this.storageEnvironmentContext.log(
+                    level,
+                    message
+                );
+        }
+
+        @Override
+        public void log(final LoggingLevel level,
+                         final String message,
+                         final Throwable throwable) {
+            this.storageEnvironmentContext.log(
+                    level,
+                    message,
+                    throwable
+                );
+        }
+
+        @Override
+        public boolean isDebugEnabled() {
+            return this.storageEnvironmentContext.isDebugEnabled();
+        }
+
+        @Override
+        public boolean isInfoEnabled() {
+            return this.storageEnvironmentContext.isInfoEnabled();
+        }
+
+        @Override
+        public boolean isWarnEnabled() {
+            return this.storageEnvironmentContext.isWarnEnabled();
+        }
+
+        @Override
+        public boolean isErrorEnabled() {
+            return this.storageEnvironmentContext.isErrorEnabled();
+        }
+
+        @Override
+        public boolean isNoneEnabled() {
+            return this.storageEnvironmentContext.isNoneEnabled();
+        }
+
+        @Override
+        public boolean isLoggingEnabled(final LoggingLevel level) {
+            return this.storageEnvironmentContext.isLoggingEnabled(level);
         }
 
         @Override

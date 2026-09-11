@@ -31,6 +31,7 @@ import walkingkooka.environment.EnvironmentWatcher;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContextDelegator;
 import walkingkooka.locale.LocaleLanguageTag;
+import walkingkooka.logging.LoggingLevel;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.net.email.EmailAddress;
@@ -116,6 +117,11 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
 
     @Override
     public void testSetLocaleWithDifferentAndWatcher() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testSetLoggingLevelWithDifferentAndWatcher() {
         throw new UnsupportedOperationException();
     }
 
@@ -296,16 +302,6 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         public void setCurrency(final Currency currency) {
             this.environmentContext.setCurrency(currency);
         }
-        
-        @Override
-        public LineEnding lineEnding() {
-            return this.environmentContext.lineEnding();
-        }
-
-        @Override
-        public void setLineEnding(final LineEnding lineEnding) {
-            this.environmentContext.setLineEnding(lineEnding);
-        }
 
         @Override
         public LocaleContext localeContext() {
@@ -323,6 +319,16 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         }
 
         @Override
+        public LineEnding lineEnding() {
+            return this.environmentContext.lineEnding();
+        }
+
+        @Override
+        public void setLineEnding(final LineEnding lineEnding) {
+            this.environmentContext.setLineEnding(lineEnding);
+        }
+
+        @Override
         public Locale locale() {
             return this.environmentContext.locale();
         }
@@ -330,6 +336,16 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         @Override
         public void setLocale(final Locale locale) {
             this.environmentContext.setLocale(locale);
+        }
+
+        @Override
+        public LoggingLevel loggingLevel() {
+            return this.environmentContext.loggingLevel();
+        }
+
+        @Override
+        public void setLoggingLevel(final LoggingLevel loggingLevel) {
+            this.environmentContext.setLoggingLevel(loggingLevel);
         }
 
         @Override
@@ -439,7 +455,115 @@ public final class StorageExpressionEvaluationContextTestingTest implements Stor
         public EnvironmentValueName<?> parseEnvironmentValueName(final String name) {
             return STORAGE_ENVIRONMENT_CONTEXT.parseEnvironmentValueName(name);
         }
+        
+        @Override
+        public void debug(final String message) {
+            STORAGE_ENVIRONMENT_CONTEXT.debug(message);
+        }
 
+        @Override
+        public void debug(final String message,
+                          final Throwable throwable) {
+            STORAGE_ENVIRONMENT_CONTEXT.debug(
+                message,
+                throwable
+            );
+        }
+
+        @Override
+        public void info(final String message) {
+            STORAGE_ENVIRONMENT_CONTEXT.info(message);
+        }
+
+        @Override
+        public void info(final String message,
+                         final Throwable throwable) {
+            STORAGE_ENVIRONMENT_CONTEXT.info(
+                message,
+                throwable
+            );
+        }
+
+        @Override
+        public void warn(final String message) {
+            STORAGE_ENVIRONMENT_CONTEXT.warn(message);
+        }
+
+        @Override
+        public void warn(final String message,
+                         final Throwable throwable) {
+            STORAGE_ENVIRONMENT_CONTEXT.warn(
+                message,
+                throwable
+            );
+        }
+
+        @Override
+        public void error(final String message) {
+            STORAGE_ENVIRONMENT_CONTEXT.error(message);
+        }
+
+        @Override
+        public void error(final String message,
+                          final Throwable throwable) {
+            STORAGE_ENVIRONMENT_CONTEXT.error(
+                message,
+                throwable
+            );
+        }
+
+        @Override
+        public void log(final LoggingLevel level,
+                        final String message) {
+            STORAGE_ENVIRONMENT_CONTEXT.log(
+                level,
+                message
+            );
+        }
+
+        @Override
+        public void log(final LoggingLevel level,
+                        final String message,
+                        final Throwable throwable) {
+            STORAGE_ENVIRONMENT_CONTEXT.log(
+                level,
+                message,
+                throwable
+            );
+        }
+
+        @Override
+        public boolean isDebugEnabled() {
+            return STORAGE_ENVIRONMENT_CONTEXT.isDebugEnabled();
+        }
+
+        @Override
+        public boolean isInfoEnabled() {
+            return STORAGE_ENVIRONMENT_CONTEXT.isInfoEnabled();
+        }
+
+        @Override
+        public boolean isWarnEnabled() {
+            return STORAGE_ENVIRONMENT_CONTEXT.isWarnEnabled();
+        }
+
+        @Override
+        public boolean isErrorEnabled() {
+            return STORAGE_ENVIRONMENT_CONTEXT.isErrorEnabled();
+        }
+
+        @Override
+        public boolean isNoneEnabled() {
+            return STORAGE_ENVIRONMENT_CONTEXT.isNoneEnabled();
+        }
+
+        @Override
+        public boolean isLoggingEnabled(final LoggingLevel level) {
+            return STORAGE_ENVIRONMENT_CONTEXT.isLoggingEnabled(level);
+        }
+        
+        // StorageContext...............................................................................................
+        
         @Override
         public boolean canReadStorage(final StoragePath path) {
             return this.storage.canRead(
