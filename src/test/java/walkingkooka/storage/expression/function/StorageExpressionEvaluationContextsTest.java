@@ -17,7 +17,6 @@
 
 package walkingkooka.storage.expression.function;
 
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 
 import java.lang.reflect.Method;
@@ -27,11 +26,6 @@ public final class StorageExpressionEvaluationContextsTest implements PublicStat
     @Override
     public Class<StorageExpressionEvaluationContexts> type() {
         return StorageExpressionEvaluationContexts.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 
     @Override
