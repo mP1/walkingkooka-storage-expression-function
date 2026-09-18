@@ -17,7 +17,6 @@
 
 package walkingkooka.storage.expression.function;
 
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 
 import java.lang.reflect.Method;
@@ -29,11 +28,6 @@ public final class StorageExpressionFunctionsTest implements PublicStaticHelperT
     @Override
     public Class<StorageExpressionFunctions> type() {
         return StorageExpressionFunctions.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 
     @Override
