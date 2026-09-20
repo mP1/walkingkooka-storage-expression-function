@@ -34,6 +34,7 @@ import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContextDelegator;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.locale.LocaleLanguageTag;
+import walkingkooka.logging.LoggerPath;
 import walkingkooka.logging.LoggingLevel;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
@@ -485,6 +486,16 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         @Override
         public EnvironmentValueName<?> parseEnvironmentValueName(final String name) {
             return this.storageEnvironmentContext.parseEnvironmentValueName(name);
+        }
+
+        @Override
+        public void logEnter(final LoggerPath logger) {
+            this.storageEnvironmentContext.logEnter(logger);
+        }
+
+        @Override
+        public void logExit() {
+            this.storageEnvironmentContext.logExit();
         }
 
         @Override
