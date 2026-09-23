@@ -44,7 +44,7 @@ import walkingkooka.text.BinaryTextContextTesting;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContexts;
-import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
+import walkingkooka.tree.expression.function.ExpressionFunctionTesting2;
 import walkingkooka.tree.json.convert.JsonNodeConverterContext;
 import walkingkooka.tree.json.convert.JsonNodeConverterContextDelegator;
 import walkingkooka.tree.json.convert.JsonNodeConverterContexts;
@@ -57,7 +57,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
-public abstract class StorageExpressionFunctionTestCase<F extends StorageExpressionFunction<TestStorageExpressionEvaluationContext, T>, T> implements ExpressionFunctionTesting<F, T, TestStorageExpressionEvaluationContext>,
+public abstract class StorageExpressionFunctionTestCase<F extends StorageExpressionFunction<TestStorageExpressionEvaluationContext, T>, T> implements ExpressionFunctionTesting2<F, T, TestStorageExpressionEvaluationContext>,
     BinaryTextContextTesting,
     JsonNodeMarshallUnmarshallContextTesting,
     StorageEnvironmentContextTesting {
