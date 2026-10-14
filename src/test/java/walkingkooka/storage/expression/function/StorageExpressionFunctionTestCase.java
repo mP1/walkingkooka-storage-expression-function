@@ -159,6 +159,7 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
             return JsonNodeConverterContexts.basic(
                 ExpressionNumberConverterContexts.basic(
                     Converters.fake(),
+                    EXPRESSION_NUMBER_KIND,
                     BinaryNumberConverterFunctions.fake(),
                     ConverterContexts.basic(
                         false, // canNumbersHaveGroupSeparator
@@ -170,8 +171,7 @@ public abstract class StorageExpressionFunctionTestCase<F extends StorageExpress
                         CurrencyLocaleContexts.fake(),
                         DateTimeContexts.fake(),
                         DecimalNumberContexts.fake()
-                    ),
-                    EXPRESSION_NUMBER_KIND
+                    )
                 ),
                 ENVIRONMENT_CONTEXT,
                 JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
