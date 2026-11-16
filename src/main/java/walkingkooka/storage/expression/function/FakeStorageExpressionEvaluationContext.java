@@ -19,19 +19,27 @@ package walkingkooka.storage.expression.function;
 
 import walkingkooka.Binary;
 import walkingkooka.environment.EnvironmentContext;
+import walkingkooka.environment.EnvironmentValueName;
+import walkingkooka.environment.EnvironmentWatcher;
+import walkingkooka.net.email.EmailAddress;
 import walkingkooka.net.header.MediaType;
 import walkingkooka.storage.StorageMountPoint;
 import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.storage.StorageWatcher;
+import walkingkooka.text.Indentation;
+import walkingkooka.text.LineEnding;
 import walkingkooka.tree.expression.FakeExpressionEvaluationContext;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonString;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallContextObjectPostProcessor;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
 
+import java.nio.charset.Charset;
+import java.time.ZoneOffset;
 import java.util.Collection;
+import java.util.Currency;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -281,6 +289,87 @@ public class FakeStorageExpressionEvaluationContext extends FakeExpressionEvalua
 
     @Override
     public StorageExpressionEvaluationContext setEnvironmentContext(final EnvironmentContext environmentContext) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override 
+    public Currency currency() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Set<EnvironmentValueName<?>> environmentValueNames() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public <T> void setEnvironmentValue(final EnvironmentValueName<T> name,
+                                        final T value) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void removeEnvironmentValue(final EnvironmentValueName<?> environmentValueName) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setCharset(final Charset charset) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setCurrency(final Currency currency) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setIndentation(final Indentation indentation) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setLineEnding(final LineEnding lineEnding) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public ZoneOffset timeOffset() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setTimeOffset(final ZoneOffset zoneOffset) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Optional<EmailAddress> user() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void setUser(final Optional<EmailAddress> optional) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Runnable addEnvironmentWatcher(final EnvironmentWatcher environmentWatcher) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Runnable addEnvironmentWatcherOnce(final EnvironmentWatcher environmentWatcher) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public EnvironmentValueName<?> parseEnvironmentValueName(final String name) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public <T> Optional<T> environmentValue(final EnvironmentValueName<T> environmentValueName) {
         throw new UnsupportedOperationException();
     }
 }
