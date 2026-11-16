@@ -22,6 +22,7 @@ import walkingkooka.currency.CurrencyCode;
 import walkingkooka.environment.CanParseEnvironmentValueName;
 import walkingkooka.environment.EnvironmentContext;
 import walkingkooka.locale.LocaleLanguageTag;
+import walkingkooka.logging.LoggingContext;
 import walkingkooka.net.header.MediaType;
 import walkingkooka.storage.StorageEnvironmentContext;
 import walkingkooka.storage.StorageEnvironmentContextDelegator;
@@ -30,6 +31,8 @@ import walkingkooka.storage.StoragePath;
 import walkingkooka.storage.StorageValue;
 import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.storage.StorageWatcher;
+import walkingkooka.text.Indentation;
+import walkingkooka.text.LineEnding;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionEvaluationContextDelegator;
 import walkingkooka.tree.expression.ExpressionNumberKind;
@@ -37,6 +40,8 @@ import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContext;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextDelegator;
 
 import java.math.MathContext;
+import java.nio.charset.Charset;
+import java.time.LocalDateTime;
 import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
@@ -108,6 +113,48 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
     @Override
     default EnvironmentContext environmentContext() {
         return this.storageEnvironmentContext();
+    }
+
+    @Override
+    default Charset charset() {
+        return this.environmentContext()
+            .charset();
+    }
+
+    @Override
+    default CurrencyCode currencyCode() {
+        return this.environmentContext()
+            .currencyCode();
+    }
+
+    @Override
+    default Indentation indentation() {
+        return this.environmentContext()
+            .indentation();
+    }
+    
+    @Override
+    default LineEnding lineEnding() {
+        return this.environmentContext()
+            .lineEnding();
+    }
+    
+    @Override
+    default Locale locale() {
+        return this.environmentContext()
+            .locale();
+    }
+
+    @Override
+    default void setLocale(final Locale locale) {
+        this.environmentContext()
+            .setLocale(locale);
+    }
+
+    @Override
+    default LocalDateTime now() {
+        return this.environmentContext()
+            .now();
     }
 
     // StorageExpressionEvaluationContext...............................................................................
@@ -198,6 +245,11 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
     default Runnable addStorageWatcherOnce(final StorageWatcher watcher) {
         return this.storageExpressionEvaluationContext()
             .addStorageWatcherOnce(watcher);
+    }
+
+    @Override
+    default LoggingContext loggingContext() {
+        return this.storageExpressionEvaluationContext();
     }
 
     StorageExpressionEvaluationContext storageExpressionEvaluationContext();
