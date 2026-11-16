@@ -21,6 +21,8 @@ import walkingkooka.Binary;
 import walkingkooka.currency.CurrencyCode;
 import walkingkooka.environment.CanParseEnvironmentValueName;
 import walkingkooka.environment.EnvironmentContext;
+import walkingkooka.environment.expression.EnvironmentExpressionEvaluationContext;
+import walkingkooka.environment.expression.EnvironmentExpressionEvaluationContextDelegator;
 import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.logging.LoggingContext;
 import walkingkooka.net.header.MediaType;
@@ -33,8 +35,6 @@ import walkingkooka.storage.StorageValueInfo;
 import walkingkooka.storage.StorageWatcher;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
-import walkingkooka.tree.expression.ExpressionEvaluationContext;
-import walkingkooka.tree.expression.ExpressionEvaluationContextDelegator;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContext;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextDelegator;
@@ -48,7 +48,7 @@ import java.util.Locale;
 import java.util.Optional;
 
 public interface StorageExpressionEvaluationContextDelegator extends StorageExpressionEvaluationContext,
-    ExpressionEvaluationContextDelegator,
+    EnvironmentExpressionEvaluationContextDelegator,
     JsonNodeMarshallUnmarshallContextDelegator,
     StorageEnvironmentContextDelegator {
 
@@ -83,10 +83,10 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
         return this.environmentContext();
     }
 
-    // ExpressionEvaluationContextDelegator.............................................................................
+    // EnvironmentExpressionEvaluationContextDelegator..................................................................
 
     @Override
-    default ExpressionEvaluationContext expressionEvaluationContext() {
+    default EnvironmentExpressionEvaluationContext environmentExpressionEvaluationContext() {
         return this.storageExpressionEvaluationContext();
     }
 
@@ -132,13 +132,13 @@ public interface StorageExpressionEvaluationContextDelegator extends StorageExpr
         return this.environmentContext()
             .indentation();
     }
-    
+
     @Override
     default LineEnding lineEnding() {
         return this.environmentContext()
             .lineEnding();
     }
-    
+
     @Override
     default Locale locale() {
         return this.environmentContext()

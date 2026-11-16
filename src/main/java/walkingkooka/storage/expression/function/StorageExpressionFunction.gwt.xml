@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
+    <inherits name="walkingkooka.environment.expression.EnvironmentExpression"/>
     <inherits name="walkingkooka.storage.Storage"/>
     <inherits name="walkingkooka.tree.Tree"/>
 

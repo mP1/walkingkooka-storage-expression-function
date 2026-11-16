@@ -18,6 +18,7 @@
 package walkingkooka.storage.expression.function;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.environment.expression.EnvironmentExpressionEvaluationContextTesting2;
 import walkingkooka.reflect.ThrowableTesting;
 import walkingkooka.storage.StorageContextTesting2;
 import walkingkooka.storage.StorageEnvironmentContextTesting2;
@@ -28,6 +29,7 @@ import walkingkooka.tree.expression.ExpressionEvaluationContextTesting2;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface StorageExpressionEvaluationContextTesting2<C extends StorageExpressionEvaluationContext> extends ExpressionEvaluationContextTesting2<C>,
+    EnvironmentExpressionEvaluationContextTesting2<C>,
     StorageContextTesting2<C>,
     StorageExpressionEvaluationContextTesting,
     StorageEnvironmentContextTesting2<C>,
@@ -37,7 +39,7 @@ public interface StorageExpressionEvaluationContextTesting2<C extends StorageExp
     @Test
     @Override
     default void testSetLocaleWithNullFails() {
-        ExpressionEvaluationContextTesting2.super.testSetLocaleWithNullFails();
+        EnvironmentExpressionEvaluationContextTesting2.super.testSetLocaleWithNullFails();
     }
 
     // loadStorage......................................................................................................

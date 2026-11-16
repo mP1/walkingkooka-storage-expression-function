@@ -18,6 +18,7 @@
 package walkingkooka.storage.expression.function;
 
 import walkingkooka.environment.EnvironmentContext;
+import walkingkooka.environment.expression.EnvironmentExpressionEvaluationContext;
 import walkingkooka.storage.Storage;
 import walkingkooka.storage.StorageContext;
 import walkingkooka.storage.StorageEnvironmentContext;
@@ -29,7 +30,7 @@ import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
 /**
  * A {@link ExpressionEvaluationContext} that adds methods that should delegate to an internal {@link Storage}.
  */
-public interface StorageExpressionEvaluationContext extends ExpressionEvaluationContext,
+public interface StorageExpressionEvaluationContext extends EnvironmentExpressionEvaluationContext,
     StorageContext,
     StorageConverterContext,
     StorageEnvironmentContext {

@@ -169,9 +169,7 @@ public final class StorageExpressionEvaluationContextDelegatorTest implements St
         throw new UnsupportedOperationException();
     }
 
-    static class TestStorageExpressionEvaluationContextDelegator implements StorageExpressionEvaluationContextDelegator
-        //DecimalNumberContextDelegator
-        {
+    static class TestStorageExpressionEvaluationContextDelegator implements StorageExpressionEvaluationContextDelegator {
 
         @Override
         public ExpressionEvaluationContext enterScope(final Function<ExpressionReference, Optional<Optional<Object>>> function) {
