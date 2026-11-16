@@ -17,11 +17,13 @@
 
 package walkingkooka.storage.expression.function;
 
+import walkingkooka.environment.expression.EnvironmentExpressionEvaluationContextTesting;
 import walkingkooka.storage.StorageContextTesting;
 import walkingkooka.storage.StorageEnvironmentContextTesting;
 import walkingkooka.storage.convert.StorageConverterContextTesting;
 
 public interface StorageExpressionEvaluationContextTesting extends StorageContextTesting,
+    EnvironmentExpressionEvaluationContextTesting,
     StorageConverterContextTesting,
     StorageEnvironmentContextTesting {
 }
